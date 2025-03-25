@@ -1,0 +1,49 @@
+[versions]
+agp = "8.8.2"
+androidx-activity = "1.10.1"
+cupertino = "2.1.0"
+jetbrains-androidx-navigation = "2.8.0-alpha11"
+jetbrains-androidx-viewmodel = "2.8.4"
+jetbrains-compose = "1.7.3"
+jetbrains-kotlin = "2.1.10"
+jetbrains-kotlinx-coroutines = "1.10.1"
+jetbrains-kotlinx-serialization = "1.8.0"
+jetbrains-kotlinx-collections = "0.3.8"
+io-ktor = "3.1.0"
+
+[libraries]
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+cupertino = { group = "io.github.schott12521", name = "cupertino", version.ref = "cupertino" }
+jetbrains-androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "jetbrains-androidx-navigation" }
+jetbrains-androidx-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "jetbrains-androidx-viewmodel" }
+jetbrains-kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "jetbrains-kotlin" }
+jetbrains-kotlinx-collections = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "jetbrains-kotlinx-collections" }
+jetbrains-kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "jetbrains-kotlinx-coroutines" }
+jetbrains-kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "jetbrains-kotlinx-coroutines" }
+jetbrains-kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "jetbrains-kotlinx-serialization" }
+io-ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "io-ktor" }
+io-ktor-client-json = { group = "io.ktor", name = "ktor-client-json", version.ref = "io-ktor" }
+io-ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "io-ktor" }
+io-ktor-client-serialization = { group = "io.ktor", name = "ktor-client-serialization", version.ref = "io-ktor" }
+io-ktor-client-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "io-ktor" }
+io-ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "io-ktor" }
+io-ktor-kotlinx-serialization-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "io-ktor" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
+jetbrains-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "jetbrains-kotlin" }
+jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "jetbrains-kotlin" }
+jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "jetbrains-kotlin" }
+
+[bundles]
+io-ktor-client = [
+    "io-ktor-client-core",
+    "io-ktor-client-json",
+    "io-ktor-client-logging",
+    "io-ktor-client-serialization",
+    "io-ktor-client-negotiation",
+    "io-ktor-client-cio",
+    "io-ktor-kotlinx-serialization-json"
+]
