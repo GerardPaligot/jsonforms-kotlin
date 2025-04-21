@@ -1,5 +1,6 @@
 package com.paligot.jsonforms.kotlin.models.uischema
 
+import com.paligot.jsonforms.kotlin.models.serializers.ImmutableListSerializer
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.serialization.Serializable
 
@@ -11,6 +12,7 @@ sealed class UiSchema {
     /**
      * The child elements of this layout.
      */
+    @Serializable(with = ImmutableListSerializer::class)
     abstract val elements: ImmutableList<UiSchema>?
 
     /**

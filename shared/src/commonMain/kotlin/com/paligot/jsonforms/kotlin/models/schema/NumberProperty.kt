@@ -1,9 +1,8 @@
 package com.paligot.jsonforms.kotlin.models.schema
 
-import com.paligot.jsonforms.kotlin.internal.FieldError
-import com.paligot.jsonforms.kotlin.models.PropertyValidation
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonPrimitive
 
 /**
  * A property which configure a field with a number value.
@@ -15,6 +14,9 @@ data class NumberProperty(
     override val format: String? = null,
     override val description: String? = null,
     override val readOnly: Boolean? = null,
+    override val const: JsonPrimitive? = null,
+    override val not: Property? = null,
+    override val pattern: String? = null,
     /**
      * An optional maximum to validate the number value.
      */
@@ -26,20 +28,5 @@ data class NumberProperty(
     /**
      * An optional default value.
      */
-    val default: Int? = null
-) : Property(), PropertyValidation<String> {
-    override fun validate(id: String, value: String): FieldError? {
-        val floatValue = try {
-            value.replace(",", ".").toFloat()
-        } catch (exception: NumberFormatException) {
-            return FieldError.MalformedFieldError(id)
-        }
-        if (minimum != null && floatValue < minimum) {
-            return FieldError.MinValueFieldError(minimum, id)
-        }
-        if (maximum != null && floatValue > maximum) {
-            return FieldError.MaxValueFieldError(maximum, id)
-        }
-        return null
-    }
-}
+    val default: Int? = null,
+) : Property()

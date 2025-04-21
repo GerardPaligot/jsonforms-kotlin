@@ -28,7 +28,7 @@ import com.paligot.jsonforms.kotlin.models.uischema.UiSchema
  * @param schema Properties which can be shown on the screen.
  * @return true if the control is the last field
  */
-fun Control.isLastField(uiSchema: UiSchema, schema: Schema): Boolean =
+internal fun Control.isLastField(uiSchema: UiSchema, schema: Schema): Boolean =
     lastField(this, uiSchema, schema)
 
 private fun lastField(control: Control, parent: UiSchema, schema: Schema): Boolean {

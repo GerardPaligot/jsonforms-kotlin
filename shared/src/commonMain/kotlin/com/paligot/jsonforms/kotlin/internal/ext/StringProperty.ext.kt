@@ -16,12 +16,12 @@ import com.paligot.jsonforms.kotlin.models.uischema.Format
  * val isRadio = property.isRadio(control)
  * ```
  *
- * @param control Field contained in the [com.decathlon.jsonforms.models.uischeme.UiSchema]
+ * @param control Field contained in the [com.paligot.jsonforms.kotlin.models.uischema.UiSchema]
  * @return true if the [StringProperty] is a radio
  */
 fun StringProperty.isRadio(control: Control) =
-    (control.options?.format == Format.Radio && enum != null && enum?.size != 0) ||
-        (control.options?.format == Format.Radio && oneOf != null && oneOf?.size != 0)
+    (control.options?.format == Format.Radio && enum != null && enum.size != 0) ||
+        (control.options?.format == Format.Radio && oneOf != null && oneOf.size != 0)
 
 /**
  * Check if [StringProperty] is a password based on the format.
@@ -35,7 +35,7 @@ fun StringProperty.isRadio(control: Control) =
  * val isPassword = property.isPassword(control)
  * ```
  *
- * @param control Field contained in the [com.decathlon.jsonforms.models.uischeme.UiSchema]
+ * @param control Field contained in the [com.paligot.jsonforms.kotlin.models.uischema.UiSchema]
  * @return true if the [StringProperty] is a password
  */
 fun StringProperty.isPassword(control: Control) =
@@ -53,7 +53,7 @@ fun StringProperty.isPassword(control: Control) =
  * val isPassword = property.isEmail(control)
  * ```
  *
- * @param control Field contained in the [com.decathlon.jsonforms.models.uischeme.UiSchema]
+ * @param control Field contained in the [com.paligot.jsonforms.kotlin.models.uischema.UiSchema]
  * @return true if the [StringProperty] is an email
  */
 fun StringProperty.isEmail(control: Control) =
@@ -71,7 +71,7 @@ fun StringProperty.isEmail(control: Control) =
  * val isPassword = property.isPhone(control)
  * ```
  *
- * @param control Field contained in the [com.decathlon.jsonforms.models.uischeme.UiSchema]
+ * @param control Field contained in the [com.paligot.jsonforms.kotlin.models.uischema.UiSchema]
  * @return true if the [StringProperty] is a phone
  */
 fun StringProperty.isPhone(control: Control) =
@@ -89,4 +89,4 @@ fun StringProperty.isPhone(control: Control) =
  *
  * @return true if the [StringProperty] is a dropdown
  */
-fun StringProperty.isDropdown() = oneOf != null && oneOf?.size != 0
+fun StringProperty.isDropdown() = oneOf != null && oneOf.size != 0

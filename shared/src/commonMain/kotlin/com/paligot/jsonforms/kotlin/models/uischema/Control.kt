@@ -1,5 +1,6 @@
 package com.paligot.jsonforms.kotlin.models.uischema
 
+import com.paligot.jsonforms.kotlin.models.serializers.ImmutableListSerializer
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -9,7 +10,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 @SerialName("Control")
-class Control(
+data class Control(
     /**
      * The scope that determines to which part this element should be bound to.
      */
@@ -22,6 +23,7 @@ class Control(
      * Any additional options.
      */
     override val options: ControlOptions? = null,
+    @Serializable(with = ImmutableListSerializer::class)
     override val elements: ImmutableList<UiSchema>? = null,
     override val rule: Rule? = null
 ) : UiSchema()

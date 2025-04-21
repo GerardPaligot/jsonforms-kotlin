@@ -1,5 +1,6 @@
 package com.paligot.jsonforms.kotlin.models.uischema
 
+import com.paligot.jsonforms.kotlin.models.schema.Property
 import kotlinx.serialization.Serializable
 
 /**
@@ -14,5 +15,5 @@ data class Condition(
     /**
      * Schema evaluated to apply or not the condition.
      */
-    val schema: ConditionSchema
+    val schema: Property
 )

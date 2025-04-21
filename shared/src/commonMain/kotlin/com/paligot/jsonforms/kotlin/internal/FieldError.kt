@@ -1,7 +1,16 @@
 package com.paligot.jsonforms.kotlin.internal
 
+import com.paligot.jsonforms.kotlin.models.schema.Property
+import kotlinx.serialization.json.JsonPrimitive
+
 sealed class FieldError(val scope: String, val message: String) {
     class RequiredFieldError(scope: String) : FieldError(scope, "Field required $scope")
+
+    class InvalidValueFieldError(val value: JsonPrimitive, scope: String) :
+        FieldError(scope, "Field $scope has invalid value $value")
+
+    class InvalidEnumFieldError(val enum: List<String>, scope: String) :
+        FieldError(scope, "Field $scope must be one of ${enum.joinToString(",")}")
 
     class PatternFieldError(val pattern: String, scope: String) :
         FieldError(scope, "Field $scope must match pattern $pattern")
@@ -19,4 +28,7 @@ sealed class FieldError(val scope: String, val message: String) {
         FieldError(scope, "Field $scope must have at most $maxValue")
 
     class MalformedFieldError(scope: String) : FieldError(scope, "Field malformed $scope")
+
+    class InvalidNotPropertyError(val not: Property, scope: String) :
+        FieldError(scope, "Field $scope must not be $not")
 }

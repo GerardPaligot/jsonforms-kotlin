@@ -13,7 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.paligot.jsonforms.kotlin.models.schema.PropertyValue
+import com.paligot.jsonforms.kotlin.internal.ext.value
+import com.paligot.jsonforms.kotlin.models.schema.Property
 import com.paligot.jsonforms.kotlin.models.uischema.Orientation
 import kotlinx.collections.immutable.ImmutableList
 
@@ -21,7 +22,7 @@ import kotlinx.collections.immutable.ImmutableList
 @Composable
 fun RadioButton(
     value: String?,
-    values: ImmutableList<PropertyValue>,
+    values: ImmutableList<Property>,
     orientation: Orientation = Orientation.HORIZONTALLY,
     modifier: Modifier = Modifier,
     label: String? = null,
@@ -47,9 +48,9 @@ fun RadioButton(
             ) {
                 values.forEach {
                     RadioButton(
-                        selected = value == it.const,
-                        onClick = { onValueChange.invoke(it.const) },
-                        endContent = { Text(text = it.title) },
+                        selected = value == it.const?.value<String>(),
+                        onClick = { onValueChange.invoke(it.const?.value() ?: "") },
+                        endContent = { Text(text = it.title ?: "") },
                         enabled = enabled
                     )
                 }
@@ -61,9 +62,9 @@ fun RadioButton(
             ) {
                 values.forEach {
                     RadioButton(
-                        selected = value == it.const,
-                        onClick = { onValueChange.invoke(it.const) },
-                        endContent = { Text(text = it.title) },
+                        selected = value == it.const?.value(),
+                        onClick = { onValueChange.invoke(it.const?.value() ?: "") },
+                        endContent = { Text(text = it.title ?: "") },
                         enabled = enabled
                     )
                 }

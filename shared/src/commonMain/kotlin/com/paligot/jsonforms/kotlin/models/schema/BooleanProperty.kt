@@ -1,9 +1,8 @@
 package com.paligot.jsonforms.kotlin.models.schema
 
-import com.paligot.jsonforms.kotlin.internal.FieldError
-import com.paligot.jsonforms.kotlin.models.PropertyValidation
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonPrimitive
 
 /**
  * A property which configure a field with a boolean value.
@@ -14,7 +13,8 @@ data class BooleanProperty(
     override val title: String? = null,
     override val format: String? = null,
     override val description: String? = null,
-    override val readOnly: Boolean? = null
-) : Property(), PropertyValidation<Boolean> {
-    override fun validate(id: String, value: Boolean): FieldError? = null
-}
+    override val readOnly: Boolean? = null,
+    override val const: JsonPrimitive? = null,
+    override val not: Property? = null,
+    override val pattern: String? = null
+) : Property()

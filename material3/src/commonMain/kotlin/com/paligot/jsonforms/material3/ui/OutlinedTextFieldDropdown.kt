@@ -23,14 +23,15 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.toSize
-import com.paligot.jsonforms.kotlin.models.schema.PropertyValue
+import com.paligot.jsonforms.kotlin.internal.ext.value
+import com.paligot.jsonforms.kotlin.models.schema.Property
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.flow.filter
 
 @Composable
 fun OutlinedDropdown(
     value: String?,
-    values: ImmutableList<PropertyValue>,
+    values: ImmutableList<Property>,
     modifier: Modifier = Modifier,
     label: String? = null,
     isError: Boolean = false,
@@ -40,7 +41,7 @@ fun OutlinedDropdown(
     val expanded = remember { mutableStateOf(false) }
     OutlinedDropdown(
         value = value
-            ?.let { values.find { it.const == value }?.title ?: "" }
+            ?.let { values.find { it.const?.value<String>() == value }?.title ?: "" }
             ?: "",
         modifier = modifier,
         label = label ?: "",
@@ -50,9 +51,9 @@ fun OutlinedDropdown(
         children = {
             values.forEach {
                 ListItem(
-                    headlineContent = { Text(text = it.title) },
+                    headlineContent = { Text(text = it.title ?: "") },
                     modifier = Modifier.clickable {
-                        onValueChange(it.const).also {
+                        onValueChange(it.const?.value() ?: "").also {
                             expanded.value = false
                         }
                     }

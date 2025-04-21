@@ -28,7 +28,7 @@ fun Control.propertyKey(): String = scope.propertyKey()
  *
  * @return key of the [Control]
  */
-fun Condition.propertyKey(): String = scope.propertyKey()
+internal fun Condition.propertyKey(): String = scope.propertyKey()
 
 /**
  * Split the property path from the scope property to an array of keys.
@@ -42,7 +42,7 @@ fun Condition.propertyKey(): String = scope.propertyKey()
  *
  * @return list of keys
  */
-fun Control.propertyPath(): Array<String> {
+internal fun Control.propertyPath(): Array<String> {
     if (!pathPattern.matches(scope)) error("Property $this malformed")
     val split = scope.split("/properties/")
     // Remove the first item which is '#' character.

@@ -11,10 +11,7 @@ import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import com.paligot.jsonforms.kotlin.internal.FieldError
-import com.paligot.jsonforms.kotlin.internal.queries.checkPatterns
-import com.paligot.jsonforms.kotlin.internal.queries.checkRequired
-import com.paligot.jsonforms.kotlin.internal.queries.findUiControls
-import com.paligot.jsonforms.kotlin.internal.queries.requiredKeys
+import com.paligot.jsonforms.kotlin.internal.checks.ValidationCheck
 import com.paligot.jsonforms.kotlin.models.schema.Schema
 import com.paligot.jsonforms.kotlin.models.uischema.UiSchema
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -64,38 +61,6 @@ interface JsonFormState {
      * @param value New value for the field
      */
     operator fun set(key: String, value: Any)
-
-    /**
-     * Validate if requirements and patterns described in [Schema] are respected to submit your form.
-     *
-     * ```kotlin
-     * coroutineScope.launch {
-     *     jsonFormsState.validate(schema, uiSchema, key)
-     * }
-     * ```
-     *
-     * @param schema Properties which can be shown on the screen.
-     * @param uiSchema Form UI description of fields declared in [Schema].
-     * @param keys Data keys you want to validate.
-     * @return true if all requirements and patterns are respected.
-     */
-    suspend fun validate(schema: Schema, uiSchema: UiSchema, vararg keys: String): Boolean
-
-    /**
-     * Validate if requirements and patterns described in [Schema] are respected to submit your form.
-     *
-     * ```kotlin
-     * coroutineScope.launch {
-     *     jsonFormsState.validate(schema, uiSchema, keys)
-     * }
-     * ```
-     *
-     * @param schema Properties which can be shown on the screen.
-     * @param uiSchema Form UI description of fields declared in [Schema].
-     * @param keys List of keys from data you want to validate.
-     * @return true if all requirements and patterns are respected.
-     */
-    suspend fun validate(schema: Schema, uiSchema: UiSchema, keys: List<String>): Boolean
 
     /**
      * Validate if requirements and patterns described in [Schema] are respected to submit your form.
@@ -193,28 +158,14 @@ internal class JsonFormStateImpl(private val map: Map<String, Any?>) : JsonFormS
         mapValues[key] = value
     }
 
-    override suspend fun validate(
-        schema: Schema,
-        uiSchema: UiSchema,
-        vararg keys: String
-    ): Boolean = validate(schema, uiSchema, keys.toList())
-
-    override suspend fun validate(schema: Schema, uiSchema: UiSchema, keys: List<String>): Boolean {
-        val uiControls = uiSchema.findUiControls(keys)
+    override suspend fun validate(schema: Schema, uiSchema: UiSchema): Boolean {
+        val validation = ValidationCheck(schema, uiSchema)
         return suspendCancellableCoroutine { continuation ->
-            fieldsWithErrors = mutableListOf<FieldError>().apply {
-                addAll(mapValues.checkRequired(schema, uiControls, mapValues))
-                addAll(mapValues.checkPatterns(schema, uiControls))
-            }
+            fieldsWithErrors = validation.check(mapValues)
             continuation.resume(fieldsWithErrors.isEmpty() && customErrors.isEmpty()) { _, _, _ ->
                 fieldsWithErrors.toMutableList().clear()
             }
         }
-    }
-
-    override suspend fun validate(schema: Schema, uiSchema: UiSchema): Boolean {
-        val keys = (mapValues.keys.toList() + schema.requiredKeys()).distinct()
-        return validate(schema, uiSchema, keys)
     }
 
     override fun markAsErrors(properties: List<FieldError>) {

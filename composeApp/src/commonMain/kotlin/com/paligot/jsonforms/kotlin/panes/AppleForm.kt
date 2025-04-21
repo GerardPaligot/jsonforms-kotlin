@@ -12,7 +12,6 @@ import com.paligot.jsonforms.cupertino.CupertinoLayout
 import com.paligot.jsonforms.cupertino.CupertinoNumberProperty
 import com.paligot.jsonforms.cupertino.CupertinoStringProperty
 import com.paligot.jsonforms.kotlin.models.schema.BooleanProperty
-import com.paligot.jsonforms.kotlin.models.schema.PropertyValue
 import com.paligot.jsonforms.kotlin.models.schema.Schema
 import com.paligot.jsonforms.kotlin.models.schema.StringProperty
 import com.paligot.jsonforms.kotlin.models.uischema.Control
@@ -31,6 +30,7 @@ import com.slapps.cupertino.ExperimentalCupertinoApi
 import com.slapps.cupertino.theme.CupertinoTheme
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.serialization.json.JsonPrimitive
 
 @OptIn(ExperimentalCupertinoApi::class)
 @Composable
@@ -49,12 +49,12 @@ fun AppleForm(
                 ),
                 "country" to StringProperty(
                     oneOf = persistentListOf(
-                        PropertyValue(const = "fr", title = "France"),
-                        PropertyValue(const = "de", title = "Germany"),
-                        PropertyValue(const = "es", title = "Spain"),
-                        PropertyValue(const = "es", title = "Italy"),
-                        PropertyValue(const = "es", title = "Belgium"),
-                        PropertyValue(const = "es", title = "United Kingdom")
+                        StringProperty(const = JsonPrimitive("fr"), title = "France"),
+                        StringProperty(const = JsonPrimitive("de"), title = "Germany"),
+                        StringProperty(const = JsonPrimitive("es"), title = "Spain"),
+                        StringProperty(const = JsonPrimitive("it"), title = "Italy"),
+                        StringProperty(const = JsonPrimitive("be"), title = "Belgium"),
+                        StringProperty(const = JsonPrimitive("uk"), title = "United Kingdom")
                     )
                 ),
                 "consent" to BooleanProperty()
