@@ -12,7 +12,6 @@ import androidx.compose.ui.unit.dp
 import com.paligot.jsonforms.kotlin.models.schema.Schema
 import com.paligot.jsonforms.kotlin.models.schema.StringProperty
 import com.paligot.jsonforms.kotlin.models.uischema.Condition
-import com.paligot.jsonforms.kotlin.models.uischema.ConditionSchema
 import com.paligot.jsonforms.kotlin.models.uischema.Control
 import com.paligot.jsonforms.kotlin.models.uischema.Effect
 import com.paligot.jsonforms.kotlin.models.uischema.Format
@@ -61,7 +60,7 @@ fun LoginFormPane(
                         effect = Effect.Show,
                         condition = Condition(
                             scope = "#/properties/email",
-                            schema = ConditionSchema(
+                            schema = StringProperty(
                                 pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"
                             )
                         )

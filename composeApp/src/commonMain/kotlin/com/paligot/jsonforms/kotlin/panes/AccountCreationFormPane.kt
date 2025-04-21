@@ -6,7 +6,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.paligot.jsonforms.kotlin.models.schema.BooleanProperty
-import com.paligot.jsonforms.kotlin.models.schema.PropertyValue
 import com.paligot.jsonforms.kotlin.models.schema.Schema
 import com.paligot.jsonforms.kotlin.models.schema.StringProperty
 import com.paligot.jsonforms.kotlin.models.uischema.Control
@@ -23,6 +22,7 @@ import com.paligot.jsonforms.ui.JsonForm
 import com.paligot.jsonforms.ui.rememberJsonFormState
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.serialization.json.JsonPrimitive
 
 @Composable
 fun AccountCreationFormPane(
@@ -40,9 +40,9 @@ fun AccountCreationFormPane(
                 ),
                 "country" to StringProperty(
                     oneOf = persistentListOf(
-                        PropertyValue(const = "fr", title = "France"),
-                        PropertyValue(const = "de", title = "Germany"),
-                        PropertyValue(const = "es", title = "Spain")
+                        StringProperty(const = JsonPrimitive("fr"), title = "France"),
+                        StringProperty(const = JsonPrimitive("de"), title = "Germany"),
+                        StringProperty(const = JsonPrimitive("es"), title = "Spain")
                     )
                 ),
                 "consent" to BooleanProperty()

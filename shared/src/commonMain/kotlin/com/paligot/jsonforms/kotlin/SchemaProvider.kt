@@ -1,8 +1,8 @@
 package com.paligot.jsonforms.kotlin
 
+import com.paligot.jsonforms.kotlin.internal.checks.propertyIsRequired
 import com.paligot.jsonforms.kotlin.internal.queries.getPropertyByControl
 import com.paligot.jsonforms.kotlin.internal.queries.isLastField
-import com.paligot.jsonforms.kotlin.internal.queries.propertyIsRequired
 import com.paligot.jsonforms.kotlin.models.schema.Property
 import com.paligot.jsonforms.kotlin.models.schema.Schema
 import com.paligot.jsonforms.kotlin.models.uischema.Control

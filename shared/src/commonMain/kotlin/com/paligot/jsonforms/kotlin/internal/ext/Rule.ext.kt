@@ -1,14 +1,16 @@
 package com.paligot.jsonforms.kotlin.internal.ext
 
-import com.paligot.jsonforms.kotlin.models.uischema.ConditionSchema
+import com.paligot.jsonforms.kotlin.internal.checks.validate
+import com.paligot.jsonforms.kotlin.models.schema.ArrayProperty
+import com.paligot.jsonforms.kotlin.models.schema.BooleanProperty
+import com.paligot.jsonforms.kotlin.models.schema.NumberProperty
+import com.paligot.jsonforms.kotlin.models.schema.ObjectProperty
+import com.paligot.jsonforms.kotlin.models.schema.StringProperty
 import com.paligot.jsonforms.kotlin.models.uischema.Effect
 import com.paligot.jsonforms.kotlin.models.uischema.Rule
-import com.paligot.jsonforms.kotlin.models.uischema.toJsonPrimitive
-import com.paligot.jsonforms.kotlin.models.uischema.value
-import kotlinx.serialization.json.JsonPrimitive
 
 /**
- * Evaluate the rule to check if we should hide the field.
+ * Evaluate the rule to check if we should show the field.
  *
  * ```kotlin
  * val rule = Rule(
@@ -18,26 +20,27 @@ import kotlinx.serialization.json.JsonPrimitive
  *         schema = ConditionSchema(const = JsonPrimitive(""))
  *     )
  * )
- * val hidden = rule.evaluateHidden(mapOf("key" to ""))
+ * val hidden = rule.evaluateShow(mapOf("key" to ""))
  * ```
  *
  * @param data field values of the form.
  * @return true if the condition of the rule is evaluated to true.
  */
-fun Rule.evaluateHidden(data: Map<String, Any?>): Boolean {
+fun Rule.evaluateShow(data: Map<String, Any?>): Boolean {
     val key = condition.propertyKey()
-    val resolve = condition.schema.resolve(key, data)
-    return if (effect == Effect.Show && resolve) {
-        false
-    } else if (effect == Effect.Show && !resolve) {
-        true
-    } else if (effect == Effect.Hide && resolve) {
-        true
-    } else if (effect == Effect.Hide && !resolve) {
-        false
-    } else {
-        false
+    val value = data[key]
+    val errors = when (condition.schema) {
+        is StringProperty -> condition.schema.validate(key, value as? String ?: "")
+        is BooleanProperty -> condition.schema.validate(key, value as? Boolean ?: false)
+        is NumberProperty -> condition.schema.validate(key, value as? String ?: "")
+        is ObjectProperty -> condition.schema.validate(data)
+        is ArrayProperty -> TODO()
     }
+    return if (effect == Effect.Show && errors.isEmpty()) true
+    else if (effect == Effect.Show && errors.isNotEmpty()) false
+    else if (effect == Effect.Hide && errors.isEmpty()) false
+    else if (effect == Effect.Hide && errors.isNotEmpty()) true
+    else false
 }
 
 /**
@@ -59,41 +62,17 @@ fun Rule.evaluateHidden(data: Map<String, Any?>): Boolean {
  */
 fun Rule.evaluateEnabled(data: Map<String, Any?>): Boolean {
     val key = condition.propertyKey()
-    val resolve = condition.schema.resolve(key, data)
-    if (effect == Effect.Enable && resolve) return true
-    if (effect == Effect.Enable && !resolve) return false
-    if (effect == Effect.Disable && resolve) return false
-    if (effect == Effect.Disable && !resolve) return true
+    val value = data[key]
+    val resolve = when (condition.schema) {
+        is StringProperty -> condition.schema.validate(key, value as? String ?: "")
+        is BooleanProperty -> condition.schema.validate(key, value as? Boolean ?: false)
+        is NumberProperty -> condition.schema.validate(key, value as? String ?: "")
+        is ObjectProperty -> condition.schema.validate(data)
+        is ArrayProperty -> TODO()
+    }
+    if (effect == Effect.Enable && resolve.isEmpty()) return true
+    if (effect == Effect.Enable && resolve.isNotEmpty()) return false
+    if (effect == Effect.Disable && resolve.isEmpty()) return false
+    if (effect == Effect.Disable && resolve.isNotEmpty()) return true
     return true
-}
-
-fun ConditionSchema.resolve(key: String, data: Map<String, Any?>): Boolean {
-    if (const == null && enum == null && not == null && pattern == null) return false
-    return (
-        const.resolveConst(key, data) &&
-            enum.resolveEnum(key, data) &&
-            not.resolveNot(key, data) &&
-            pattern.resolvePattern(key, data)
-        )
-}
-
-private fun JsonPrimitive?.resolveConst(key: String, data: Map<String, Any?>): Boolean {
-    if (this == null) return true
-    return this.value == data[key].toJsonPrimitive()?.value
-}
-
-private fun List<String>?.resolveEnum(key: String, data: Map<String, Any?>): Boolean {
-    if (this == null) return true
-    if (this.isEmpty()) return false
-    return this.contains(data[key])
-}
-
-private fun ConditionSchema?.resolveNot(key: String, data: Map<String, Any?>): Boolean {
-    if (this == null) return true
-    return this.resolve(key, data).not()
-}
-
-private fun String?.resolvePattern(key: String, data: Map<String, Any?>): Boolean {
-    if (this == null) return true
-    return Regex(this).matches(data[key].toString())
 }

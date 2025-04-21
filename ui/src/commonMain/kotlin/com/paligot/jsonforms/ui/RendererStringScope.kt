@@ -17,7 +17,8 @@ import com.paligot.jsonforms.kotlin.internal.ext.isPassword
 import com.paligot.jsonforms.kotlin.internal.ext.isPhone
 import com.paligot.jsonforms.kotlin.internal.ext.isRadio
 import com.paligot.jsonforms.kotlin.internal.ext.label
-import com.paligot.jsonforms.kotlin.models.schema.PropertyValue
+import com.paligot.jsonforms.kotlin.internal.ext.toJsonPrimitive
+import com.paligot.jsonforms.kotlin.models.schema.Property
 import com.paligot.jsonforms.kotlin.models.schema.StringProperty
 import com.paligot.jsonforms.kotlin.models.uischema.Control
 import com.paligot.jsonforms.kotlin.models.uischema.Orientation
@@ -31,7 +32,7 @@ interface RendererStringScope {
     fun isDropdown(): Boolean
     fun label(): String?
     fun description(): String?
-    fun values(): ImmutableList<PropertyValue>
+    fun values(): ImmutableList<Property>
     fun enabled(): Boolean
     fun orientation(): Orientation
     fun verticalArrangement(): Arrangement.Vertical
@@ -62,9 +63,11 @@ internal class RendererStringScopeInstance(
 
     override fun description(): String? = property.description
 
-    override fun values(): ImmutableList<PropertyValue> {
+    override fun values(): ImmutableList<Property> {
         if (property.enum != null && property.enum!!.isNotEmpty()) {
-            return property.enum!!.map { PropertyValue(it, it) }.toImmutableList()
+            return property.enum!!
+                .map { StringProperty(title = it, const = it.toJsonPrimitive()) }
+                .toImmutableList()
         }
         return property.oneOf ?: persistentListOf()
     }

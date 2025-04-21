@@ -41,6 +41,7 @@ kotlin {
             implementation(libs.cupertino)
             api(libs.jetbrains.kotlinx.collections)
             implementation(libs.jetbrains.kotlinx.coroutines)
+            implementation(libs.jetbrains.kotlinx.serialization.json)
         }
         commonTest.dependencies {
             implementation(libs.jetbrains.kotlin.test)

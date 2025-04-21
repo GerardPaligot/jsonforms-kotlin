@@ -5,7 +5,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.paligot.jsonforms.kotlin.models.schema.PropertyValue
+import com.paligot.jsonforms.kotlin.internal.ext.value
+import com.paligot.jsonforms.kotlin.models.schema.Property
 import com.slapps.cupertino.CupertinoSegmentedControl
 import com.slapps.cupertino.CupertinoSegmentedControlTab
 import com.slapps.cupertino.CupertinoText
@@ -17,7 +18,7 @@ import kotlinx.collections.immutable.ImmutableList
 @Composable
 fun SegmentedControl(
     value: String?,
-    values: ImmutableList<PropertyValue>,
+    values: ImmutableList<Property>,
     modifier: Modifier = Modifier,
     label: String? = null,
     description: String? = null,
@@ -36,17 +37,17 @@ fun SegmentedControl(
         } else if (description != null) {
             CupertinoText(text = description)
         }
-        val selectedTabIndex = values.indexOfFirst { it.const == value }
+        val selectedTabIndex = values.indexOfFirst { it.const?.value<String>() == value }
         CupertinoSegmentedControl(
             modifier = Modifier.fillMaxWidth(),
             selectedTabIndex = if (selectedTabIndex == -1) 0 else selectedTabIndex,
             tabs = {
                 values.forEach {
                     CupertinoSegmentedControlTab(
-                        onClick = { onValueChange.invoke(it.const) },
-                        isSelected = value == it.const,
+                        onClick = { onValueChange.invoke(it.const?.value() ?: "") },
+                        isSelected = value == it.const?.value<String>(),
                         content = {
-                            CupertinoText(text = it.title)
+                            CupertinoText(text = it.title ?: "")
                         }
                     )
                 }

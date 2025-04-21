@@ -17,7 +17,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.paligot.jsonforms.kotlin.models.schema.PropertyValue
+import com.paligot.jsonforms.kotlin.internal.ext.value
+import com.paligot.jsonforms.kotlin.models.schema.Property
 import jsonforms_kotlin.composeapp.generated.resources.Res
 import jsonforms_kotlin.composeapp.generated.resources.de
 import jsonforms_kotlin.composeapp.generated.resources.es
@@ -28,7 +29,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun FlagDropdownField(
     value: String?,
-    values: ImmutableList<PropertyValue>,
+    values: ImmutableList<Property>,
     modifier: Modifier = Modifier,
     expanded: Boolean = false,
     onFlagClick: () -> Unit,
@@ -47,16 +48,16 @@ fun FlagDropdownField(
             content = {
                 values.forEach {
                     ListItem(
-                        headlineContent = { Text(it.title) },
+                        headlineContent = { Text(it.title ?: "") },
                         leadingContent = {
                             Image(
-                                painter = painterResource(getFlagResource(it.const)),
+                                painter = painterResource(getFlagResource(it.const?.value() ?: "")),
                                 contentDescription = null,
                                 modifier = Modifier.size(32.dp)
                             )
                         },
                         modifier = Modifier.clickable {
-                            onItemClick(it.const)
+                            onItemClick(it.const?.value() ?: "")
                             onDismissRequest()
                         }
                     )
