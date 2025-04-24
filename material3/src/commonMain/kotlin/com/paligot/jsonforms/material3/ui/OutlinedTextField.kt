@@ -20,7 +20,7 @@ fun OutlinedTextField(
     error: String? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
 ) {
     val focusManager = LocalFocusManager.current
     val supportingText = error ?: description
@@ -30,21 +30,24 @@ fun OutlinedTextField(
         modifier = modifier.fillMaxWidth(),
         enabled = enabled,
         isError = error != null,
-        label = if (label != null) {
-            { Text(text = label) }
-        } else {
-            null
-        },
-        supportingText = if (supportingText != null) {
-            { Text(text = supportingText) }
-        } else {
-            null
-        },
+        label =
+            if (label != null) {
+                { Text(text = label) }
+            } else {
+                null
+            },
+        supportingText =
+            if (supportingText != null) {
+                { Text(text = supportingText) }
+            } else {
+                null
+            },
         keyboardOptions = keyboardOptions,
-        keyboardActions = KeyboardActions(
-            onNext = { focusManager.moveFocus(FocusDirection.Down) },
-            onDone = { focusManager.clearFocus(true) }
-        ),
+        keyboardActions =
+            KeyboardActions(
+                onNext = { focusManager.moveFocus(FocusDirection.Down) },
+                onDone = { focusManager.clearFocus(true) },
+            ),
         maxLines = 1,
         singleLine = true,
         visualTransformation = visualTransformation,

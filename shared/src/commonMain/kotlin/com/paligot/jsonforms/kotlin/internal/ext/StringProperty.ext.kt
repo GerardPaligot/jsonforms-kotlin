@@ -38,8 +38,7 @@ fun StringProperty.isRadio(control: Control) =
  * @param control Field contained in the [com.paligot.jsonforms.kotlin.models.uischema.UiSchema]
  * @return true if the [StringProperty] is a password
  */
-fun StringProperty.isPassword(control: Control) =
-    control.options?.format == Format.Password
+fun StringProperty.isPassword(control: Control) = control.options?.format == Format.Password
 
 /**
  * Check if [StringProperty] is an email based on the format.
@@ -56,8 +55,7 @@ fun StringProperty.isPassword(control: Control) =
  * @param control Field contained in the [com.paligot.jsonforms.kotlin.models.uischema.UiSchema]
  * @return true if the [StringProperty] is an email
  */
-fun StringProperty.isEmail(control: Control) =
-    control.options?.format == Format.Email
+fun StringProperty.isEmail(control: Control) = control.options?.format == Format.Email
 
 /**
  * Check if [StringProperty] is a phone based on the format.
@@ -74,8 +72,7 @@ fun StringProperty.isEmail(control: Control) =
  * @param control Field contained in the [com.paligot.jsonforms.kotlin.models.uischema.UiSchema]
  * @return true if the [StringProperty] is a phone
  */
-fun StringProperty.isPhone(control: Control) =
-    control.options?.format == Format.Phone
+fun StringProperty.isPhone(control: Control) = control.options?.format == Format.Phone
 
 /**
  * Check if [StringProperty] is a dropdown based on the oneOf field.

@@ -10,13 +10,14 @@ import androidx.compose.ui.unit.dp
 internal fun Column(
     verticalSpacing: String?,
     modifier: Modifier = Modifier,
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit,
 ) {
     androidx.compose.foundation.layout.Column(
         modifier = modifier,
-        verticalArrangement = verticalSpacing
-            ?.let { Arrangement.spacedBy(it.toInt().dp) }
-            ?: run { Arrangement.Top },
-        content = content
+        verticalArrangement =
+            verticalSpacing
+                ?.let { Arrangement.spacedBy(it.toInt().dp) }
+                ?: run { Arrangement.Top },
+        content = content,
     )
 }

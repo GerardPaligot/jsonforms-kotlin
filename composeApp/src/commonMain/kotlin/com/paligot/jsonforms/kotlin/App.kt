@@ -16,6 +16,6 @@ fun App() {
         exitTransition = { ExitTransition.None },
         builder = {
             formDescriptionNavGraph(navController)
-        }
+        },
     )
 }

@@ -19,22 +19,24 @@ fun Checkbox(
     onCheckedChange: ((Boolean) -> Unit),
 ) {
     Row(
-        modifier = if (label != null) {
-            modifier.clickable { onCheckedChange(!value) }
-        } else {
-            modifier
-        },
+        modifier =
+            if (label != null) {
+                modifier.clickable { onCheckedChange(!value) }
+            } else {
+                modifier
+            },
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(4.dp)
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         CupertinoCheckBox(
             checked = value,
-            onCheckedChange = if (label == null) {
-                { onCheckedChange(it) }
-            } else {
-                null
-            },
-            enabled = enabled
+            onCheckedChange =
+                if (label == null) {
+                    { onCheckedChange(it) }
+                } else {
+                    null
+                },
+            enabled = enabled,
         )
         if (label != null) {
             CupertinoText(text = label)

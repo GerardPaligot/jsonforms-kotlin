@@ -6,7 +6,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class NumberPropertyValidateTest {
-
     @Test
     fun `validate should return no errors for a valid number within range`() {
         val property = NumberProperty(minimum = 1, maximum = 10)
@@ -28,11 +27,11 @@ class NumberPropertyValidateTest {
 
         assertEquals(
             FieldError.MinValueFieldError(1, scopeKey).scope,
-            result.scope
+            result.scope,
         )
         assertEquals(
             FieldError.MinValueFieldError(1, scopeKey).message,
-            result.message
+            result.message,
         )
     }
 
@@ -46,11 +45,11 @@ class NumberPropertyValidateTest {
 
         assertEquals(
             FieldError.MaxValueFieldError(10, scopeKey).scope,
-            result.scope
+            result.scope,
         )
         assertEquals(
             FieldError.MaxValueFieldError(10, scopeKey).message,
-            result.message
+            result.message,
         )
     }
 
@@ -64,11 +63,11 @@ class NumberPropertyValidateTest {
 
         assertEquals(
             FieldError.MalformedFieldError(scopeKey).scope,
-            result.scope
+            result.scope,
         )
         assertEquals(
             FieldError.MalformedFieldError(scopeKey).message,
-            result.message
+            result.message,
         )
     }
 }

@@ -22,45 +22,48 @@ import com.paligot.jsonforms.kotlin.models.uischema.Control
  */
 internal fun ObjectProperty.validate(
     data: Map<String, Any?>,
-    keys: List<String> = properties.keys.toList()
+    keys: List<String> = properties.keys.toList(),
 ): List<FieldError> {
-    val requiredErrors = this.required
-        .mapNotNull {
-            val value = data[it]
-            if (value == null) {
-                FieldError.RequiredFieldError(it)
-            } else if (value is String && value == "") {
-                FieldError.RequiredFieldError(it)
-            } else if (value is Boolean && value.not()) {
-                FieldError.RequiredFieldError(it)
-            } else {
-                null
+    val requiredErrors =
+        this.required
+            .mapNotNull {
+                val value = data[it]
+                if (value == null) {
+                    FieldError.RequiredFieldError(it)
+                } else if (value is String && value == "") {
+                    FieldError.RequiredFieldError(it)
+                } else if (value is Boolean && value.not()) {
+                    FieldError.RequiredFieldError(it)
+                } else {
+                    null
+                }
             }
-        }
-    val errors = this.properties
-        .map { entry ->
-            val property = entry.value
-            if (property is ObjectProperty) {
-                return@map property.validate(data, keys)
+    val errors =
+        this.properties
+            .map { entry ->
+                val property = entry.value
+                if (property is ObjectProperty) {
+                    return@map property.validate(data, keys)
+                }
+                val value = data[entry.key]
+                if (value == null || value == "" || keys.contains(entry.key).not()) {
+                    return@map emptyList()
+                }
+                when (property) {
+                    is StringProperty -> property.validate(entry.key, value as String)
+                    is BooleanProperty -> property.validate(entry.key, value as Boolean)
+                    is NumberProperty -> property.validate(entry.key, value as String)
+                    else -> emptyList()
+                }
             }
-            val value = data[entry.key]
-            if (value == null || value == "" || keys.contains(entry.key).not()) {
-                return@map emptyList()
-            }
-            when (property) {
-                is StringProperty -> property.validate(entry.key, value as String)
-                is BooleanProperty -> property.validate(entry.key, value as Boolean)
-                is NumberProperty -> property.validate(entry.key, value as String)
-                else -> emptyList()
-            }
-        }
-        .flatten()
+            .flatten()
 
-    val combinators = if (anyOf != null) {
-        validateAnyOf(data)
-    } else {
-        emptyList()
-    }
+    val combinators =
+        if (anyOf != null) {
+            validateAnyOf(data)
+        } else {
+            emptyList()
+        }
 
     return (requiredErrors + errors + combinators).distinct()
 }
@@ -127,7 +130,10 @@ private fun ObjectProperty.validateAnyOf(data: Map<String, Any?>): List<FieldErr
  * @param data the [Map] of data to evaluate oneOf/anyOf statements to apply field requirements
  * @return is required property
  */
-internal fun ObjectProperty.propertyIsRequired(control: Control, data: Map<String, Any?>): Boolean {
+internal fun ObjectProperty.propertyIsRequired(
+    control: Control,
+    data: Map<String, Any?>,
+): Boolean {
     var objectProperty: ObjectProperty = this
     val path = control.propertyPath()
     path.forEach {
@@ -154,9 +160,10 @@ internal fun ObjectProperty.propertyIsRequired(control: Control, data: Map<Strin
  * @return a [List] of [String] with the required fields
  */
 private fun ObjectProperty.anyOfRequired(data: Map<String, Any?>): List<String> {
-    val matchingConditions = this.anyOf
-        ?.filter { property -> property.validate(data).isEmpty() }
-        ?: emptyList()
+    val matchingConditions =
+        this.anyOf
+            ?.filter { property -> property.validate(data).isEmpty() }
+            ?: emptyList()
     if (matchingConditions.isNotEmpty()) {
         return matchingConditions.flatMap { it.required }.distinct()
     }

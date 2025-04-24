@@ -10,12 +10,14 @@ class UiSchemaTest {
 
     @Test
     fun `test VerticalLayout serialization`() {
-        val verticalLayout = VerticalLayout(
-            elements = persistentListOf(
-                Control(scope = "name", label = "Name"),
-                Control(scope = "age", label = "Age")
+        val verticalLayout =
+            VerticalLayout(
+                elements =
+                    persistentListOf(
+                        Control(scope = "name", label = "Name"),
+                        Control(scope = "age", label = "Age"),
+                    ),
             )
-        )
         val serialized = json.encodeToString(UiSchema.serializer(), verticalLayout)
         val deserialized = json.decodeFromString(UiSchema.serializer(), serialized)
 
@@ -24,12 +26,14 @@ class UiSchemaTest {
 
     @Test
     fun `test HorizontalLayout serialization`() {
-        val horizontalLayout = HorizontalLayout(
-            elements = persistentListOf(
-                Control(scope = "email", label = "Email"),
-                Control(scope = "phone", label = "Phone")
+        val horizontalLayout =
+            HorizontalLayout(
+                elements =
+                    persistentListOf(
+                        Control(scope = "email", label = "Email"),
+                        Control(scope = "phone", label = "Phone"),
+                    ),
             )
-        )
         val serialized = json.encodeToString(UiSchema.serializer(), horizontalLayout)
         val deserialized = json.decodeFromString(UiSchema.serializer(), serialized)
 
@@ -38,13 +42,15 @@ class UiSchemaTest {
 
     @Test
     fun `test GroupLayout serialization`() {
-        val groupLayout = GroupLayout(
-            label = "User Info",
-            elements = persistentListOf(
-                Control(scope = "username", label = "Username"),
-                Control(scope = "password", label = "Password")
+        val groupLayout =
+            GroupLayout(
+                label = "User Info",
+                elements =
+                    persistentListOf(
+                        Control(scope = "username", label = "Username"),
+                        Control(scope = "password", label = "Password"),
+                    ),
             )
-        )
         val serialized = json.encodeToString(UiSchema.serializer(), groupLayout)
         val deserialized = json.decodeFromString(UiSchema.serializer(), serialized)
 
@@ -53,11 +59,12 @@ class UiSchemaTest {
 
     @Test
     fun `test Control serialization`() {
-        val control = Control(
-            scope = "address",
-            label = "Address",
-            options = ControlOptions(format = Format.Email, readOnly = true)
-        )
+        val control =
+            Control(
+                scope = "address",
+                label = "Address",
+                options = ControlOptions(format = Format.Email, readOnly = true),
+            )
         val serialized = json.encodeToString(UiSchema.serializer(), control)
         val deserialized = json.decodeFromString(UiSchema.serializer(), serialized)
 

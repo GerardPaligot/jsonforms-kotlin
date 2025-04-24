@@ -10,12 +10,12 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
 class ObjectPropertyGetPropertyByControlTest {
-
     @Test
     fun `getPropertyByControl should return the correct property when the path is valid`() {
-        val schema = Schema(
-            properties = persistentMapOf("key" to StringProperty())
-        )
+        val schema =
+            Schema(
+                properties = persistentMapOf("key" to StringProperty()),
+            )
         val control = Control(scope = "#/properties/key")
 
         val result = schema.getPropertyByControl<StringProperty>(control)
@@ -25,9 +25,10 @@ class ObjectPropertyGetPropertyByControlTest {
 
     @Test
     fun `getPropertyByControl should throw an error when the property does not exist`() {
-        val schema = Schema(
-            properties = persistentMapOf("key" to StringProperty())
-        )
+        val schema =
+            Schema(
+                properties = persistentMapOf("key" to StringProperty()),
+            )
         val control = Control(scope = "#/properties/nonexistent")
 
         assertFailsWith<IllegalStateException> {
@@ -37,11 +38,13 @@ class ObjectPropertyGetPropertyByControlTest {
 
     @Test
     fun `getPropertyByControl should throw an error when the last key is an object`() {
-        val schema = Schema(
-            properties = persistentMapOf(
-                "key" to ObjectProperty(properties = persistentMapOf("subKey" to StringProperty()))
+        val schema =
+            Schema(
+                properties =
+                    persistentMapOf(
+                        "key" to ObjectProperty(properties = persistentMapOf("subKey" to StringProperty())),
+                    ),
             )
-        )
         val control = Control(scope = "#/properties/key")
 
         assertFailsWith<IllegalStateException> {
@@ -51,9 +54,10 @@ class ObjectPropertyGetPropertyByControlTest {
 
     @Test
     fun `getPropertyByControl should throw an error when an intermediate key is not an object`() {
-        val schema = Schema(
-            properties = persistentMapOf("key" to StringProperty())
-        )
+        val schema =
+            Schema(
+                properties = persistentMapOf("key" to StringProperty()),
+            )
         val control = Control(scope = "#/properties/key/properties/subKey")
 
         assertFailsWith<IllegalStateException> {
@@ -63,13 +67,16 @@ class ObjectPropertyGetPropertyByControlTest {
 
     @Test
     fun `getPropertyByControl should return the correct nested property`() {
-        val schema = Schema(
-            properties = persistentMapOf(
-                "key" to ObjectProperty(
-                    properties = persistentMapOf("subKey" to StringProperty())
-                )
+        val schema =
+            Schema(
+                properties =
+                    persistentMapOf(
+                        "key" to
+                            ObjectProperty(
+                                properties = persistentMapOf("subKey" to StringProperty()),
+                            ),
+                    ),
             )
-        )
         val control = Control(scope = "#/properties/key/properties/subKey")
 
         val result = schema.getPropertyByControl<StringProperty>(control)

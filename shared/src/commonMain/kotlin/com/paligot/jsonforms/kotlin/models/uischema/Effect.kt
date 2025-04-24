@@ -22,5 +22,5 @@ enum class Effect {
     /**
      * Effect that enables the associated element.
      */
-    Enable
+    Enable,
 }

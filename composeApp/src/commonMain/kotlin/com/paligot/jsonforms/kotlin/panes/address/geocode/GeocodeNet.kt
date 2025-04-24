@@ -9,18 +9,18 @@ data class AddressComponent(
     val longName: String,
     @SerialName("short_name")
     val shortName: String,
-    val types: List<String>
+    val types: List<String>,
 )
 
 @Serializable
 data class Geometry(
-    val location: Location
+    val location: Location,
 )
 
 @Serializable
 data class Location(
     val lat: Double,
-    val lng: Double
+    val lng: Double,
 )
 
 @Serializable
@@ -32,11 +32,11 @@ data class Result(
     val geometry: Geometry,
     @SerialName("place_id")
     val placeId: String,
-    val types: List<String>
+    val types: List<String>,
 )
 
 @Serializable
 data class Geocode(
     val results: List<Result>,
-    val status: String
+    val status: String,
 )

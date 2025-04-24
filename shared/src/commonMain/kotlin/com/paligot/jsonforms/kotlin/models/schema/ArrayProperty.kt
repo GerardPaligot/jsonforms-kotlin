@@ -23,5 +23,5 @@ data class ArrayProperty(
     val prefixItems: List<ObjectProperty>? = null,
     val uniqueItems: Boolean = false,
     @Serializable(with = ObjectPropertyListSerializer::class)
-    val contains: List<Property>? = null
+    val contains: List<Property>? = null,
 ) : Property()

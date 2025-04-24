@@ -10,5 +10,7 @@ import com.paligot.jsonforms.kotlin.models.schema.BooleanProperty
  * @param value The boolean value to validate.
  * @return A list of [FieldError] objects representing validation errors, or an empty list if the value is valid.
  */
-internal fun BooleanProperty.validate(scopeKey: String, value: Boolean): List<FieldError> =
-    validateProperty(scopeKey, value)
+internal fun BooleanProperty.validate(
+    scopeKey: String,
+    value: Boolean,
+): List<FieldError> = validateProperty(scopeKey, value)

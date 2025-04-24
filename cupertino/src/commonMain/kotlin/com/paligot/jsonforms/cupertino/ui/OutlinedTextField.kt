@@ -23,7 +23,7 @@ fun OutlinedTextField(
     error: String? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
 ) {
     val focusManager = LocalFocusManager.current
     val supportingText = error ?: description
@@ -34,16 +34,18 @@ fun OutlinedTextField(
             modifier = modifier.fillMaxWidth(),
             enabled = enabled,
             isError = error != null,
-            placeholder = if (label != null) {
-                { CupertinoText(text = label) }
-            } else {
-                null
-            },
+            placeholder =
+                if (label != null) {
+                    { CupertinoText(text = label) }
+                } else {
+                    null
+                },
             keyboardOptions = keyboardOptions,
-            keyboardActions = KeyboardActions(
-                onNext = { focusManager.moveFocus(FocusDirection.Down) },
-                onDone = { focusManager.clearFocus(true) }
-            ),
+            keyboardActions =
+                KeyboardActions(
+                    onNext = { focusManager.moveFocus(FocusDirection.Down) },
+                    onDone = { focusManager.clearFocus(true) },
+                ),
             maxLines = 1,
             singleLine = true,
             visualTransformation = visualTransformation,
@@ -51,7 +53,7 @@ fun OutlinedTextField(
         if (supportingText != null) {
             CupertinoText(
                 text = supportingText,
-                style = CupertinoTheme.typography.caption1
+                style = CupertinoTheme.typography.caption1,
             )
         }
     }

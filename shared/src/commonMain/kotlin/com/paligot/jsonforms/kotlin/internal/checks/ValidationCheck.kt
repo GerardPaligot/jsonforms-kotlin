@@ -8,7 +8,7 @@ import com.paligot.jsonforms.kotlin.models.uischema.UiSchema
 
 class ValidationCheck(
     private val schema: Schema,
-    private val uiSchema: UiSchema
+    private val uiSchema: UiSchema,
 ) {
     fun check(data: Map<String, Any?>): List<FieldError> {
         val controls = uiSchema.findVisibleControls(data)

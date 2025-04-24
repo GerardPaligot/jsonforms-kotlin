@@ -9,13 +9,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 fun AddressFormVM(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: AddressFormViewModel = viewModel { AddressFormViewModel() }
+    viewModel: AddressFormViewModel = viewModel { AddressFormViewModel() },
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
     AddressFormPane(
         uiModel = uiState.value,
         modifier = modifier,
         onStreetChange = viewModel::queryChange,
-        onBackClick = onBackClick
+        onBackClick = onBackClick,
     )
 }

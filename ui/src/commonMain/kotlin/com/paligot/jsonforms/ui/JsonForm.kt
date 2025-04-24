@@ -48,7 +48,7 @@ fun JsonForm(
     layoutContent: @Composable (RendererLayoutScope.(@Composable (UiSchema) -> Unit) -> Unit),
     stringContent: @Composable (RendererStringScope.(id: String) -> Unit),
     numberContent: @Composable (RendererNumberScope.(id: String) -> Unit),
-    booleanContent: @Composable (RendererBooleanScope.(id: String) -> Unit)
+    booleanContent: @Composable (RendererBooleanScope.(id: String) -> Unit),
 ) {
     val schemeProvider = rememberSchemeProvider(uiSchema = uiSchema, schema = schema)
     Box(modifier = modifier) {
@@ -63,15 +63,18 @@ fun JsonForm(
                     jsonFormState = state,
                     stringContent = stringContent,
                     numberContent = numberContent,
-                    booleanContent = booleanContent
+                    booleanContent = booleanContent,
                 )
-            }
+            },
         )
     }
 }
 
 @Composable
-internal fun rememberSchemeProvider(uiSchema: UiSchema, schema: Schema): SchemaProvider =
+internal fun rememberSchemeProvider(
+    uiSchema: UiSchema,
+    schema: Schema,
+): SchemaProvider =
     remember(uiSchema, schema) {
         SchemaProviderImpl(uiSchema, schema)
     }

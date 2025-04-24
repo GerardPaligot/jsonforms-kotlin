@@ -13,20 +13,22 @@ internal fun CupertinoSection(
     title: String?,
     description: String?,
     modifier: Modifier = Modifier,
-    content: @Composable SectionScope.() -> Unit
+    content: @Composable SectionScope.() -> Unit,
 ) {
     CupertinoSection(
-        title = if (title != null) {
-            { CupertinoText(text = title) }
-        } else {
-            null
-        },
-        caption = if (description != null) {
-            { CupertinoText(text = description) }
-        } else {
-            null
-        },
+        title =
+            if (title != null) {
+                { CupertinoText(text = title) }
+            } else {
+                null
+            },
+        caption =
+            if (description != null) {
+                { CupertinoText(text = description) }
+            } else {
+                null
+            },
         modifier = modifier,
-        content = content
+        content = content,
     )
 }

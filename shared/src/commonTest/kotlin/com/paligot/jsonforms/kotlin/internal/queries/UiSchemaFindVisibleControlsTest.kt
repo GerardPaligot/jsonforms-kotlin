@@ -2,14 +2,18 @@ package com.paligot.jsonforms.kotlin.internal.queries
 
 import com.paligot.jsonforms.kotlin.internal.ext.propertyKey
 import com.paligot.jsonforms.kotlin.models.schema.StringProperty
-import com.paligot.jsonforms.kotlin.models.uischema.*
+import com.paligot.jsonforms.kotlin.models.uischema.Condition
+import com.paligot.jsonforms.kotlin.models.uischema.Control
+import com.paligot.jsonforms.kotlin.models.uischema.Effect
+import com.paligot.jsonforms.kotlin.models.uischema.HorizontalLayout
+import com.paligot.jsonforms.kotlin.models.uischema.Rule
+import com.paligot.jsonforms.kotlin.models.uischema.VerticalLayout
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.serialization.json.JsonPrimitive
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class UiSchemaFindVisibleControlsTest {
-
     @Test
     fun `findVisibleKeys should return keys for visible controls`() {
         val control1 = Control(scope = "#/properties/key1", rule = null)
@@ -24,20 +28,32 @@ class UiSchemaFindVisibleControlsTest {
 
     @Test
     fun `findVisibleKeys should return empty list when all controls are hidden`() {
-        val control1 = Control(scope = "#/properties/key1", rule = Rule(
-            effect = Effect.Show,
-            condition = Condition(
+        val control1 =
+            Control(
                 scope = "#/properties/key1",
-                schema = StringProperty(const = JsonPrimitive("invalid_value")))
+                rule =
+                    Rule(
+                        effect = Effect.Show,
+                        condition =
+                            Condition(
+                                scope = "#/properties/key1",
+                                schema = StringProperty(const = JsonPrimitive("invalid_value")),
+                            ),
+                    ),
             )
-        )
-        val control2 = Control(scope = "#/properties/key2", rule = Rule(
-            effect = Effect.Show,
-            condition = Condition(
+        val control2 =
+            Control(
                 scope = "#/properties/key2",
-                schema = StringProperty(const = JsonPrimitive("invalid_value")))
+                rule =
+                    Rule(
+                        effect = Effect.Show,
+                        condition =
+                            Condition(
+                                scope = "#/properties/key2",
+                                schema = StringProperty(const = JsonPrimitive("invalid_value")),
+                            ),
+                    ),
             )
-        )
         val layout = VerticalLayout(elements = persistentListOf(control1, control2))
         val data = mapOf<String, Any?>()
 
@@ -48,20 +64,32 @@ class UiSchemaFindVisibleControlsTest {
 
     @Test
     fun `findVisibleKeys should return keys only for visible controls`() {
-        val control1 = Control(scope = "#/properties/key1", rule = Rule(
-            effect = Effect.Show,
-            condition = Condition(
+        val control1 =
+            Control(
                 scope = "#/properties/key1",
-                schema = StringProperty(const = JsonPrimitive("valid")))
+                rule =
+                    Rule(
+                        effect = Effect.Show,
+                        condition =
+                            Condition(
+                                scope = "#/properties/key1",
+                                schema = StringProperty(const = JsonPrimitive("valid")),
+                            ),
+                    ),
             )
-        )
-        val control2 = Control(scope = "#/properties/key2", rule = Rule(
-            effect = Effect.Show,
-            condition = Condition(
+        val control2 =
+            Control(
                 scope = "#/properties/key2",
-                schema = StringProperty(const = JsonPrimitive("invalid")))
+                rule =
+                    Rule(
+                        effect = Effect.Show,
+                        condition =
+                            Condition(
+                                scope = "#/properties/key2",
+                                schema = StringProperty(const = JsonPrimitive("invalid")),
+                            ),
+                    ),
             )
-        )
         val layout = VerticalLayout(elements = persistentListOf(control1, control2))
         val data = mapOf<String, Any?>("key1" to "valid")
 

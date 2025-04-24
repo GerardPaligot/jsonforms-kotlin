@@ -35,5 +35,5 @@ data class ControlOptions(
      * The boolean to know if the control element will have the first letter capitalized.
      */
     val hasFirstLetterCapitalized: Boolean = false,
-    override val weight: Float? = null
-): Options
+    override val weight: Float? = null,
+) : Options

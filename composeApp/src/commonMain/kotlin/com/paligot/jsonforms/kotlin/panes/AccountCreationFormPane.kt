@@ -9,9 +9,9 @@ import com.paligot.jsonforms.kotlin.models.schema.BooleanProperty
 import com.paligot.jsonforms.kotlin.models.schema.Schema
 import com.paligot.jsonforms.kotlin.models.schema.StringProperty
 import com.paligot.jsonforms.kotlin.models.uischema.Control
+import com.paligot.jsonforms.kotlin.models.uischema.ControlOptions
 import com.paligot.jsonforms.kotlin.models.uischema.Format
 import com.paligot.jsonforms.kotlin.models.uischema.LayoutOptions
-import com.paligot.jsonforms.kotlin.models.uischema.ControlOptions
 import com.paligot.jsonforms.kotlin.models.uischema.VerticalLayout
 import com.paligot.jsonforms.kotlin.ui.FormScaffold
 import com.paligot.jsonforms.material3.Material3BooleanProperty
@@ -27,67 +27,75 @@ import kotlinx.serialization.json.JsonPrimitive
 @Composable
 fun AccountCreationFormPane(
     modifier: Modifier = Modifier,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
 ) {
     val jsonFormState = rememberJsonFormState(initialValues = mutableMapOf())
-    val schema = remember {
-        Schema(
-            properties = persistentMapOf(
-                "name" to StringProperty(),
-                "password" to StringProperty(),
-                "gender" to StringProperty(
-                    enum = persistentListOf("Male", "Female", "Other")
-                ),
-                "country" to StringProperty(
-                    oneOf = persistentListOf(
-                        StringProperty(const = JsonPrimitive("fr"), title = "France"),
-                        StringProperty(const = JsonPrimitive("de"), title = "Germany"),
-                        StringProperty(const = JsonPrimitive("es"), title = "Spain")
-                    )
-                ),
-                "consent" to BooleanProperty()
-            ),
-            required = persistentListOf("name", "password")
-        )
-    }
-    val uiSchema = remember {
-        VerticalLayout(
-            options = LayoutOptions(verticalSpacing = "8"),
-            elements = persistentListOf(
-                Control(
-                    scope = "#/properties/name",
-                    label = "Email",
-                    options = ControlOptions(format = Format.Email)
-                ),
-                Control(
-                    scope = "#/properties/password",
-                    label = "Password",
-                    options = ControlOptions(format = Format.Password)
-                ),
-                Control(
-                    scope = "#/properties/gender",
-                    label = "Gender",
-                    options = ControlOptions(
-                        format = Format.Radio,
-                        horizontalSpacing = "4"
-                    )
-                ),
-                Control(
-                    scope = "#/properties/country",
-                    label = "Country"
-                ),
-                Control(
-                    scope = "#/properties/consent",
-                    label = "I agree to the terms and conditions",
-                    options = ControlOptions(format = Format.Toggle)
-                )
+    val schema =
+        remember {
+            Schema(
+                properties =
+                    persistentMapOf(
+                        "name" to StringProperty(),
+                        "password" to StringProperty(),
+                        "gender" to
+                            StringProperty(
+                                enum = persistentListOf("Male", "Female", "Other"),
+                            ),
+                        "country" to
+                            StringProperty(
+                                oneOf =
+                                    persistentListOf(
+                                        StringProperty(const = JsonPrimitive("fr"), title = "France"),
+                                        StringProperty(const = JsonPrimitive("de"), title = "Germany"),
+                                        StringProperty(const = JsonPrimitive("es"), title = "Spain"),
+                                    ),
+                            ),
+                        "consent" to BooleanProperty(),
+                    ),
+                required = persistentListOf("name", "password"),
             )
-        )
-    }
+        }
+    val uiSchema =
+        remember {
+            VerticalLayout(
+                options = LayoutOptions(verticalSpacing = "8"),
+                elements =
+                    persistentListOf(
+                        Control(
+                            scope = "#/properties/name",
+                            label = "Email",
+                            options = ControlOptions(format = Format.Email),
+                        ),
+                        Control(
+                            scope = "#/properties/password",
+                            label = "Password",
+                            options = ControlOptions(format = Format.Password),
+                        ),
+                        Control(
+                            scope = "#/properties/gender",
+                            label = "Gender",
+                            options =
+                                ControlOptions(
+                                    format = Format.Radio,
+                                    horizontalSpacing = "4",
+                                ),
+                        ),
+                        Control(
+                            scope = "#/properties/country",
+                            label = "Country",
+                        ),
+                        Control(
+                            scope = "#/properties/consent",
+                            label = "I agree to the terms and conditions",
+                            options = ControlOptions(format = Format.Toggle),
+                        ),
+                    ),
+            )
+        }
     FormScaffold(
         title = "Account creation",
         onBackClick = onBackClick,
-        modifier = modifier
+        modifier = modifier,
     ) {
         JsonForm(
             schema = schema,
@@ -102,7 +110,7 @@ fun AccountCreationFormPane(
                     error = error?.message,
                     onValueChange = {
                         jsonFormState[id] = it
-                    }
+                    },
                 )
             },
             numberContent = { id ->
@@ -113,7 +121,7 @@ fun AccountCreationFormPane(
                     error = error?.message,
                     onValueChange = {
                         jsonFormState[id] = it
-                    }
+                    },
                 )
             },
             booleanContent = { id ->
@@ -122,9 +130,9 @@ fun AccountCreationFormPane(
                     value = value ?: false,
                     onValueChange = {
                         jsonFormState[id] = it
-                    }
+                    },
                 )
-            }
+            },
         )
     }
 }

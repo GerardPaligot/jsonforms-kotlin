@@ -16,7 +16,7 @@ fun AddressFormPane(
     uiModel: AddressUiModel,
     modifier: Modifier = Modifier,
     onStreetChange: (String) -> Unit,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
 ) {
     val state = rememberJsonFormState(initialValues = mutableMapOf())
     LaunchedEffect(uiModel.generatedAddress) {
@@ -27,7 +27,7 @@ fun AddressFormPane(
     FormScaffold(
         title = "Address form",
         modifier = modifier,
-        onBackClick = onBackClick
+        onBackClick = onBackClick,
     ) {
         JsonForm(
             modifier = Modifier.width(500.dp),
@@ -44,11 +44,11 @@ fun AddressFormPane(
                     onValueChange = {
                         state[id] = it
                         onStreetChange(it)
-                    }
+                    },
                 )
             },
             numberContent = {},
-            booleanContent = {}
+            booleanContent = {},
         )
     }
 }

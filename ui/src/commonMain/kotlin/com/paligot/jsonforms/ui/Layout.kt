@@ -15,7 +15,7 @@ fun Layout(
     uiSchema: UiSchema,
     jsonFormState: JsonFormState,
     layoutContent: @Composable (RendererLayoutScope.(@Composable (UiSchema) -> Unit) -> Unit),
-    content: @Composable (Control) -> Unit
+    content: @Composable (Control) -> Unit,
 ) {
     val hidden = uiSchema.rule?.evaluateShow(jsonFormState.getData())?.not() ?: false
     AnimatedVisibility(visible = !hidden) {
@@ -27,7 +27,7 @@ fun Layout(
                         uiSchema = child,
                         jsonFormState = jsonFormState,
                         layoutContent = layoutContent,
-                        content = content
+                        content = content,
                     )
                 }
             }

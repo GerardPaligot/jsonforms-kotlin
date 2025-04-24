@@ -14,5 +14,5 @@ data class Rule(
     /**
      * The condition of the rule that must evaluate to true in order to trigger the effect.
      */
-    val condition: Condition
+    val condition: Condition,
 )

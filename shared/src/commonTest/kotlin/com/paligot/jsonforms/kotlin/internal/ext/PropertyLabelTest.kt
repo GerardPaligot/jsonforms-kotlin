@@ -7,7 +7,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
 class PropertyLabelTest {
-
     @Test
     fun `label should return property title with asterisk when required`() {
         val property = StringProperty(title = "My Label")

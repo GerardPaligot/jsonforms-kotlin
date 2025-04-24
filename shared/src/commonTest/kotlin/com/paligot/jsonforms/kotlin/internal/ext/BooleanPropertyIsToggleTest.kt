@@ -12,10 +12,11 @@ class BooleanPropertyIsToggleTest {
     @Test
     fun `isToggle should return true when control format is Toggle`() {
         val property = BooleanProperty()
-        val control = Control(
-            scope = "#/properties/boolean",
-            options = ControlOptions(format = Format.Toggle)
-        )
+        val control =
+            Control(
+                scope = "#/properties/boolean",
+                options = ControlOptions(format = Format.Toggle),
+            )
 
         val result = property.isToggle(control)
 

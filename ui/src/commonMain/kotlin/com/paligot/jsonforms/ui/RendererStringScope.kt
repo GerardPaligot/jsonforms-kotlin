@@ -29,19 +29,29 @@ import kotlinx.collections.immutable.toImmutableList
 @Stable
 interface RendererStringScope {
     fun isRadio(): Boolean
+
     fun isDropdown(): Boolean
+
     fun label(): String?
+
     fun description(): String?
+
     fun values(): ImmutableList<Property>
+
     fun enabled(): Boolean
+
     fun orientation(): Orientation
+
     fun verticalArrangement(): Arrangement.Vertical
+
     fun horizontalArrangement(): Arrangement.Horizontal
+
     fun visualTransformation(): VisualTransformation
+
     fun keyboardOptions(
         capitalization: KeyboardCapitalization = KeyboardCapitalization.Unspecified,
         keyboardType: KeyboardType = KeyboardType.Unspecified,
-        imeAction: ImeAction = ImeAction.Unspecified
+        imeAction: ImeAction = ImeAction.Unspecified,
     ): KeyboardOptions
 }
 
@@ -49,17 +59,18 @@ internal class RendererStringScopeInstance(
     private val control: Control,
     private val schemaProvider: SchemaProvider,
     private val jsonFormState: JsonFormState,
-    private val property: StringProperty = schemaProvider.getPropertyByControl(control)
+    private val property: StringProperty = schemaProvider.getPropertyByControl(control),
 ) : RendererStringScope {
     override fun isRadio(): Boolean = property.isRadio(control)
 
     override fun isDropdown(): Boolean = property.isDropdown()
 
-    override fun label(): String? = property
-        .label(
-            required = schemaProvider.propertyIsRequired(control, jsonFormState.getData()),
-            control = control
-        )
+    override fun label(): String? =
+        property
+            .label(
+                required = schemaProvider.propertyIsRequired(control, jsonFormState.getData()),
+                control = control,
+            )
 
     override fun description(): String? = property.description
 
@@ -74,36 +85,44 @@ internal class RendererStringScopeInstance(
 
     override fun enabled(): Boolean = property.isEnabled(control, jsonFormState.getData())
 
-    override fun orientation(): Orientation = control.options?.orientation
-        ?: Orientation.VERTICALLY
+    override fun orientation(): Orientation =
+        control.options?.orientation
+            ?: Orientation.VERTICALLY
 
-    override fun verticalArrangement(): Arrangement.Vertical = control.options
-        ?.verticalSpacing
-        ?.let { Arrangement.spacedBy(it.toInt().dp) }
-        ?: run { Arrangement.Top }
+    override fun verticalArrangement(): Arrangement.Vertical =
+        control.options
+            ?.verticalSpacing
+            ?.let { Arrangement.spacedBy(it.toInt().dp) }
+            ?: run { Arrangement.Top }
 
-    override fun horizontalArrangement(): Arrangement.Horizontal = control.options
-        ?.horizontalSpacing
-        ?.let { Arrangement.spacedBy(it.toInt().dp) }
-        ?: run { Arrangement.Start }
+    override fun horizontalArrangement(): Arrangement.Horizontal =
+        control.options
+            ?.horizontalSpacing
+            ?.let { Arrangement.spacedBy(it.toInt().dp) }
+            ?: run { Arrangement.Start }
 
     override fun visualTransformation(): VisualTransformation =
         if (property.isPassword(control)) PasswordVisualTransformation() else VisualTransformation.None
 
     override fun keyboardOptions(
-        capitalization: KeyboardCapitalization, keyboardType: KeyboardType, imeAction: ImeAction
-    ): KeyboardOptions = KeyboardOptions(
-        capitalization = if (control.options?.hasFirstLetterCapitalized == true) {
-            KeyboardCapitalization.Sentences
-        } else {
-            capitalization
-        },
-        keyboardType = when {
-            property.isEmail(control) -> KeyboardType.Email
-            property.isPassword(control) -> KeyboardType.Password
-            property.isPhone(control) -> KeyboardType.Phone
-            else -> keyboardType
-        },
-        imeAction = imeAction
-    )
+        capitalization: KeyboardCapitalization,
+        keyboardType: KeyboardType,
+        imeAction: ImeAction,
+    ): KeyboardOptions =
+        KeyboardOptions(
+            capitalization =
+                if (control.options?.hasFirstLetterCapitalized == true) {
+                    KeyboardCapitalization.Sentences
+                } else {
+                    capitalization
+                },
+            keyboardType =
+                when {
+                    property.isEmail(control) -> KeyboardType.Email
+                    property.isPassword(control) -> KeyboardType.Password
+                    property.isPhone(control) -> KeyboardType.Phone
+                    else -> keyboardType
+                },
+            imeAction = imeAction,
+        )
 }

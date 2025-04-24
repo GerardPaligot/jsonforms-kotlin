@@ -29,18 +29,25 @@ import com.paligot.jsonforms.kotlin.models.uischema.Rule
 fun Rule.evaluateShow(data: Map<String, Any?>): Boolean {
     val key = condition.propertyKey()
     val value = data[key]
-    val errors = when (condition.schema) {
-        is StringProperty -> condition.schema.validate(key, value as? String ?: "")
-        is BooleanProperty -> condition.schema.validate(key, value as? Boolean ?: false)
-        is NumberProperty -> condition.schema.validate(key, value as? String ?: "")
-        is ObjectProperty -> condition.schema.validate(data)
-        is ArrayProperty -> TODO()
+    val errors =
+        when (condition.schema) {
+            is StringProperty -> condition.schema.validate(key, value as? String ?: "")
+            is BooleanProperty -> condition.schema.validate(key, value as? Boolean ?: false)
+            is NumberProperty -> condition.schema.validate(key, value as? String ?: "")
+            is ObjectProperty -> condition.schema.validate(data)
+            is ArrayProperty -> TODO()
+        }
+    return if (effect == Effect.Show && errors.isEmpty()) {
+        true
+    } else if (effect == Effect.Show && errors.isNotEmpty()) {
+        false
+    } else if (effect == Effect.Hide && errors.isEmpty()) {
+        false
+    } else if (effect == Effect.Hide && errors.isNotEmpty()) {
+        true
+    } else {
+        false
     }
-    return if (effect == Effect.Show && errors.isEmpty()) true
-    else if (effect == Effect.Show && errors.isNotEmpty()) false
-    else if (effect == Effect.Hide && errors.isEmpty()) false
-    else if (effect == Effect.Hide && errors.isNotEmpty()) true
-    else false
 }
 
 /**
@@ -63,13 +70,14 @@ fun Rule.evaluateShow(data: Map<String, Any?>): Boolean {
 fun Rule.evaluateEnabled(data: Map<String, Any?>): Boolean {
     val key = condition.propertyKey()
     val value = data[key]
-    val resolve = when (condition.schema) {
-        is StringProperty -> condition.schema.validate(key, value as? String ?: "")
-        is BooleanProperty -> condition.schema.validate(key, value as? Boolean ?: false)
-        is NumberProperty -> condition.schema.validate(key, value as? String ?: "")
-        is ObjectProperty -> condition.schema.validate(data)
-        is ArrayProperty -> TODO()
-    }
+    val resolve =
+        when (condition.schema) {
+            is StringProperty -> condition.schema.validate(key, value as? String ?: "")
+            is BooleanProperty -> condition.schema.validate(key, value as? Boolean ?: false)
+            is NumberProperty -> condition.schema.validate(key, value as? String ?: "")
+            is ObjectProperty -> condition.schema.validate(data)
+            is ArrayProperty -> TODO()
+        }
     if (effect == Effect.Enable && resolve.isEmpty()) return true
     if (effect == Effect.Enable && resolve.isNotEmpty()) return false
     if (effect == Effect.Disable && resolve.isEmpty()) return false

@@ -11,7 +11,10 @@ import com.paligot.jsonforms.kotlin.models.schema.StringProperty
  * @param value The string value to validate.
  * @return A list of [FieldError] objects representing validation errors, or an empty list if the value is valid.
  */
-internal fun StringProperty.validate(scopeKey: String, value: String): List<FieldError> {
+internal fun StringProperty.validate(
+    scopeKey: String,
+    value: String,
+): List<FieldError> {
     val errors = mutableListOf<FieldError>()
     if (value.length < (minLength ?: 0)) {
         errors.add(FieldError.MinLengthFieldError(minLength ?: 0, scopeKey))
@@ -24,7 +27,7 @@ internal fun StringProperty.validate(scopeKey: String, value: String): List<Fiel
     }
     if (oneOf != null && oneOf.mapNotNull { it.const?.value<String>() }.contains(value)) {
         errors.add(
-            FieldError.InvalidEnumFieldError(oneOf.mapNotNull { it.const?.content }, scopeKey)
+            FieldError.InvalidEnumFieldError(oneOf.mapNotNull { it.const?.content }, scopeKey),
         )
     }
     errors.addAll(this.validateProperty(scopeKey, value))

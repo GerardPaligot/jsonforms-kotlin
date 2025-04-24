@@ -7,7 +7,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class StringPropertyValidateTest {
-
     @Test
     fun `validate should return no errors for a valid string`() {
         val property = StringProperty(minLength = 3, maxLength = 10)
@@ -29,7 +28,7 @@ class StringPropertyValidateTest {
 
         assertEquals(
             FieldError.MinLengthFieldError(5, scopeKey).message,
-            result.message
+            result.message,
         )
     }
 
@@ -43,7 +42,7 @@ class StringPropertyValidateTest {
 
         assertEquals(
             FieldError.MaxLengthFieldError(5, scopeKey).message,
-            result.message
+            result.message,
         )
     }
 
@@ -57,7 +56,7 @@ class StringPropertyValidateTest {
 
         assertEquals(
             FieldError.InvalidEnumFieldError(listOf("allowed1", "allowed2"), scopeKey).message,
-            result.message
+            result.message,
         )
     }
 }

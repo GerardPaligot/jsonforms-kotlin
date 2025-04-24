@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.serialization)
+    alias(libs.plugins.ktlint)
 }
 
 kotlin {
@@ -23,7 +24,7 @@ kotlin {
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
     ).forEach {
         it.binaries.framework {
             baseName = "shared"
@@ -56,7 +57,7 @@ tasks {
         javaCompiler.set(
             javaToolchains.compilerFor {
                 languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.toString()))
-            }
+            },
         )
     }
 }

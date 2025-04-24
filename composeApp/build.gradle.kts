@@ -92,7 +92,7 @@ tasks {
         javaCompiler.set(
             javaToolchains.compilerFor {
                 languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.toString()))
-            }
+            },
         )
     }
 }

@@ -16,15 +16,16 @@ import com.paligot.jsonforms.kotlin.models.uischema.VerticalLayout
  * @param data A map containing the current field values of the form.
  * @return A list of controls corresponding to visible elements in the [UiSchema].
  */
-internal fun UiSchema.findVisibleControls(data: Map<String, Any?>): List<Control> = when (this) {
-    is GroupLayout, is HorizontalLayout, is VerticalLayout -> {
-        elements?.flatMap { it.findVisibleControls(data) } ?: emptyList()
-    }
-    is Control -> {
-        if (rule == null || rule?.evaluateShow(data) == true) {
-            listOfNotNull(this)
-        } else {
-            emptyList()
+internal fun UiSchema.findVisibleControls(data: Map<String, Any?>): List<Control> =
+    when (this) {
+        is GroupLayout, is HorizontalLayout, is VerticalLayout -> {
+            elements?.flatMap { it.findVisibleControls(data) } ?: emptyList()
+        }
+        is Control -> {
+            if (rule == null || rule?.evaluateShow(data) == true) {
+                listOfNotNull(this)
+            } else {
+                emptyList()
+            }
         }
     }
-}

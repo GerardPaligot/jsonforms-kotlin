@@ -34,13 +34,13 @@ fun FlagDropdownField(
     expanded: Boolean = false,
     onFlagClick: () -> Unit,
     onItemClick: (String) -> Unit,
-    onDismissRequest: () -> Unit
+    onDismissRequest: () -> Unit,
 ) {
     Box(modifier = modifier) {
         FlagField(
             flagId = value,
             expanded = expanded,
-            modifier = Modifier.clickable(onClick = onFlagClick)
+            modifier = Modifier.clickable(onClick = onFlagClick),
         )
         DropdownMenu(
             expanded = expanded,
@@ -53,16 +53,17 @@ fun FlagDropdownField(
                             Image(
                                 painter = painterResource(getFlagResource(it.const?.value() ?: "")),
                                 contentDescription = null,
-                                modifier = Modifier.size(32.dp)
+                                modifier = Modifier.size(32.dp),
                             )
                         },
-                        modifier = Modifier.clickable {
-                            onItemClick(it.const?.value() ?: "")
-                            onDismissRequest()
-                        }
+                        modifier =
+                            Modifier.clickable {
+                                onItemClick(it.const?.value() ?: "")
+                                onDismissRequest()
+                            },
                     )
                 }
-            }
+            },
         )
     }
 }
@@ -71,35 +72,37 @@ fun FlagDropdownField(
 internal fun FlagField(
     flagId: String?,
     expanded: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(4.dp)
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         Icon(
-            imageVector = if (expanded) {
-                Icons.Outlined.UnfoldLess
-            } else {
-                Icons.Outlined.UnfoldMore
-            },
+            imageVector =
+                if (expanded) {
+                    Icons.Outlined.UnfoldLess
+                } else {
+                    Icons.Outlined.UnfoldMore
+                },
             contentDescription = null,
-            modifier = Modifier.size(32.dp)
+            modifier = Modifier.size(32.dp),
         )
         if (flagId != null) {
             Image(
                 painter = painterResource(getFlagResource(flagId)),
                 contentDescription = null,
-                modifier = Modifier.size(32.dp)
+                modifier = Modifier.size(32.dp),
             )
         }
     }
 }
 
-private fun getFlagResource(flagId: String) = when (flagId) {
-    "de" -> Res.drawable.de
-    "fr" -> Res.drawable.fr
-    "es" -> Res.drawable.es
-    else -> TODO("Flag not found")
-}
+private fun getFlagResource(flagId: String) =
+    when (flagId) {
+        "de" -> Res.drawable.de
+        "fr" -> Res.drawable.fr
+        "es" -> Res.drawable.es
+        else -> TODO("Flag not found")
+    }

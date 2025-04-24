@@ -32,5 +32,5 @@ enum class Format {
     /**
      * Format that display a date picker to the associated element.
      */
-    Date
+    Date,
 }

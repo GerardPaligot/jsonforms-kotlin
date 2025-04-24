@@ -21,44 +21,47 @@ fun RendererStringScope.Material3StringProperty(
     value: String?,
     modifier: Modifier = Modifier,
     error: String? = null,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
 ) {
     when {
-        isRadio() -> RadioButton(
-            value = value,
-            values = values(),
-            orientation = orientation(),
-            modifier = modifier,
-            label = label(),
-            description = description(),
-            error = error,
-            enabled = enabled(),
-            verticalArrangement = verticalArrangement(),
-            horizontalArrangement = horizontalArrangement(),
-            onValueChange = onValueChange
-        )
+        isRadio() ->
+            RadioButton(
+                value = value,
+                values = values(),
+                orientation = orientation(),
+                modifier = modifier,
+                label = label(),
+                description = description(),
+                error = error,
+                enabled = enabled(),
+                verticalArrangement = verticalArrangement(),
+                horizontalArrangement = horizontalArrangement(),
+                onValueChange = onValueChange,
+            )
 
-        isDropdown() -> OutlinedDropdown(
-            value = value,
-            values = values(),
-            modifier = modifier,
-            label = label(),
-            isError = error != null,
-            enabled = enabled(),
-            onValueChange = onValueChange
-        )
+        isDropdown() ->
+            OutlinedDropdown(
+                value = value,
+                values = values(),
+                modifier = modifier,
+                label = label(),
+                isError = error != null,
+                enabled = enabled(),
+                onValueChange = onValueChange,
+            )
 
-        else -> OutlinedTextField(
-            value = value,
-            modifier = modifier,
-            label = label(),
-            description = description(),
-            enabled = enabled(),
-            error = error,
-            visualTransformation = visualTransformation(),
-            keyboardOptions = keyboardOptions(),
-            onValueChange = onValueChange
-        )
+        else ->
+            OutlinedTextField(
+                value = value,
+                modifier = modifier,
+                label = label(),
+                description = description(),
+                enabled = enabled(),
+                error = error,
+                visualTransformation = visualTransformation(),
+                keyboardOptions = keyboardOptions(),
+                onValueChange = onValueChange,
+            )
     }
 }
 
@@ -67,7 +70,7 @@ fun RendererNumberScope.Material3NumberProperty(
     value: String?,
     modifier: Modifier = Modifier,
     error: String? = null,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
 ) {
     OutlinedTextField(
         value = value,
@@ -77,7 +80,7 @@ fun RendererNumberScope.Material3NumberProperty(
         enabled = enabled(),
         error = error,
         keyboardOptions = keyboardOptions(),
-        onValueChange = onValueChange
+        onValueChange = onValueChange,
     )
 }
 
@@ -85,63 +88,69 @@ fun RendererNumberScope.Material3NumberProperty(
 fun RendererBooleanScope.Material3BooleanProperty(
     value: Boolean,
     modifier: Modifier = Modifier,
-    onValueChange: (Boolean) -> Unit
+    onValueChange: (Boolean) -> Unit,
 ) {
     when {
-        isToggle() -> Switch(
-            value = value,
-            modifier = modifier,
-            label = label(),
-            description = description(),
-            enabled = enabled(),
-            onCheckedChange = onValueChange
-        )
+        isToggle() ->
+            Switch(
+                value = value,
+                modifier = modifier,
+                label = label(),
+                description = description(),
+                enabled = enabled(),
+                onCheckedChange = onValueChange,
+            )
 
-        else -> Checkbox(
-            value = value,
-            modifier = modifier,
-            label = label(),
-            enabled = enabled(),
-            onCheckedChange = onValueChange
-        )
+        else ->
+            Checkbox(
+                value = value,
+                modifier = modifier,
+                label = label(),
+                enabled = enabled(),
+                onCheckedChange = onValueChange,
+            )
     }
 }
 
 @Composable
 fun RendererLayoutScope.Material3Layout(
     modifier: Modifier = Modifier,
-    content: @Composable (UiSchema) -> Unit
+    content: @Composable (UiSchema) -> Unit,
 ) {
     when {
-        isVerticalLayout() -> Column(
-            verticalSpacing = verticalSpacing(),
-            modifier = modifier,
-            content = {
-                for (child in elements()) {
-                    val childModifier = child.options?.weight
-                        ?.let { Modifier.weight(it) }
-                        ?: Modifier
-                    Box(modifier = childModifier) {
-                        content(child)
+        isVerticalLayout() ->
+            Column(
+                verticalSpacing = verticalSpacing(),
+                modifier = modifier,
+                content = {
+                    for (child in elements()) {
+                        val childModifier =
+                            child.options?.weight
+                                ?.let { Modifier.weight(it) }
+                                ?: Modifier
+                        Box(modifier = childModifier) {
+                            content(child)
+                        }
                     }
-                }
-            }
-        )
+                },
+            )
 
-        isHorizontalLayout() -> Row(
-            horizontalSpacing = horizontalSpacing(),
-            modifier = modifier,
-            content = {
-                for (child in elements()) {
-                    val childModifier = child.options?.weight
-                        ?.let { Modifier.weight(it) }
-                        ?: Modifier
-                    Box(modifier = childModifier) {
-                        content(child)
+        isHorizontalLayout() ->
+            Row(
+                horizontalSpacing = horizontalSpacing(),
+                modifier = modifier,
+                content = {
+                    for (child in elements()) {
+                        val childModifier =
+                            child.options?.weight
+                                ?.let { Modifier.weight(it) }
+                                ?: Modifier
+                        Box(modifier = childModifier) {
+                            content(child)
+                        }
                     }
-                }
-            }
-        )
+                },
+            )
 
         isGroupLayout() -> TODO()
     }

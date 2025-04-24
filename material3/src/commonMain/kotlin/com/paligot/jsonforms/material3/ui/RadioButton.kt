@@ -31,41 +31,41 @@ fun RadioButton(
     enabled: Boolean = true,
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
 ) {
     Column(modifier = modifier) {
         label?.let {
             Text(
                 text = it,
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.titleMedium,
             )
         }
         description?.let { Text(text = it) }
         if (orientation == Orientation.VERTICALLY) {
             FlowColumn(
                 verticalArrangement = verticalArrangement,
-                horizontalArrangement = horizontalArrangement
+                horizontalArrangement = horizontalArrangement,
             ) {
                 values.forEach {
                     RadioButton(
                         selected = value == it.const?.value<String>(),
                         onClick = { onValueChange.invoke(it.const?.value() ?: "") },
                         endContent = { Text(text = it.title ?: "") },
-                        enabled = enabled
+                        enabled = enabled,
                     )
                 }
             }
         } else {
             FlowRow(
                 verticalArrangement = verticalArrangement,
-                horizontalArrangement = horizontalArrangement
+                horizontalArrangement = horizontalArrangement,
             ) {
                 values.forEach {
                     RadioButton(
                         selected = value == it.const?.value(),
                         onClick = { onValueChange.invoke(it.const?.value() ?: "") },
                         endContent = { Text(text = it.title ?: "") },
-                        enabled = enabled
+                        enabled = enabled,
                     )
                 }
             }
@@ -73,7 +73,7 @@ fun RadioButton(
         error?.let {
             Text(
                 text = error,
-                color = MaterialTheme.colorScheme.error
+                color = MaterialTheme.colorScheme.error,
             )
         }
     }
@@ -85,27 +85,29 @@ internal fun RadioButton(
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    endContent: @Composable (() -> Unit)? = null
+    endContent: @Composable (() -> Unit)? = null,
 ) {
-    val clickableModifier = if (onClick != null) {
-        modifier.clickable { onClick() }
-    } else {
-        modifier
-    }
+    val clickableModifier =
+        if (onClick != null) {
+            modifier.clickable { onClick() }
+        } else {
+            modifier
+        }
     Row(
         modifier = clickableModifier,
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(4.dp)
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         androidx.compose.material3.RadioButton(
             selected = selected,
-            onClick = if (onClick != null && endContent == null) {
-                onClick
-            } else {
-                null
-            },
+            onClick =
+                if (onClick != null && endContent == null) {
+                    onClick
+                } else {
+                    null
+                },
             modifier = modifier,
-            enabled = enabled
+            enabled = enabled,
         )
         endContent?.let { it() }
     }

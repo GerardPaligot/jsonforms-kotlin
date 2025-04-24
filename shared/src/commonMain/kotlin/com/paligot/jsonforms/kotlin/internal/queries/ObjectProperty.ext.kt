@@ -26,8 +26,9 @@ internal fun <T : Property> ObjectProperty.getPropertyByControl(control: Control
     val propertyPath = control.propertyPath()
     var objectProperty: ObjectProperty = this
     for (key in propertyPath) {
-        val property = objectProperty.properties[key]
-            ?: error("Property $key not found in schema")
+        val property =
+            objectProperty.properties[key]
+                ?: error("Property $key not found in schema")
         if (property is ObjectProperty) {
             objectProperty = property
         } else if (propertyPath.last() == key) {
