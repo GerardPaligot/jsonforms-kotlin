@@ -28,20 +28,27 @@ import com.paligot.jsonforms.kotlin.models.uischema.UiSchema
  * @param schema Properties which can be shown on the screen.
  * @return true if the control is the last field
  */
-internal fun Control.isLastField(uiSchema: UiSchema, schema: Schema): Boolean =
-    lastField(this, uiSchema, schema)
+internal fun Control.isLastField(
+    uiSchema: UiSchema,
+    schema: Schema,
+): Boolean = lastField(this, uiSchema, schema)
 
-private fun lastField(control: Control, parent: UiSchema, schema: Schema): Boolean {
+private fun lastField(
+    control: Control,
+    parent: UiSchema,
+    schema: Schema,
+): Boolean {
     val sizeElements = parent.elements?.size ?: 0
     if (sizeElements == 0) {
         return false
     }
-    val lastIndex = parent.elements?.indexOfLast { uiSchema ->
-        when (uiSchema) {
-            is Control -> uiSchema.scope == control.scope
-            else -> false
+    val lastIndex =
+        parent.elements?.indexOfLast { uiSchema ->
+            when (uiSchema) {
+                is Control -> uiSchema.scope == control.scope
+                else -> false
+            }
         }
-    }
     // If the control isn't in the list, we inspect the last element to check if it contains sub fields
     if (lastIndex == null || lastIndex == -1) {
         val lastElement = parent.elements?.last()

@@ -23,13 +23,13 @@ fun SegmentedControl(
     label: String? = null,
     description: String? = null,
     error: String? = null,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
 ) {
     Column(modifier = modifier) {
         label?.let {
             CupertinoText(
                 text = it,
-                style = CupertinoTheme.typography.subhead
+                style = CupertinoTheme.typography.subhead,
             )
         }
         if (error != null) {
@@ -48,10 +48,10 @@ fun SegmentedControl(
                         isSelected = value == it.const?.value<String>(),
                         content = {
                             CupertinoText(text = it.title ?: "")
-                        }
+                        },
                     )
                 }
-            }
+            },
         )
     }
 }

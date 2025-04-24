@@ -10,16 +10,17 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class RuleEvaluateEnabledTest {
-
     @Test
     fun `evaluateEnabled should return true when effect is Enable and condition resolves to true`() {
-        val rule = Rule(
-            effect = Effect.Enable,
-            condition = Condition(
-                scope = "#/properties/key",
-                schema = StringProperty(const = JsonPrimitive("value"))
+        val rule =
+            Rule(
+                effect = Effect.Enable,
+                condition =
+                    Condition(
+                        scope = "#/properties/key",
+                        schema = StringProperty(const = JsonPrimitive("value")),
+                    ),
             )
-        )
         val data = mapOf("key" to "value")
 
         val result = rule.evaluateEnabled(data)
@@ -29,13 +30,15 @@ class RuleEvaluateEnabledTest {
 
     @Test
     fun `evaluateEnabled should return false when effect is Enable and condition resolves to false`() {
-        val rule = Rule(
-            effect = Effect.Enable,
-            condition = Condition(
-                scope = "#/properties/key",
-                schema = StringProperty(const = JsonPrimitive("value"))
+        val rule =
+            Rule(
+                effect = Effect.Enable,
+                condition =
+                    Condition(
+                        scope = "#/properties/key",
+                        schema = StringProperty(const = JsonPrimitive("value")),
+                    ),
             )
-        )
         val data = mapOf("key" to "otherValue")
 
         val result = rule.evaluateEnabled(data)
@@ -45,13 +48,15 @@ class RuleEvaluateEnabledTest {
 
     @Test
     fun `evaluateEnabled should return false when effect is Disable and condition resolves to true`() {
-        val rule = Rule(
-            effect = Effect.Disable,
-            condition = Condition(
-                scope = "#/properties/key",
-                schema = StringProperty(const = JsonPrimitive("value"))
+        val rule =
+            Rule(
+                effect = Effect.Disable,
+                condition =
+                    Condition(
+                        scope = "#/properties/key",
+                        schema = StringProperty(const = JsonPrimitive("value")),
+                    ),
             )
-        )
         val data = mapOf("key" to "value")
 
         val result = rule.evaluateEnabled(data)
@@ -61,13 +66,15 @@ class RuleEvaluateEnabledTest {
 
     @Test
     fun `evaluateEnabled should return true when effect is Disable and condition resolves to false`() {
-        val rule = Rule(
-            effect = Effect.Disable,
-            condition = Condition(
-                scope = "#/properties/key",
-                schema = StringProperty(const = JsonPrimitive("value"))
+        val rule =
+            Rule(
+                effect = Effect.Disable,
+                condition =
+                    Condition(
+                        scope = "#/properties/key",
+                        schema = StringProperty(const = JsonPrimitive("value")),
+                    ),
             )
-        )
         val data = mapOf("key" to "otherValue")
 
         val result = rule.evaluateEnabled(data)
@@ -77,13 +84,15 @@ class RuleEvaluateEnabledTest {
 
     @Test
     fun `evaluateEnabled should return true when condition schema is empty`() {
-        val rule = Rule(
-            effect = Effect.Enable,
-            condition = Condition(
-                scope = "#/properties/key",
-                schema = StringProperty()
+        val rule =
+            Rule(
+                effect = Effect.Enable,
+                condition =
+                    Condition(
+                        scope = "#/properties/key",
+                        schema = StringProperty(),
+                    ),
             )
-        )
         val data = mapOf("key" to "value")
 
         val result = rule.evaluateEnabled(data)

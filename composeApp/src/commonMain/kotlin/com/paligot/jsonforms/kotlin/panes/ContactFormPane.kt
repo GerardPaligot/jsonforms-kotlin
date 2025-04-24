@@ -33,71 +33,84 @@ import kotlinx.serialization.json.JsonPrimitive
 @Composable
 fun ContactFormPane(
     modifier: Modifier = Modifier,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
 ) {
     val state = rememberJsonFormState(initialValues = mutableMapOf("flags" to "fr"))
-    val schema = remember {
-        ObjectProperty(
-            properties = persistentMapOf(
-                "flags" to StringProperty(
-                    oneOf = persistentListOf(
-                        StringProperty(const = JsonPrimitive("fr"), title = "France"),
-                        StringProperty(const = JsonPrimitive("de"), title = "Germany"),
-                        StringProperty(const = JsonPrimitive("es"), title = "Spain")
-                    )
-                ),
-                "phone" to StringProperty()
-            ),
-            anyOf = persistentListOf(
-                ObjectProperty(
-                    properties = persistentMapOf(
-                        "flags" to StringProperty(const = JsonPrimitive("fr")),
-                        "phone" to StringProperty(
-                            pattern = "^(\\+33|0)[1-9](\\d{2}){4}\$"
-                        )
-                    )
-                ),
-                ObjectProperty(
-                    properties = persistentMapOf(
-                        "flags" to StringProperty(const = JsonPrimitive("de")),
-                        "phone" to StringProperty(
-                            pattern = "^(\\+49|0)[1-9](\\d{2}){4}\$"
-                        )
-                    )
-                ),
-                ObjectProperty(
-                    properties = persistentMapOf(
-                        "flags" to StringProperty(const = JsonPrimitive("es")),
-                        "phone" to StringProperty(
-                            pattern = "^(\\+34|0)[1-9](\\d{2}){4}\$"
-                        )
-                    )
-                )
+    val schema =
+        remember {
+            ObjectProperty(
+                properties =
+                    persistentMapOf(
+                        "flags" to
+                            StringProperty(
+                                oneOf =
+                                    persistentListOf(
+                                        StringProperty(const = JsonPrimitive("fr"), title = "France"),
+                                        StringProperty(const = JsonPrimitive("de"), title = "Germany"),
+                                        StringProperty(const = JsonPrimitive("es"), title = "Spain"),
+                                    ),
+                            ),
+                        "phone" to StringProperty(),
+                    ),
+                anyOf =
+                    persistentListOf(
+                        ObjectProperty(
+                            properties =
+                                persistentMapOf(
+                                    "flags" to StringProperty(const = JsonPrimitive("fr")),
+                                    "phone" to
+                                        StringProperty(
+                                            pattern = "^(\\+33|0)[1-9](\\d{2}){4}\$",
+                                        ),
+                                ),
+                        ),
+                        ObjectProperty(
+                            properties =
+                                persistentMapOf(
+                                    "flags" to StringProperty(const = JsonPrimitive("de")),
+                                    "phone" to
+                                        StringProperty(
+                                            pattern = "^(\\+49|0)[1-9](\\d{2}){4}\$",
+                                        ),
+                                ),
+                        ),
+                        ObjectProperty(
+                            properties =
+                                persistentMapOf(
+                                    "flags" to StringProperty(const = JsonPrimitive("es")),
+                                    "phone" to
+                                        StringProperty(
+                                            pattern = "^(\\+34|0)[1-9](\\d{2}){4}\$",
+                                        ),
+                                ),
+                        ),
+                    ),
             )
-        )
-    }
-    val uiSchema = remember {
-        HorizontalLayout(
-            options = LayoutOptions(horizontalSpacing = "8"),
-            elements = persistentListOf(
-                Control(
-                    scope = "#/properties/flags",
-                    label = "Country"
-                ),
-                Control(
-                    scope = "#/properties/phone",
-                    label = "Phone",
-                    options = ControlOptions(format = Format.Phone)
-                )
+        }
+    val uiSchema =
+        remember {
+            HorizontalLayout(
+                options = LayoutOptions(horizontalSpacing = "8"),
+                elements =
+                    persistentListOf(
+                        Control(
+                            scope = "#/properties/flags",
+                            label = "Country",
+                        ),
+                        Control(
+                            scope = "#/properties/phone",
+                            label = "Phone",
+                            options = ControlOptions(format = Format.Phone),
+                        ),
+                    ),
             )
-        )
-    }
+        }
     val scope = rememberCoroutineScope()
     var expanded by remember { mutableStateOf(false) }
     FormScaffold(
         title = "Contact Form",
         modifier = modifier,
-        onBackClick = onBackClick
+        onBackClick = onBackClick,
     ) {
         Column {
             JsonForm(
@@ -122,7 +135,7 @@ fun ContactFormPane(
                             },
                             onDismissRequest = {
                                 expanded = false
-                            }
+                            },
                         )
                     } else {
                         Material3StringProperty(
@@ -130,12 +143,12 @@ fun ContactFormPane(
                             error = error?.message,
                             onValueChange = {
                                 state[id] = it
-                            }
+                            },
                         )
                     }
                 },
                 numberContent = {},
-                booleanContent = {}
+                booleanContent = {},
             )
             Button(onClick = {
                 scope.launch { state.validate(schema, uiSchema) }

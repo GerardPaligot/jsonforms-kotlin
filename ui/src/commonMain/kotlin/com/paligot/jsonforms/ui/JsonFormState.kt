@@ -25,7 +25,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
  */
 @Composable
 fun rememberJsonFormState(initialValues: MutableMap<String, Any?>): JsonFormState =
-    rememberSaveable(saver = JsonFormStateImpl.Saver()) {
+    rememberSaveable(saver = JsonFormStateImpl.saver()) {
         JsonFormStateImpl(initialValues)
     }
 
@@ -41,9 +41,9 @@ fun rememberJsonFormState(initialValues: MutableMap<String, Any?>): JsonFormStat
 @Composable
 fun rememberJsonFormState(
     initialValues: MutableMap<String, Any?>,
-    vararg keys: String
+    vararg keys: String,
 ): JsonFormState =
-    rememberSaveable(saver = JsonFormStateImpl.Saver(), inputs = keys) {
+    rememberSaveable(saver = JsonFormStateImpl.saver(), inputs = keys) {
         JsonFormStateImpl(initialValues)
     }
 
@@ -60,7 +60,10 @@ interface JsonFormState {
      * @param key property key
      * @param value New value for the field
      */
-    operator fun set(key: String, value: Any)
+    operator fun set(
+        key: String,
+        value: Any,
+    )
 
     /**
      * Validate if requirements and patterns described in [Schema] are respected to submit your form.
@@ -75,7 +78,10 @@ interface JsonFormState {
      * @param uiSchema Form UI description of fields declared in [Schema].
      * @return true if all requirements and patterns are respected.
      */
-    suspend fun validate(schema: Schema, uiSchema: UiSchema): Boolean
+    suspend fun validate(
+        schema: Schema,
+        uiSchema: UiSchema,
+    ): Boolean
 
     /**
      * Mark a list of fields in error.
@@ -154,11 +160,17 @@ internal class JsonFormStateImpl(private val map: Map<String, Any?>) : JsonFormS
      */
     private val mapValues = mutableStateMapOf<String, Any?>().apply { putAll(map) }
 
-    override operator fun set(key: String, value: Any) {
+    override operator fun set(
+        key: String,
+        value: Any,
+    ) {
         mapValues[key] = value
     }
 
-    override suspend fun validate(schema: Schema, uiSchema: UiSchema): Boolean {
+    override suspend fun validate(
+        schema: Schema,
+        uiSchema: UiSchema,
+    ): Boolean {
         val validation = ValidationCheck(schema, uiSchema)
         return suspendCancellableCoroutine { continuation ->
             fieldsWithErrors = validation.check(mapValues)
@@ -177,8 +189,7 @@ internal class JsonFormStateImpl(private val map: Map<String, Any?>) : JsonFormS
     override fun getValue(key: String): Any? = mapValues[key]
 
     @Composable
-    override operator fun get(key: String): State<Any?> =
-        rememberUpdatedState(newValue = mapValues[key])
+    override operator fun get(key: String): State<Any?> = rememberUpdatedState(newValue = mapValues[key])
 
     @Composable
     override fun error(id: String): State<FieldError?> =
@@ -186,11 +197,12 @@ internal class JsonFormStateImpl(private val map: Map<String, Any?>) : JsonFormS
 
     companion object {
         /**
-         * The default [Saver] implementation for [JsonFormState].
+         * The default [saver] implementation for [JsonFormState].
          */
-        fun Saver() = Saver<JsonFormStateImpl, Map<String, Any?>>(
-            save = { HashMap(it.mapValues) },
-            restore = { JsonFormStateImpl(it.toMutableMap()) }
-        )
+        fun saver() =
+            Saver<JsonFormStateImpl, Map<String, Any?>>(
+                save = { HashMap(it.mapValues) },
+                restore = { JsonFormStateImpl(it.toMutableMap()) },
+            )
     }
 }

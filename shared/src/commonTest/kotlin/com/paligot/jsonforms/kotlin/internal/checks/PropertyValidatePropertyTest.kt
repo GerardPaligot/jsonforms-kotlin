@@ -8,7 +8,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class PropertyValidatePropertyTest {
-
     @Test
     fun `validateProperty should return no errors when value matches const`() {
         val property = StringProperty(const = JsonPrimitive("expectedValue"))

@@ -25,5 +25,5 @@ data class Control(
     override val options: ControlOptions? = null,
     @Serializable(with = ImmutableListSerializer::class)
     override val elements: ImmutableList<UiSchema>? = null,
-    override val rule: Rule? = null
+    override val rule: Rule? = null,
 ) : UiSchema()

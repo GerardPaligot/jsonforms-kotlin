@@ -10,14 +10,18 @@ import com.paligot.jsonforms.kotlin.models.schema.NumberProperty
  * @param value The string representation of the numeric value to validate.
  * @return A list of [FieldError] containing validation errors, if any.
  */
-internal fun NumberProperty.validate(scopeKey: String, value: String): List<FieldError> {
+internal fun NumberProperty.validate(
+    scopeKey: String,
+    value: String,
+): List<FieldError> {
     val errors = mutableListOf<FieldError>()
-    val floatValue = try {
-        value.replace(",", ".").toFloat()
-    } catch (exception: NumberFormatException) {
-        errors.add(FieldError.MalformedFieldError(scopeKey))
-        return errors
-    }
+    val floatValue =
+        try {
+            value.replace(",", ".").toFloat()
+        } catch (exception: NumberFormatException) {
+            errors.add(FieldError.MalformedFieldError(scopeKey))
+            return errors
+        }
     if (minimum != null && floatValue < minimum) {
         errors.add(FieldError.MinValueFieldError(minimum, scopeKey))
     }

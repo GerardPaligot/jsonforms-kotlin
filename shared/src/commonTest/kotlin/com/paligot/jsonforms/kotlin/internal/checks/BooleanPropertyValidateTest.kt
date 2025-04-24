@@ -5,7 +5,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class BooleanPropertyValidateTest {
-
     @Test
     fun `validate should return no errors for a valid true boolean value`() {
         val property = BooleanProperty()

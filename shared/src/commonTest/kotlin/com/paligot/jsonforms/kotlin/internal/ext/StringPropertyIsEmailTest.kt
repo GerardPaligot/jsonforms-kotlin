@@ -9,14 +9,14 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class StringPropertyIsEmailTest {
-
     @Test
     fun `isEmail should return true when format is Email`() {
         val property = StringProperty()
-        val control = Control(
-            scope = "#/properties/key",
-            options = ControlOptions(format = Format.Email)
-        )
+        val control =
+            Control(
+                scope = "#/properties/key",
+                options = ControlOptions(format = Format.Email),
+            )
 
         val result = property.isEmail(control)
 
@@ -26,10 +26,11 @@ class StringPropertyIsEmailTest {
     @Test
     fun `isEmail should return false when format is not Email`() {
         val property = StringProperty()
-        val control = Control(
-            scope = "#/properties/key",
-            options = ControlOptions(format = Format.Password)
-        )
+        val control =
+            Control(
+                scope = "#/properties/key",
+                options = ControlOptions(format = Format.Password),
+            )
 
         val result = property.isEmail(control)
 

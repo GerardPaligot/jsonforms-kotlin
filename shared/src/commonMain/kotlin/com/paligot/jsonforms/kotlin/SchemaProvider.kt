@@ -17,7 +17,10 @@ interface SchemaProvider {
     /**
      * Check if the control is specified as required in schema.
      */
-    fun propertyIsRequired(control: Control, data: Map<String, Any?>): Boolean
+    fun propertyIsRequired(
+        control: Control,
+        data: Map<String, Any?>,
+    ): Boolean
 
     /**
      * Check if the control is the last field in the ui-schema.
@@ -27,11 +30,12 @@ interface SchemaProvider {
 
 class SchemaProviderImpl(private val uiSchema: UiSchema, private val schema: Schema) :
     SchemaProvider {
-    override fun <T : Property> getPropertyByControl(control: Control): T =
-        schema.getPropertyByControl(control)
+    override fun <T : Property> getPropertyByControl(control: Control): T = schema.getPropertyByControl(control)
 
-    override fun propertyIsRequired(control: Control, data: Map<String, Any?>): Boolean =
-        schema.propertyIsRequired(control, data)
+    override fun propertyIsRequired(
+        control: Control,
+        data: Map<String, Any?>,
+    ): Boolean = schema.propertyIsRequired(control, data)
 
     override fun isLastField(control: Control): Boolean = control.isLastField(uiSchema, schema)
 }

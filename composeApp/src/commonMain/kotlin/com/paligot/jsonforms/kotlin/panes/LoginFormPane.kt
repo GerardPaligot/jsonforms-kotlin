@@ -13,9 +13,9 @@ import com.paligot.jsonforms.kotlin.models.schema.Schema
 import com.paligot.jsonforms.kotlin.models.schema.StringProperty
 import com.paligot.jsonforms.kotlin.models.uischema.Condition
 import com.paligot.jsonforms.kotlin.models.uischema.Control
+import com.paligot.jsonforms.kotlin.models.uischema.ControlOptions
 import com.paligot.jsonforms.kotlin.models.uischema.Effect
 import com.paligot.jsonforms.kotlin.models.uischema.Format
-import com.paligot.jsonforms.kotlin.models.uischema.ControlOptions
 import com.paligot.jsonforms.kotlin.models.uischema.Rule
 import com.paligot.jsonforms.kotlin.models.uischema.VerticalLayout
 import com.paligot.jsonforms.kotlin.ui.FormScaffold
@@ -30,49 +30,57 @@ import kotlinx.coroutines.launch
 @Composable
 fun LoginFormPane(
     modifier: Modifier = Modifier,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     val state = rememberJsonFormState(initialValues = mutableMapOf())
-    val schema = remember {
-        Schema(
-            properties = persistentMapOf(
-                "email" to StringProperty(
-                    pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"
-                ),
-                "password" to StringProperty()
-            ),
-            required = persistentListOf("email", "password")
-        )
-    }
-    val uiSchema = remember {
-        VerticalLayout(
-            elements = persistentListOf(
-                Control(
-                    scope = "#/properties/email",
-                    label = "Email"
-                ),
-                Control(
-                    scope = "#/properties/password",
-                    label = "Password",
-                    options = ControlOptions(format = Format.Password),
-                    rule = Rule(
-                        effect = Effect.Show,
-                        condition = Condition(
-                            scope = "#/properties/email",
-                            schema = StringProperty(
-                                pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"
-                            )
-                        )
-                    )
-                )
+    val schema =
+        remember {
+            Schema(
+                properties =
+                    persistentMapOf(
+                        "email" to
+                            StringProperty(
+                                pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$",
+                            ),
+                        "password" to StringProperty(),
+                    ),
+                required = persistentListOf("email", "password"),
             )
-        )
-    }
+        }
+    val uiSchema =
+        remember {
+            VerticalLayout(
+                elements =
+                    persistentListOf(
+                        Control(
+                            scope = "#/properties/email",
+                            label = "Email",
+                        ),
+                        Control(
+                            scope = "#/properties/password",
+                            label = "Password",
+                            options = ControlOptions(format = Format.Password),
+                            rule =
+                                Rule(
+                                    effect = Effect.Show,
+                                    condition =
+                                        Condition(
+                                            scope = "#/properties/email",
+                                            schema =
+                                                StringProperty(
+                                                    pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$",
+                                                ),
+                                        ),
+                                ),
+                        ),
+                    ),
+            )
+        }
     FormScaffold(
         title = "Log In",
         modifier = modifier,
-        onBackClick = onBackClick
+        onBackClick = onBackClick,
     ) {
         Column(modifier = Modifier.width(500.dp)) {
             JsonForm(
@@ -88,11 +96,11 @@ fun LoginFormPane(
                         error = error?.message,
                         onValueChange = {
                             state[id] = it
-                        }
+                        },
                     )
                 },
                 numberContent = {},
-                booleanContent = {}
+                booleanContent = {},
             )
             Button(onClick = {
                 scope.launch { state.validate(schema, uiSchema) }

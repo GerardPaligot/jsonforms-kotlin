@@ -15,5 +15,5 @@ data class LayoutOptions(
      * The horizontal spacing between elements.
      */
     val horizontalSpacing: String? = null,
-    override val weight: Float? = null
-): Options
+    override val weight: Float? = null,
+) : Options

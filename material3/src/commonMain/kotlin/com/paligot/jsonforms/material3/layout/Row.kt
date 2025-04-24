@@ -11,14 +11,15 @@ import androidx.compose.ui.unit.dp
 internal fun Row(
     horizontalSpacing: String?,
     modifier: Modifier = Modifier,
-    content: @Composable RowScope.() -> Unit
+    content: @Composable RowScope.() -> Unit,
 ) {
     androidx.compose.foundation.layout.Row(
         modifier = modifier,
-        horizontalArrangement = horizontalSpacing
-            ?.let { Arrangement.spacedBy(it.toInt().dp) }
-            ?: run { Arrangement.Start },
+        horizontalArrangement =
+            horizontalSpacing
+                ?.let { Arrangement.spacedBy(it.toInt().dp) }
+                ?: run { Arrangement.Start },
         verticalAlignment = Alignment.CenterVertically,
-        content = content
+        content = content,
     )
 }

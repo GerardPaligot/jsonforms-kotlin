@@ -36,5 +36,5 @@ data class StringProperty(
      * An optional list of key-value to validate the string value.
      */
     @Serializable(with = ImmutableListSerializer::class)
-    val oneOf: ImmutableList<Property>? = null
+    val oneOf: ImmutableList<Property>? = null,
 ) : Property()

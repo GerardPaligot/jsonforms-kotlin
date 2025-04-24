@@ -17,29 +17,38 @@ internal fun Property(
     control: Control,
     schemaProvider: SchemaProvider,
     jsonFormState: JsonFormState,
-    stringContent: @Composable() (RendererStringScope.(id: String) -> Unit),
-    numberContent: @Composable() (RendererNumberScope.(id: String) -> Unit),
-    booleanContent: @Composable() (RendererBooleanScope.(id: String) -> Unit)
+    stringContent:
+        @Composable()
+        (RendererStringScope.(id: String) -> Unit),
+    numberContent:
+        @Composable()
+        (RendererNumberScope.(id: String) -> Unit),
+    booleanContent:
+        @Composable()
+        (RendererBooleanScope.(id: String) -> Unit),
 ) {
     when (schemaProvider.getPropertyByControl<Property>(control)) {
-        is StringProperty -> StringProperty(
-            control = control,
-            schemaProvider = schemaProvider,
-            jsonFormState = jsonFormState,
-            content = stringContent
-        )
-        is BooleanProperty -> BooleanProperty(
-            control = control,
-            schemaProvider = schemaProvider,
-            jsonFormState = jsonFormState,
-            content = booleanContent
-        )
-        is NumberProperty -> NumberProperty(
-            control = control,
-            schemaProvider = schemaProvider,
-            jsonFormState = jsonFormState,
-            content = numberContent
-        )
+        is StringProperty ->
+            StringProperty(
+                control = control,
+                schemaProvider = schemaProvider,
+                jsonFormState = jsonFormState,
+                content = stringContent,
+            )
+        is BooleanProperty ->
+            BooleanProperty(
+                control = control,
+                schemaProvider = schemaProvider,
+                jsonFormState = jsonFormState,
+                content = booleanContent,
+            )
+        is NumberProperty ->
+            NumberProperty(
+                control = control,
+                schemaProvider = schemaProvider,
+                jsonFormState = jsonFormState,
+                content = numberContent,
+            )
         is ObjectProperty -> error("Object property can't be specified in the layout")
         is ArrayProperty -> TODO()
     }
@@ -50,11 +59,12 @@ internal fun StringProperty(
     control: Control,
     schemaProvider: SchemaProvider,
     jsonFormState: JsonFormState,
-    content: @Composable RendererStringScope.(id: String) -> Unit
+    content: @Composable RendererStringScope.(id: String) -> Unit,
 ) {
-    val scope = remember(control) {
-        RendererStringScopeInstance(control, schemaProvider, jsonFormState)
-    }
+    val scope =
+        remember(control) {
+            RendererStringScopeInstance(control, schemaProvider, jsonFormState)
+        }
     scope.content(control.propertyKey())
 }
 
@@ -63,11 +73,12 @@ internal fun BooleanProperty(
     control: Control,
     schemaProvider: SchemaProvider,
     jsonFormState: JsonFormState,
-    content: @Composable RendererBooleanScope.(id: String) -> Unit
+    content: @Composable RendererBooleanScope.(id: String) -> Unit,
 ) {
-    val scope = remember(control) {
-        RendererBooleanScopeInstance(control, schemaProvider, jsonFormState)
-    }
+    val scope =
+        remember(control) {
+            RendererBooleanScopeInstance(control, schemaProvider, jsonFormState)
+        }
     scope.content(control.propertyKey())
 }
 
@@ -76,10 +87,11 @@ internal fun NumberProperty(
     control: Control,
     schemaProvider: SchemaProvider,
     jsonFormState: JsonFormState,
-    content: @Composable RendererNumberScope.(id: String) -> Unit
+    content: @Composable RendererNumberScope.(id: String) -> Unit,
 ) {
-    val scope = remember(control) {
-        RendererNumberScopeInstance(control, schemaProvider, jsonFormState)
-    }
+    val scope =
+        remember(control) {
+            RendererNumberScopeInstance(control, schemaProvider, jsonFormState)
+        }
     scope.content(control.propertyKey())
 }

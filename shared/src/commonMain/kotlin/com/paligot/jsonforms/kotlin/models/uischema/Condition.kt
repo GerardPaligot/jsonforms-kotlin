@@ -15,5 +15,5 @@ data class Condition(
     /**
      * Schema evaluated to apply or not the condition.
      */
-    val schema: Property
+    val schema: Property,
 )

@@ -36,13 +36,14 @@ fun OutlinedDropdown(
     label: String? = null,
     isError: Boolean = false,
     enabled: Boolean = true,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
 ) {
     val expanded = remember { mutableStateOf(false) }
     OutlinedDropdown(
-        value = value
-            ?.let { values.find { it.const?.value<String>() == value }?.title ?: "" }
-            ?: "",
+        value =
+            value
+                ?.let { values.find { it.const?.value<String>() == value }?.title ?: "" }
+                ?: "",
         modifier = modifier,
         label = label ?: "",
         enabled = enabled,
@@ -52,14 +53,15 @@ fun OutlinedDropdown(
             values.forEach {
                 ListItem(
                     headlineContent = { Text(text = it.title ?: "") },
-                    modifier = Modifier.clickable {
-                        onValueChange(it.const?.value() ?: "").also {
-                            expanded.value = false
-                        }
-                    }
+                    modifier =
+                        Modifier.clickable {
+                            onValueChange(it.const?.value() ?: "").also {
+                                expanded.value = false
+                            }
+                        },
                 )
             }
-        }
+        },
     )
 }
 
@@ -72,7 +74,7 @@ internal fun OutlinedDropdown(
     isError: Boolean = false,
     expanded: MutableState<Boolean> = remember { mutableStateOf(false) },
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    children: @Composable ColumnScope.() -> Unit
+    children: @Composable ColumnScope.() -> Unit,
 ) {
     var mTextFieldSize by remember { mutableStateOf(Size.Zero) }
     Dropdown(
@@ -81,21 +83,22 @@ internal fun OutlinedDropdown(
             OutlinedTextField(
                 value = value,
                 onValueChange = {},
-                modifier = Modifier.fillMaxWidth().onGloballyPositioned {
-                    mTextFieldSize = it.size.toSize()
-                },
+                modifier =
+                    Modifier.fillMaxWidth().onGloballyPositioned {
+                        mTextFieldSize = it.size.toSize()
+                    },
                 label = { Text(text = label) },
                 readOnly = true,
                 isError = isError,
                 singleLine = true,
                 maxLines = 1,
                 enabled = enabled,
-                interactionSource = interactionSource
+                interactionSource = interactionSource,
             )
         },
         modifier = modifier.width(with(LocalDensity.current) { mTextFieldSize.width.toDp() }),
         children = children,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
     )
 }
 
@@ -106,7 +109,7 @@ internal fun Dropdown(
     expanded: MutableState<Boolean> = remember { mutableStateOf(false) },
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     onDismissRequest: () -> Unit = {},
-    children: @Composable ColumnScope.() -> Unit
+    children: @Composable ColumnScope.() -> Unit,
 ) {
     LaunchedEffect(interactionSource) {
         interactionSource.interactions
@@ -125,7 +128,7 @@ internal fun Dropdown(
                 onDismissRequest()
                 expanded.value = false
             },
-            content = children
+            content = children,
         )
     }
 }

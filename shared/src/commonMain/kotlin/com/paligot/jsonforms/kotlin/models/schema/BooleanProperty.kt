@@ -16,5 +16,5 @@ data class BooleanProperty(
     override val readOnly: Boolean? = null,
     override val const: JsonPrimitive? = null,
     override val not: Property? = null,
-    override val pattern: String? = null
+    override val pattern: String? = null,
 ) : Property()

@@ -15,5 +15,5 @@ data class VerticalLayout(
     @Serializable(with = ImmutableListSerializer::class)
     override val elements: ImmutableList<UiSchema> = persistentListOf(),
     override val rule: Rule? = null,
-    override val options: LayoutOptions? = null
+    override val options: LayoutOptions? = null,
 ) : UiSchema()

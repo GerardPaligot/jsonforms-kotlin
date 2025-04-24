@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.compose.compiler)
+    alias(libs.plugins.ktlint)
 }
 
 kotlin {
@@ -24,7 +25,7 @@ kotlin {
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
     ).forEach {
         it.binaries.framework {
             baseName = "cupertino"
@@ -62,7 +63,7 @@ tasks {
         javaCompiler.set(
             javaToolchains.compilerFor {
                 languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.toString()))
-            }
+            },
         )
     }
 }

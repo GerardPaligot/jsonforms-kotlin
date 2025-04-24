@@ -19,7 +19,10 @@ import com.paligot.jsonforms.kotlin.models.uischema.Control
  * @param data field values of the form.
  * @return true if the property is enabled
  */
-fun Property.isEnabled(control: Control, data: Map<String, Any?>): Boolean {
+fun Property.isEnabled(
+    control: Control,
+    data: Map<String, Any?>,
+): Boolean {
     val enabledRule = control.rule?.evaluateEnabled(data)
     if (enabledRule != null) return enabledRule
     return readOnly?.not() ?: control.options?.readOnly?.not() ?: true
@@ -39,7 +42,10 @@ fun Property.isEnabled(control: Control, data: Map<String, Any?>): Boolean {
  * @param control Field contained in the [com.paligot.jsonforms.kotlin.models.uischema.UiSchema].
  * @return label with an '*' if the field is required, null if there is no label in [Control] or [Property]
  */
-fun Property.label(required: Boolean, control: Control): String? {
+fun Property.label(
+    required: Boolean,
+    control: Control,
+): String? {
     val suffix = if (required) "*" else ""
     return if (title != null) {
         "$title$suffix"
@@ -63,7 +69,10 @@ fun Property.label(required: Boolean, control: Control): String? {
  * @param control Field contained in the [com.paligot.jsonforms.kotlin.models.uischema.UiSchema].
  * @return Pair of Int (current value length to max length)
  */
-fun Property.getMaxCounter(value: String?, control: Control): Pair<Int, Int>? {
+fun Property.getMaxCounter(
+    value: String?,
+    control: Control,
+): Pair<Int, Int>? {
     return if (
         this is StringProperty &&
         control.options?.showMaxCounter == true &&
@@ -81,15 +90,16 @@ fun Property.getMaxCounter(value: String?, control: Control): Pair<Int, Int>? {
     }
 }
 
-private fun String?.getIntegerValue(): Int = try {
-    // if the value if "" or just white space, we return 0
-    if (isNullOrEmpty()) {
+private fun String?.getIntegerValue(): Int =
+    try {
+        // if the value if "" or just white space, we return 0
+        if (isNullOrEmpty()) {
+            0
+        } else {
+            // Like the validate method we call toFloat(). The counter want a Integer, so we transform the float to Integer, so 47.17 will be 47.
+            replace(",", ".").toFloat().toInt()
+        }
+    } catch (ex: Exception) {
+        // In the case of value = 12-5 or 12,5, we can't parse a Float with these entries, so we show 0 to prevent a crash at the validation
         0
-    } else {
-        // Like the validate method we call toFloat(). The counter want a Integer, so we transform the float to Integer, so 47.17 will be 47.
-        replace(",", ".").toFloat().toInt()
     }
-} catch (ex: Exception) {
-    // In the case of value = 12-5 or 12,5, we can't parse a Float with these entries, so we show 0 to prevent a crash at the validation
-    0
-}

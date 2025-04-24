@@ -15,38 +15,38 @@ fun FormListPane(
     onLogInClick: () -> Unit,
     onContactClick: () -> Unit,
     onAddressClick: () -> Unit,
-    onAppleClick: () -> Unit
+    onAppleClick: () -> Unit,
 ) {
     Scaffold(modifier = modifier) {
         LazyColumn(contentPadding = it) {
             item {
                 ListItem(
                     headlineContent = { Text(text = "Account creation") },
-                    modifier = Modifier.clickable(onClick = onAccountCreationClick)
+                    modifier = Modifier.clickable(onClick = onAccountCreationClick),
                 )
             }
             item {
                 ListItem(
                     headlineContent = { Text(text = "Log In") },
-                    modifier = Modifier.clickable(onClick = onLogInClick)
+                    modifier = Modifier.clickable(onClick = onLogInClick),
                 )
             }
             item {
                 ListItem(
                     headlineContent = { Text(text = "Contact") },
-                    modifier = Modifier.clickable(onClick = onContactClick)
+                    modifier = Modifier.clickable(onClick = onContactClick),
                 )
             }
             item {
                 ListItem(
                     headlineContent = { Text(text = "Address") },
-                    modifier = Modifier.clickable(onClick = onAddressClick)
+                    modifier = Modifier.clickable(onClick = onAddressClick),
                 )
             }
             item {
                 ListItem(
                     headlineContent = { Text(text = "Apple Form") },
-                    modifier = Modifier.clickable(onClick = onAppleClick)
+                    modifier = Modifier.clickable(onClick = onAppleClick),
                 )
             }
         }

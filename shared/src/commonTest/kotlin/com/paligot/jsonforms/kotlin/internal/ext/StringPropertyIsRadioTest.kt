@@ -11,14 +11,14 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class StringPropertyIsRadioTest {
-
     @Test
     fun `isRadio should return true when format is Radio and enum is not null or empty`() {
         val property = StringProperty(enum = persistentListOf("option1", "option2"))
-        val control = Control(
-            scope = "#/properties/key",
-            options = ControlOptions(format = Format.Radio)
-        )
+        val control =
+            Control(
+                scope = "#/properties/key",
+                options = ControlOptions(format = Format.Radio),
+            )
 
         val result = property.isRadio(control)
 
@@ -27,15 +27,18 @@ class StringPropertyIsRadioTest {
 
     @Test
     fun `isRadio should return true when format is Radio and oneOf is not null or empty`() {
-        val property = StringProperty(
-            oneOf = persistentListOf(
-                StringProperty(const = JsonPrimitive("value1"), title = "Title1")
+        val property =
+            StringProperty(
+                oneOf =
+                    persistentListOf(
+                        StringProperty(const = JsonPrimitive("value1"), title = "Title1"),
+                    ),
             )
-        )
-        val control = Control(
-            scope = "#/properties/key",
-            options = ControlOptions(format = Format.Radio)
-        )
+        val control =
+            Control(
+                scope = "#/properties/key",
+                options = ControlOptions(format = Format.Radio),
+            )
 
         val result = property.isRadio(control)
 
@@ -55,10 +58,11 @@ class StringPropertyIsRadioTest {
     @Test
     fun `isRadio should return false when enum and oneOf are both null`() {
         val property = StringProperty()
-        val control = Control(
-            scope = "#/properties/key",
-            options = ControlOptions(format = Format.Radio)
-        )
+        val control =
+            Control(
+                scope = "#/properties/key",
+                options = ControlOptions(format = Format.Radio),
+            )
 
         val result = property.isRadio(control)
 
@@ -68,10 +72,11 @@ class StringPropertyIsRadioTest {
     @Test
     fun `isRadio should return false when enum and oneOf are empty`() {
         val property = StringProperty(enum = persistentListOf(), oneOf = persistentListOf())
-        val control = Control(
-            scope = "#/properties/key",
-            options = ControlOptions(format = Format.Radio)
-        )
+        val control =
+            Control(
+                scope = "#/properties/key",
+                options = ControlOptions(format = Format.Radio),
+            )
 
         val result = property.isRadio(control)
 

@@ -48,16 +48,19 @@ class PropertyIsEnabledTest {
     @Test
     fun `isEnabled should return false when control rule with Disable effect evaluates to true`() {
         val property = StringProperty()
-        val control = Control(
-            scope = "#/properties/string",
-            rule = Rule(
-                effect = Effect.Disable,
-                condition = Condition(
-                    scope = "#/properties/otherField",
-                    schema = StringProperty(const = JsonPrimitive("value"))
-                )
+        val control =
+            Control(
+                scope = "#/properties/string",
+                rule =
+                    Rule(
+                        effect = Effect.Disable,
+                        condition =
+                            Condition(
+                                scope = "#/properties/otherField",
+                                schema = StringProperty(const = JsonPrimitive("value")),
+                            ),
+                    ),
             )
-        )
         val data = mapOf("otherField" to "value")
 
         val result = property.isEnabled(control, data)
@@ -68,16 +71,19 @@ class PropertyIsEnabledTest {
     @Test
     fun `isEnabled should return true when control rule with Enable effect evaluates to true`() {
         val property = StringProperty()
-        val control = Control(
-            scope = "#/properties/string",
-            rule = Rule(
-                effect = Effect.Enable,
-                condition = Condition(
-                    scope = "#/properties/otherField",
-                    schema = StringProperty(const = JsonPrimitive("value"))
-                )
+        val control =
+            Control(
+                scope = "#/properties/string",
+                rule =
+                    Rule(
+                        effect = Effect.Enable,
+                        condition =
+                            Condition(
+                                scope = "#/properties/otherField",
+                                schema = StringProperty(const = JsonPrimitive("value")),
+                            ),
+                    ),
             )
-        )
         val data = mapOf("otherField" to "value")
 
         val result = property.isEnabled(control, data)

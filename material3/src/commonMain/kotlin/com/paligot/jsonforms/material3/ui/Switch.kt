@@ -17,12 +17,12 @@ fun Switch(
     label: String? = null,
     description: String? = null,
     enabled: Boolean = true,
-    onCheckedChange: (Boolean) -> Unit
+    onCheckedChange: (Boolean) -> Unit,
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Column(
             modifier = Modifier.weight(1f),
@@ -34,19 +34,19 @@ fun Switch(
                 } else {
                     Text(
                         text = label ?: "",
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.titleMedium,
                     )
                     if (hasDescription) {
                         description?.let { Text(text = it) }
                     }
                 }
-            }
+            },
         )
 
         androidx.compose.material3.Switch(
             checked = value,
             onCheckedChange = onCheckedChange,
-            enabled = enabled
+            enabled = enabled,
         )
     }
 }

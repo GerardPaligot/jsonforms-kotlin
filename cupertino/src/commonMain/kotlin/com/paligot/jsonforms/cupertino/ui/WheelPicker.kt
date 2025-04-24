@@ -21,7 +21,7 @@ fun WheelPicker(
     label: String? = null,
     isError: Boolean = false,
     enabled: Boolean = true,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
 ) {
     val state = rememberCupertinoPickerState(infinite = false)
     LaunchedEffect(value) {
@@ -38,6 +38,6 @@ fun WheelPicker(
         state = state,
         items = values.map { it.title ?: "" },
         enabled = enabled,
-        content = { CupertinoText(it) }
+        content = { CupertinoText(it) },
     )
 }

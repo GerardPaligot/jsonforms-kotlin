@@ -29,16 +29,14 @@ object Address
 @Serializable
 object AppleForm
 
-fun NavGraphBuilder.formDescriptionNavGraph(
-    navController: NavController
-) {
+fun NavGraphBuilder.formDescriptionNavGraph(navController: NavController) {
     composable<FormList> {
         FormListPane(
             onAccountCreationClick = { navController.navigate(AccountCreation) },
             onLogInClick = { navController.navigate(Login) },
             onContactClick = { navController.navigate(Contact) },
             onAddressClick = { navController.navigate(Address) },
-            onAppleClick = { navController.navigate(AppleForm) }
+            onAppleClick = { navController.navigate(AppleForm) },
         )
     }
     composable<AccountCreation> {

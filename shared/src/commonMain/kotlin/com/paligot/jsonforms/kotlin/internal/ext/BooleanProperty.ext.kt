@@ -19,5 +19,4 @@ import com.paligot.jsonforms.kotlin.models.uischema.Format
  * @param control Field contained in the [com.paligot.jsonforms.kotlin.models.uischema.UiSchema]
  * @return true if the [BooleanProperty] is a toggle
  */
-fun BooleanProperty.isToggle(control: Control): Boolean =
-    control.options?.format == Format.Toggle
+fun BooleanProperty.isToggle(control: Control): Boolean = control.options?.format == Format.Toggle

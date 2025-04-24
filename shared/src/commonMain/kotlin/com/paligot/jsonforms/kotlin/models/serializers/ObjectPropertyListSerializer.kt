@@ -15,7 +15,7 @@ import kotlin.reflect.KClass
 
 @Suppress("UNCHECKED_CAST")
 class ObjectPropertyListSerializer : JsonContentPolymorphicSerializer<List<ObjectProperty>>(
-    List::class as KClass<List<ObjectProperty>>
+    List::class as KClass<List<ObjectProperty>>,
 ) {
     override fun selectDeserializer(element: JsonElement): DeserializationStrategy<out List<ObjectProperty>> {
         return if (element is JsonArray) {
@@ -33,7 +33,10 @@ class ObjectPropertyListSerializer : JsonContentPolymorphicSerializer<List<Objec
             return listOf(ObjectProperty.serializer().deserialize(decoder))
         }
 
-        override fun serialize(encoder: Encoder, value: List<ObjectProperty>) {
+        override fun serialize(
+            encoder: Encoder,
+            value: List<ObjectProperty>,
+        ) {
             throw Exception("Not in use")
         }
     }

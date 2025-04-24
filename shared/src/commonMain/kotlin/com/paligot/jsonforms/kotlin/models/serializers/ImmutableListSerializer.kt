@@ -12,7 +12,10 @@ class ImmutableListSerializer<T>(elementSerializer: KSerializer<T>) : KSerialize
 
     override val descriptor = delegateSerializer.descriptor
 
-    override fun serialize(encoder: Encoder, value: ImmutableList<T>) {
+    override fun serialize(
+        encoder: Encoder,
+        value: ImmutableList<T>,
+    ) {
         delegateSerializer.serialize(encoder, value.toList())
     }
 

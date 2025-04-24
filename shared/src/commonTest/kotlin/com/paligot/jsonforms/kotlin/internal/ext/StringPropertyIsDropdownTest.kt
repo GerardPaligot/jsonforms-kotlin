@@ -8,14 +8,15 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class StringPropertyIsDropdownTest {
-
     @Test
     fun `isDropdown should return true when oneOf is not null and not empty`() {
-        val property = StringProperty(
-            oneOf = persistentListOf(
-                StringProperty(const = JsonPrimitive("value1"), title = "Title1")
+        val property =
+            StringProperty(
+                oneOf =
+                    persistentListOf(
+                        StringProperty(const = JsonPrimitive("value1"), title = "Title1"),
+                    ),
             )
-        )
 
         val result = property.isDropdown()
 

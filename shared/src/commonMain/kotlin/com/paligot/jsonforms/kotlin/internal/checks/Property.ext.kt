@@ -16,7 +16,10 @@ import com.paligot.jsonforms.kotlin.models.schema.Property
  * @param value The value to validate.
  * @return A list of [FieldError] objects representing validation errors, or an empty list if the value is valid.
  */
-internal fun Property.validateProperty(scopeKey: String, value: Any): List<FieldError> {
+internal fun Property.validateProperty(
+    scopeKey: String,
+    value: Any,
+): List<FieldError> {
     val errors = mutableListOf<FieldError>()
     if (this.const != null) {
         if (this.const!!.anyValue != value.toJsonPrimitive()?.anyValue) {
