@@ -44,8 +44,15 @@ kotlin {
             implementation(libs.jetbrains.kotlinx.coroutines)
             implementation(libs.jetbrains.kotlinx.serialization.json)
         }
-        commonTest.dependencies {
-            implementation(libs.jetbrains.kotlin.test)
+        // Can't use commonTest because mockk can't be use in native
+        // FIXME https://github.com/mockk/mockk/issues/950
+        val desktopTest by getting {
+            dependencies {
+                implementation(compose.desktop.uiTestJUnit4)
+                implementation(compose.desktop.currentOs)
+                implementation(libs.jetbrains.kotlin.test)
+                implementation(libs.io.mockk)
+            }
         }
     }
 }

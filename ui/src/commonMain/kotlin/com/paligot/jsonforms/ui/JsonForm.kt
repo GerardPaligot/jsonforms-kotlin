@@ -29,7 +29,6 @@ import com.paligot.jsonforms.kotlin.models.uischema.UiSchema
  * JsonForm(
  *     schema = schema,
  *     uiSchema = uiSchema,
- *     renderer = VitaminRenderer,
  *     state = jsonFormsState
  * )
  * ```
