@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.vanniktech.maven.publish)
 }
 
 kotlin {
@@ -71,5 +72,12 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
+    }
+}
+
+mavenPublishing {
+    pom {
+        name.set("core")
+        description.set("Core data models for JSON Schema, UI Schema, and the data handled by the forms")
     }
 }

@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.compose.compiler)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.vanniktech.maven.publish)
 }
 
 kotlin {
@@ -84,5 +85,12 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
+    }
+}
+
+mavenPublishing {
+    pom {
+        name.set("ui")
+        description.set("JsonForm composable and defines the Renderer interface.")
     }
 }
