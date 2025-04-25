@@ -162,17 +162,16 @@ This diagram illustrates the modular architecture of `jsonforms-kotlin`:
 
 ## Download
 
-The `jsonforms-kotlin` library is not yet available on Maven Central. However, it will be published there in the future.
-
-Once available, you will be able to include it in your `build.gradle.kts` file like this:
+The `jsonforms-kotlin` library is not yet available on Maven Central in release mode but you can 
+already use the latest SNAPSHOT version, `1.0.0-SNAPSHOT`.
 
 ```kotlin
-// In your shared, Android, iOS, or JVM module's build.gradle.kts
+val version = "1.0.0-SNAPSHOT"
 dependencies {
-    implementation("com.paligot.jsonforms.kotlin:core:VERSION")
-    implementation("com.paligot.jsonforms.kotlin:ui:VERSION")
-    implementation("com.paligot.jsonforms.kotlin:material3:VERSION")
-    implementation("com.paligot.jsonforms.kotlin:cupertino:VERSION")
+    implementation("com.paligot.jsonforms.kotlin:core:$version")
+    implementation("com.paligot.jsonforms.kotlin:ui:$version")
+    implementation("com.paligot.jsonforms.kotlin:material3:$version")
+    implementation("com.paligot.jsonforms.kotlin:cupertino:$version")
 }
 ```
 
