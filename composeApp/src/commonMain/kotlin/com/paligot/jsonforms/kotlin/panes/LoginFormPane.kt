@@ -40,9 +40,9 @@ fun LoginFormPane(
                 properties =
                     persistentMapOf(
                         "email" to
-                            StringProperty(
-                                pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$",
-                            ),
+                                StringProperty(
+                                    pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$".toRegex(),
+                                ),
                         "password" to StringProperty(),
                     ),
                 required = persistentListOf("email", "password"),
@@ -69,7 +69,7 @@ fun LoginFormPane(
                                             scope = "#/properties/email",
                                             schema =
                                                 StringProperty(
-                                                    pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$",
+                                                    pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$".toRegex(),
                                                 ),
                                         ),
                                 ),

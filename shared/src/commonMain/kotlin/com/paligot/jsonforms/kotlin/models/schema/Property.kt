@@ -1,5 +1,6 @@
 package com.paligot.jsonforms.kotlin.models.schema
 
+import com.paligot.jsonforms.kotlin.models.serializers.RegexSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonPrimitive
 
@@ -41,5 +42,6 @@ sealed class Property {
     /**
      * An optional pattern to restrict the value of the property.
      */
-    abstract val pattern: String?
+    @Serializable(with = RegexSerializer::class)
+    abstract val pattern: Regex?
 }

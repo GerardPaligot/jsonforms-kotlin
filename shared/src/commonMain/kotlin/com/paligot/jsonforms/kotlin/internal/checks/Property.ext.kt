@@ -28,9 +28,8 @@ internal fun Property.validateProperty(
     }
 
     if (pattern != null) {
-        val patternRegex = Regex(pattern!!)
-        if (!patternRegex.matches(value.toString())) {
-            errors.add(FieldError.PatternFieldError(pattern!!, scopeKey))
+        if (!pattern!!.matches(value.toString())) {
+            errors.add(FieldError.PatternFieldError(pattern!!.pattern, scopeKey))
         }
     }
 

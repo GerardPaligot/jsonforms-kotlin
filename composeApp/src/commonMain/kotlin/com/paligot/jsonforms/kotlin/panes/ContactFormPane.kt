@@ -60,7 +60,7 @@ fun ContactFormPane(
                                     "flags" to StringProperty(const = JsonPrimitive("fr")),
                                     "phone" to
                                         StringProperty(
-                                            pattern = "^(\\+33|0)[1-9](\\d{2}){4}\$",
+                                            pattern = "^(\\+33|0)[1-9](\\d{2}){4}\$".toRegex(),
                                         ),
                                 ),
                         ),
@@ -70,7 +70,7 @@ fun ContactFormPane(
                                     "flags" to StringProperty(const = JsonPrimitive("de")),
                                     "phone" to
                                         StringProperty(
-                                            pattern = "^(\\+49|0)[1-9](\\d{2}){4}\$",
+                                            pattern = "^(\\+49|0)[1-9](\\d{2}){4}\$".toRegex(),
                                         ),
                                 ),
                         ),
@@ -80,7 +80,7 @@ fun ContactFormPane(
                                     "flags" to StringProperty(const = JsonPrimitive("es")),
                                     "phone" to
                                         StringProperty(
-                                            pattern = "^(\\+34|0)[1-9](\\d{2}){4}\$",
+                                            pattern = "^(\\+34|0)[1-9](\\d{2}){4}\$".toRegex(),
                                         ),
                                 ),
                         ),
