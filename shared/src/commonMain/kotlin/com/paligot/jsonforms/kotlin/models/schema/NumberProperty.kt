@@ -1,5 +1,6 @@
 package com.paligot.jsonforms.kotlin.models.schema
 
+import com.paligot.jsonforms.kotlin.models.serializers.RegexSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonPrimitive
@@ -16,7 +17,8 @@ data class NumberProperty(
     override val readOnly: Boolean? = null,
     override val const: JsonPrimitive? = null,
     override val not: Property? = null,
-    override val pattern: String? = null,
+    @Serializable(with = RegexSerializer::class)
+    override val pattern: Regex? = null,
     /**
      * An optional maximum to validate the number value.
      */

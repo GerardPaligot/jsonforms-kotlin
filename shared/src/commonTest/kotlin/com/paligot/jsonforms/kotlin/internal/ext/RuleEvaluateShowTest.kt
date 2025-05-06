@@ -108,7 +108,7 @@ class RuleEvaluateShowTest {
                 condition =
                     Condition(
                         scope = "#/properties/key",
-                        schema = StringProperty(pattern = "^[a-zA-Z]+$"),
+                        schema = StringProperty(pattern = "^[a-zA-Z]+$".toRegex()),
                     ),
             )
         val data = mapOf("key" to "validValue")
@@ -126,7 +126,7 @@ class RuleEvaluateShowTest {
                 condition =
                     Condition(
                         scope = "#/properties/key",
-                        schema = StringProperty(pattern = "^[a-zA-Z]+$"),
+                        schema = StringProperty(pattern = "^[a-zA-Z]+$".toRegex()),
                     ),
             )
         val data = mapOf("key" to "12345")
@@ -144,7 +144,7 @@ class RuleEvaluateShowTest {
                 condition =
                     Condition(
                         scope = "#/properties/key",
-                        schema = StringProperty(pattern = "^[a-zA-Z]+$"),
+                        schema = StringProperty(pattern = "^[a-zA-Z]+$".toRegex()),
                     ),
             )
         val data = mapOf("key" to "validValue")
@@ -162,7 +162,7 @@ class RuleEvaluateShowTest {
                 condition =
                     Condition(
                         scope = "#/properties/key",
-                        schema = StringProperty(pattern = "^[a-zA-Z]+$"),
+                        schema = StringProperty(pattern = "^[a-zA-Z]+$".toRegex()),
                     ),
             )
         val data = mapOf("key" to "12345")

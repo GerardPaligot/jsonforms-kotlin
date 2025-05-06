@@ -2,6 +2,7 @@ package com.paligot.jsonforms.kotlin.models.schema
 
 import com.paligot.jsonforms.kotlin.models.serializers.ImmutableListSerializer
 import com.paligot.jsonforms.kotlin.models.serializers.ImmutableMapSerializer
+import com.paligot.jsonforms.kotlin.models.serializers.RegexSerializer
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
@@ -41,5 +42,6 @@ data class ObjectProperty(
     override val readOnly: Boolean? = null,
     override val const: JsonPrimitive? = null,
     override val not: Property? = null,
-    override val pattern: String? = null,
+    @Serializable(with = RegexSerializer::class)
+    override val pattern: Regex? = null,
 ) : Property()

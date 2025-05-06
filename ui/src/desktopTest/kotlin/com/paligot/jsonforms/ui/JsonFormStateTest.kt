@@ -61,7 +61,7 @@ class JsonFormStateTest {
             val jsonFormState = JsonFormStateImpl(mapOf("field1" to "invalid"))
             val schema =
                 ObjectProperty(
-                    properties = persistentMapOf("field1" to StringProperty(pattern = "abc")),
+                    properties = persistentMapOf("field1" to StringProperty(pattern = "abc".toRegex())),
                 )
             val uiSchema =
                 VerticalLayout(

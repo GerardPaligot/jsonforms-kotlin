@@ -1,6 +1,7 @@
 package com.paligot.jsonforms.kotlin.models.schema
 
 import com.paligot.jsonforms.kotlin.models.serializers.ImmutableListSerializer
+import com.paligot.jsonforms.kotlin.models.serializers.RegexSerializer
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -18,7 +19,8 @@ data class StringProperty(
     override val readOnly: Boolean? = null,
     override val const: JsonPrimitive? = null,
     override val not: Property? = null,
-    override val pattern: String? = null,
+    @Serializable(with = RegexSerializer::class)
+    override val pattern: Regex? = null,
     /**
      * An optional minimum length to validate the string value.
      */

@@ -25,14 +25,14 @@ class PropertyValidatePropertyTest {
 
     @Test
     fun `validateProperty should return no errors when value matches pattern`() {
-        val property = StringProperty(pattern = "\\d{3}-\\d{2}-\\d{4}")
+        val property = StringProperty(pattern = "\\d{3}-\\d{2}-\\d{4}".toRegex())
         val result = property.validateProperty("fieldId", "123-45-6789")
         assertTrue(result.isEmpty(), "Expected no errors when value matches pattern")
     }
 
     @Test
     fun `validateProperty should return error when value does not match pattern`() {
-        val property = StringProperty(pattern = "\\d{3}-\\d{2}-\\d{4}")
+        val property = StringProperty(pattern = "\\d{3}-\\d{2}-\\d{4}".toRegex())
         val result = property.validateProperty("fieldId", "invalid-pattern")
         assertEquals(1, result.size)
         assertTrue(result.first() is FieldError.PatternFieldError)
