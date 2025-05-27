@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.compose.compiler)
+    alias(libs.plugins.jetbrains.dokka)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.vanniktech.maven.publish)
     alias(libs.plugins.jetbrains.kotlinx.binary.compatibility.validator)

@@ -10,6 +10,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlinx.binary.compatibility.validator).apply(false)
     alias(libs.plugins.ktlint).apply(false)
     alias(libs.plugins.vanniktech.maven.publish).apply(false)
+    alias(libs.plugins.jetbrains.dokka).apply(true)
 }
 
 subprojects {
