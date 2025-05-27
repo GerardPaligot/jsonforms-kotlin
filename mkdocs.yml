@@ -1,0 +1,35 @@
+site_name: "jsonforms-kotlin"
+site_description: "Kotlin Multiplatform implementation of the JSONForms standard from the Eclipse Foundation"
+site_author: "Gérard Paligot"
+edit_uri: "tree/main/docs/"
+remote_branch: gh-pages
+strict: true
+
+docs_dir: docs
+
+repo_name: "jsonforms-kotlin"
+repo_url: "https://github.com/GerardPaligot/jsonforms-kotlin"
+
+nav:
+  - "Overview": index.md
+  - "API reference": api/index.html
+
+theme:
+  name: "material"
+  language: "en"
+  palette:
+    primary: "white"
+    accent: "teal"
+  font:
+    text: "DM Sans"
+    code: "DM Mono"
+  features:
+    - content.tabs.link
+    - content.code.copy
+
+plugins:
+  - search
+
+validation:
+  unrecognized_links: warn
+  anchors: warn
