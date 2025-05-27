@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.dokka)
     alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.vanniktech.maven.publish)
