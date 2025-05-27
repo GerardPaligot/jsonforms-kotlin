@@ -16,7 +16,7 @@ import kotlinx.collections.immutable.ImmutableList
 
 @OptIn(ExperimentalCupertinoApi::class)
 @Composable
-fun SegmentedControl(
+internal fun SegmentedControl(
     value: String?,
     values: ImmutableList<Property>,
     modifier: Modifier = Modifier,

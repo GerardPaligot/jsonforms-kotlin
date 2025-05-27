@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.jetbrains.compose.compiler).apply(false)
     alias(libs.plugins.jetbrains.kotlin.multiplatform).apply(false)
     alias(libs.plugins.jetbrains.kotlin.serialization).apply(false)
+    alias(libs.plugins.jetbrains.kotlinx.binary.compatibility.validator).apply(false)
     alias(libs.plugins.ktlint).apply(false)
     alias(libs.plugins.vanniktech.maven.publish).apply(false)
 }

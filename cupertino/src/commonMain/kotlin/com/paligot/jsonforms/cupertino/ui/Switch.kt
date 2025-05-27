@@ -12,7 +12,7 @@ import com.slapps.cupertino.CupertinoText
 import com.slapps.cupertino.theme.CupertinoTheme
 
 @Composable
-fun Switch(
+internal fun Switch(
     value: Boolean,
     modifier: Modifier,
     label: String? = null,

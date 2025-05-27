@@ -1,0 +1,7 @@
+public final class com/paligot/jsonforms/material3/MaterialRendererKt {
+	public static final fun Material3BooleanProperty (Lcom/paligot/jsonforms/ui/RendererBooleanScope;ZLandroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun Material3Layout (Lcom/paligot/jsonforms/ui/RendererLayoutScope;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun Material3NumberProperty (Lcom/paligot/jsonforms/ui/RendererNumberScope;Ljava/lang/String;Landroidx/compose/ui/Modifier;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun Material3StringProperty (Lcom/paligot/jsonforms/ui/RendererStringScope;Ljava/lang/String;Landroidx/compose/ui/Modifier;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+}
+

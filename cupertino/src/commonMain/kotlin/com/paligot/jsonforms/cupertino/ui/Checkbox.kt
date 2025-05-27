@@ -11,7 +11,7 @@ import com.slapps.cupertino.CupertinoCheckBox
 import com.slapps.cupertino.CupertinoText
 
 @Composable
-fun Checkbox(
+internal fun Checkbox(
     value: Boolean,
     modifier: Modifier = Modifier,
     label: String? = null,

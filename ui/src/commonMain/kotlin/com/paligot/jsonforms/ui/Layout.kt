@@ -11,7 +11,7 @@ import com.paligot.jsonforms.kotlin.models.uischema.UiSchema
 import com.paligot.jsonforms.kotlin.models.uischema.VerticalLayout
 
 @Composable
-fun Layout(
+internal fun Layout(
     uiSchema: UiSchema,
     jsonFormState: JsonFormState,
     layoutContent: @Composable (RendererLayoutScope.(@Composable (UiSchema) -> Unit) -> Unit),

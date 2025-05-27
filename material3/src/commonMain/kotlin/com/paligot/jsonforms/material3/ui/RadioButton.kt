@@ -20,7 +20,7 @@ import kotlinx.collections.immutable.ImmutableList
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun RadioButton(
+internal fun RadioButton(
     value: String?,
     values: ImmutableList<Property>,
     orientation: Orientation = Orientation.HORIZONTALLY,

@@ -14,12 +14,10 @@ import kotlinx.collections.immutable.ImmutableList
 
 @OptIn(ExperimentalCupertinoApi::class)
 @Composable
-fun WheelPicker(
+internal fun WheelPicker(
     value: String?,
     values: ImmutableList<Property>,
     modifier: Modifier = Modifier,
-    label: String? = null,
-    isError: Boolean = false,
     enabled: Boolean = true,
     onValueChange: (String) -> Unit,
 ) {

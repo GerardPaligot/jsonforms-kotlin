@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun Switch(
+internal fun Switch(
     value: Boolean,
     modifier: Modifier,
     label: String? = null,
