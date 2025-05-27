@@ -29,7 +29,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.flow.filter
 
 @Composable
-fun OutlinedDropdown(
+internal fun OutlinedDropdown(
     value: String?,
     values: ImmutableList<Property>,
     modifier: Modifier = Modifier,

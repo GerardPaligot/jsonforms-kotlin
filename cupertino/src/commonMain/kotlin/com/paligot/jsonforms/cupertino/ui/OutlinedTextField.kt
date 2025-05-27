@@ -14,7 +14,7 @@ import com.slapps.cupertino.CupertinoTextField
 import com.slapps.cupertino.theme.CupertinoTheme
 
 @Composable
-fun OutlinedTextField(
+internal fun OutlinedTextField(
     value: String?,
     modifier: Modifier = Modifier,
     label: String? = null,

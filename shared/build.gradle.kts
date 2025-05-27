@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.vanniktech.maven.publish)
+    alias(libs.plugins.jetbrains.kotlinx.binary.compatibility.validator)
 }
 
 kotlin {

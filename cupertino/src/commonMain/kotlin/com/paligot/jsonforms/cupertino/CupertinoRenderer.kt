@@ -42,8 +42,6 @@ fun RendererStringScope.CupertinoStringProperty(
                 value = value,
                 values = values(),
                 modifier = modifier,
-                label = label(),
-                isError = error != null,
                 enabled = enabled(),
                 onValueChange = onValueChange,
             )

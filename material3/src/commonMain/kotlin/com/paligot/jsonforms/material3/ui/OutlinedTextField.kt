@@ -11,7 +11,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.VisualTransformation
 
 @Composable
-fun OutlinedTextField(
+internal fun OutlinedTextField(
     value: String?,
     modifier: Modifier = Modifier,
     label: String? = null,

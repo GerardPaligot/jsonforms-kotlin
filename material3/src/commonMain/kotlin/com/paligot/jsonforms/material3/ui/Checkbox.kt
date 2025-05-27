@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun Checkbox(
+internal fun Checkbox(
     value: Boolean,
     modifier: Modifier = Modifier,
     label: String? = null,

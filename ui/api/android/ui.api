@@ -1,0 +1,66 @@
+public final class com/paligot/jsonforms/ui/JsonFormKt {
+	public static final fun JsonForm (Lcom/paligot/jsonforms/kotlin/models/schema/ObjectProperty;Lcom/paligot/jsonforms/kotlin/models/uischema/UiSchema;Landroidx/compose/ui/Modifier;Lcom/paligot/jsonforms/ui/JsonFormState;Lkotlin/jvm/functions/Function4;Lkotlin/jvm/functions/Function4;Lkotlin/jvm/functions/Function4;Lkotlin/jvm/functions/Function4;Landroidx/compose/runtime/Composer;II)V
+}
+
+public abstract interface class com/paligot/jsonforms/ui/JsonFormState {
+	public abstract fun error (Ljava/lang/String;Landroidx/compose/runtime/Composer;I)Landroidx/compose/runtime/State;
+	public abstract fun get (Ljava/lang/String;Landroidx/compose/runtime/Composer;I)Landroidx/compose/runtime/State;
+	public abstract fun getData ()Ljava/util/Map;
+	public abstract fun getValue (Ljava/lang/String;)Ljava/lang/Object;
+	public abstract fun markAsErrors (Ljava/util/List;)V
+	public abstract fun set (Ljava/lang/String;Ljava/lang/Object;)V
+	public abstract fun validate (Lcom/paligot/jsonforms/kotlin/models/schema/ObjectProperty;Lcom/paligot/jsonforms/kotlin/models/uischema/UiSchema;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/paligot/jsonforms/ui/JsonFormStateKt {
+	public static final fun rememberJsonFormState (Ljava/util/Map;Landroidx/compose/runtime/Composer;I)Lcom/paligot/jsonforms/ui/JsonFormState;
+	public static final fun rememberJsonFormState (Ljava/util/Map;[Ljava/lang/String;Landroidx/compose/runtime/Composer;I)Lcom/paligot/jsonforms/ui/JsonFormState;
+}
+
+public abstract interface class com/paligot/jsonforms/ui/RendererBooleanScope {
+	public abstract fun description ()Ljava/lang/String;
+	public abstract fun enabled ()Z
+	public abstract fun isToggle ()Z
+	public abstract fun label ()Ljava/lang/String;
+}
+
+public abstract interface class com/paligot/jsonforms/ui/RendererLayoutScope {
+	public abstract fun description ()Ljava/lang/String;
+	public abstract fun elements ()Ljava/util/List;
+	public abstract fun horizontalSpacing ()Ljava/lang/String;
+	public abstract fun isGroupLayout ()Z
+	public abstract fun isHorizontalLayout ()Z
+	public abstract fun isVerticalLayout ()Z
+	public abstract fun title ()Ljava/lang/String;
+	public abstract fun verticalSpacing ()Ljava/lang/String;
+}
+
+public abstract interface class com/paligot/jsonforms/ui/RendererNumberScope {
+	public abstract fun description ()Ljava/lang/String;
+	public abstract fun enabled ()Z
+	public abstract fun keyboardOptions-dWMfq5w (II)Landroidx/compose/foundation/text/KeyboardOptions;
+	public abstract fun label ()Ljava/lang/String;
+}
+
+public final class com/paligot/jsonforms/ui/RendererNumberScope$DefaultImpls {
+	public static synthetic fun keyboardOptions-dWMfq5w$default (Lcom/paligot/jsonforms/ui/RendererNumberScope;IIILjava/lang/Object;)Landroidx/compose/foundation/text/KeyboardOptions;
+}
+
+public abstract interface class com/paligot/jsonforms/ui/RendererStringScope {
+	public abstract fun description ()Ljava/lang/String;
+	public abstract fun enabled ()Z
+	public abstract fun horizontalArrangement ()Landroidx/compose/foundation/layout/Arrangement$Horizontal;
+	public abstract fun isDropdown ()Z
+	public abstract fun isRadio ()Z
+	public abstract fun keyboardOptions-R4EHBb8 (III)Landroidx/compose/foundation/text/KeyboardOptions;
+	public abstract fun label ()Ljava/lang/String;
+	public abstract fun orientation ()Lcom/paligot/jsonforms/kotlin/models/uischema/Orientation;
+	public abstract fun values ()Lkotlinx/collections/immutable/ImmutableList;
+	public abstract fun verticalArrangement ()Landroidx/compose/foundation/layout/Arrangement$Vertical;
+	public abstract fun visualTransformation ()Landroidx/compose/ui/text/input/VisualTransformation;
+}
+
+public final class com/paligot/jsonforms/ui/RendererStringScope$DefaultImpls {
+	public static synthetic fun keyboardOptions-R4EHBb8$default (Lcom/paligot/jsonforms/ui/RendererStringScope;IIIILjava/lang/Object;)Landroidx/compose/foundation/text/KeyboardOptions;
+}
+

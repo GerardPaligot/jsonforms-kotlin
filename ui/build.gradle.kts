@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.jetbrains.compose.compiler)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.vanniktech.maven.publish)
+    alias(libs.plugins.jetbrains.kotlinx.binary.compatibility.validator)
 }
 
 kotlin {
