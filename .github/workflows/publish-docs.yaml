@@ -43,9 +43,9 @@ jobs:
       - name: Generate Docs
         run: ./scripts/build_docs.sh
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-pages-artifact@v3
+        id: deployment
         with:
-          name: 'github-pages'
           path: site/
 
   deploy:
