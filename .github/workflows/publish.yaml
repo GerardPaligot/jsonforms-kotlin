@@ -28,7 +28,8 @@ jobs:
         run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
 
       - name: Publishing to Maven Central
-        run: ./gradlew publishAllPublicationsToMavenCentralRepository
+        # FIXME --no-configuration-cache flag https://github.com/vanniktech/gradle-maven-publish-plugin/issues/259
+        run: ./gradlew publishAllPublicationsToMavenCentralRepository --no-configuration-cache
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.ORG_GRADLE_PROJECT_MAVENCENTRALUSERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.ORG_GRADLE_PROJECT_MAVENCENTRALPASSWORD }}
