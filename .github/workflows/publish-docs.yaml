@@ -12,7 +12,7 @@ permissions:
   id-token: write
 
 jobs:
-  publish:
+  build:
     permissions:
       checks: write # for actions/upload-artifact
     runs-on: ubuntu-latest
@@ -48,7 +48,21 @@ jobs:
           name: docs
           path: site/
 
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main'
         id: deployment
         uses: actions/deploy-pages@v4
