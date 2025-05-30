@@ -54,8 +54,8 @@ kotlin {
     sourceSets {
         val desktopMain by getting
         commonMain.dependencies {
-            implementation(projects.material3)
-            implementation(projects.cupertino)
+            implementation(projects.renderers.material3)
+            implementation(projects.renderers.cupertino)
             implementation(projects.shared)
             implementation(compose.material3)
             implementation(compose.materialIconsExtended)
