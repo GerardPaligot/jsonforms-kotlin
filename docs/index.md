@@ -20,7 +20,7 @@ already use the latest SNAPSHOT version, `1.0.0-SNAPSHOT`:
 ```kotlin
 val version = "1.0.0-SNAPSHOT"
 dependencies {
-    implementation("com.paligot.jsonforms.kotlin:core:$version")
+    implementation("com.paligot.jsonforms.kotlin:shared:$version")
     implementation("com.paligot.jsonforms.kotlin:ui:$version")
     implementation("com.paligot.jsonforms.kotlin:material3:$version")
     implementation("com.paligot.jsonforms.kotlin:cupertino:$version")
