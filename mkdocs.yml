@@ -13,6 +13,7 @@ repo_url: "https://github.com/GerardPaligot/jsonforms-kotlin"
 nav:
   - "Overview": index.md
   - "Usage": usage.md
+  - "State Management": state-management.md
   - "API reference": api/index.html
 
 theme:
