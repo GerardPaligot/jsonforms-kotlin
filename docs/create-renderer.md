@@ -113,5 +113,4 @@ JsonForm(
 ```
 
 For more details, see the [API reference](api/index.html) and the source code of the 
-[Material3](../renderers/material3/) and [Cupertino](../renderers/cupertino/) renderers for 
-inspiration.
+material3 and cupertino modules.
