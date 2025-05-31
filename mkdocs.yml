@@ -14,6 +14,7 @@ nav:
   - "Overview": index.md
   - "Usage": usage.md
   - "State Management": state-management.md
+  - "Custom Rendering": custom-rendering.md
   - "API reference": api/index.html
 
 theme:
