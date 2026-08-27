@@ -14,6 +14,13 @@ plugins {
     alias(libs.plugins.jetbrains.dokka).apply(true)
 }
 
+dependencies {
+    dokka(projects.shared)
+    dokka(projects.ui)
+    dokka(projects.renderers.cupertino)
+    dokka(projects.renderers.material3)
+}
+
 subprojects {
     if (pluginManager.hasPlugin("org.jlleitschuh.gradle.ktlint")) {
         configure<KtlintExtension> {
