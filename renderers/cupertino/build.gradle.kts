@@ -3,23 +3,22 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.jetbrains.dokka)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.compose.compiler)
-    alias(libs.plugins.jetbrains.dokka)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.vanniktech.maven.publish)
     alias(libs.plugins.jetbrains.kotlinx.binary.compatibility.validator)
 }
 
 kotlin {
-    androidTarget {
-        compilations.all {
-            compileTaskProvider.configure {
-                compilerOptions {
-                    jvmTarget.set(JvmTarget.JVM_21)
-                }
-            }
+    android {
+        namespace = "com.paligot.jsonforms.cupertino"
+        compileSdk = 36
+        minSdk = 26
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
         }
     }
 
@@ -31,24 +30,19 @@ kotlin {
         iosSimulatorArm64(),
     ).forEach {
         it.binaries.framework {
-            baseName = "cupertino"
+            baseName = "renderers-cupertino"
             isStatic = true
         }
     }
 
     sourceSets {
         commonMain.dependencies {
-            api(projects.ui)
             api(projects.shared)
-            implementation(compose.ui)
-            implementation(compose.foundation)
-            implementation(libs.cupertino)
-            api(libs.jetbrains.kotlinx.collections)
-            implementation(libs.jetbrains.kotlinx.coroutines)
-            implementation(libs.jetbrains.kotlinx.serialization.json)
-        }
-        commonTest.dependencies {
-            implementation(libs.jetbrains.kotlin.test)
+            api(projects.ui)
+            api(compose.ui)
+            api(compose.runtime)
+            api(compose.foundation)
+            api(libs.cupertino)
         }
     }
 }
@@ -71,21 +65,9 @@ tasks {
     }
 }
 
-android {
-    namespace = "com.paligot.jsonforms.cupertino"
-    compileSdk = 35
-    defaultConfig {
-        minSdk = 26
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
-    }
-}
-
 mavenPublishing {
     pom {
-        name.set("cupertino")
-        description.set("Implement a Renderer for the Apple ecosystem, leveraging the compose-cupertino library.")
+        name.set("renderers-cupertino")
+        description.set("Cupertino-styled renderers for JsonForms")
     }
 }

@@ -3,37 +3,11 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.compose.compiler)
-}
-
-android {
-    namespace = "com.paligot.jsonforms.kotlin.android"
-    compileSdk = 35
-    defaultConfig {
-        applicationId = "com.paligot.jsonforms.kotlin.android"
-        minSdk = 26
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
-    }
 }
 
 compose.desktop {
@@ -49,7 +23,15 @@ compose.desktop {
 }
 
 kotlin {
-    androidTarget()
+    android {
+        namespace = "com.paligot.jsonforms.kotlin.demo"
+        compileSdk = 36
+        minSdk = 26
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+        }
+    }
+
     jvm("desktop")
 
     sourceSets {
@@ -68,9 +50,6 @@ kotlin {
             implementation(libs.jetbrains.androidx.navigation.compose)
             implementation(libs.jetbrains.kotlinx.serialization.json)
             implementation(libs.bundles.io.ktor.client)
-        }
-        androidMain.dependencies {
-            implementation(libs.androidx.activity.compose)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

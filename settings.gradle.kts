@@ -15,6 +15,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "jsonforms-kotlin"
+include(":androidApp")
 include(":composeApp")
 include(":ui")
 include(":renderers:cupertino")

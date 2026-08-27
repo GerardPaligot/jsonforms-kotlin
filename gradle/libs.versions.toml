@@ -1,12 +1,12 @@
 [versions]
 agp = "9.1.1"
-androidx-activity = "1.10.1"
+androidx-activity = "1.13.0"
 cupertino = "2.2.5"
 jetbrains-androidx-navigation = "2.9.0-beta02"
 jetbrains-androidx-viewmodel = "2.9.0"
-jetbrains-compose = "1.8.1"
+jetbrains-compose = "1.10.3"
 jetbrains-dokka = "2.0.0"
-jetbrains-kotlin = "2.2.10"
+jetbrains-kotlin = "2.4.10"
 jetbrains-kotlinx-binary-compatibility-validator = "0.17.0"
 jetbrains-kotlinx-coroutines = "1.10.2"
 jetbrains-kotlinx-serialization = "1.8.1"
@@ -38,6 +38,7 @@ io-mockk = { group = "io.mockk", name = "mockk", version.ref = "io-mockk" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
 jetbrains-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "jetbrains-kotlin" }
 jetbrains-dokka = { id = "org.jetbrains.dokka", version.ref = "jetbrains-dokka" }

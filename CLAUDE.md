@@ -84,3 +84,13 @@ Use these commands only when the corresponding intent cannot be satisfied via ID
 - Run tests: `./gradlew test`
 - Check code style: `./gradlew ktlintCheck`
 - Format code: `./gradlew ktlintFormat`
+
+## When Upgrading Libraries/Versions
+###Verification
+All checks, tests, and builds succeed cleanly:
+
+- `./gradlew check` (ktlint, unit tests on JVM/Desktop, iOS Simulator unit tests, Android lint)
+
+- `./gradlew :composeApp:assemble :androidApp:assembleDebug`
+
+- `./gradlew :shared:assemble :ui:assemble :renderers:cupertino:assemble :renderers:material3:assemble`

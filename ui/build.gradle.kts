@@ -3,24 +3,23 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.jetbrains.compose)
-    alias(libs.plugins.jetbrains.compose.compiler)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.jetbrains.dokka)
     alias(libs.plugins.jetbrains.kotlin.serialization)
+    alias(libs.plugins.jetbrains.compose)
+    alias(libs.plugins.jetbrains.compose.compiler)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.vanniktech.maven.publish)
     alias(libs.plugins.jetbrains.kotlinx.binary.compatibility.validator)
 }
 
 kotlin {
-    androidTarget {
-        compilations.all {
-            compileTaskProvider.configure {
-                compilerOptions {
-                    jvmTarget.set(JvmTarget.JVM_21)
-                }
-            }
+    android {
+        namespace = "com.paligot.jsonforms.ui"
+        compileSdk = 36
+        minSdk = 26
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
         }
     }
 
@@ -39,16 +38,12 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.shared)
-            implementation(compose.foundation)
-            implementation(compose.animation)
-            implementation(compose.ui)
-            api(libs.jetbrains.kotlinx.collections)
-            implementation(libs.jetbrains.kotlinx.coroutines)
-            implementation(libs.jetbrains.kotlinx.serialization.json)
+            api(projects.shared)
+            api(libs.jetbrains.kotlinx.serialization.json)
+            api(compose.ui)
+            api(compose.runtime)
+            api(compose.foundation)
         }
-        // Can't use commonTest because mockk can't be use in native
-        // FIXME https://github.com/mockk/mockk/issues/950
         val desktopTest by getting {
             dependencies {
                 implementation(compose.desktop.uiTestJUnit4)
@@ -78,21 +73,9 @@ tasks {
     }
 }
 
-android {
-    namespace = "com.paligot.jsonforms.ui"
-    compileSdk = 35
-    defaultConfig {
-        minSdk = 26
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
-    }
-}
-
 mavenPublishing {
     pom {
         name.set("ui")
-        description.set("JsonForm composable and defines the Renderer interface.")
+        description.set("Common UI components and layout system for JsonForms")
     }
 }

@@ -136,7 +136,7 @@ public final class com/paligot/jsonforms/kotlin/models/schema/ArrayProperty : co
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class com/paligot/jsonforms/kotlin/models/schema/ArrayProperty$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+public final synthetic class com/paligot/jsonforms/kotlin/models/schema/ArrayProperty$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lcom/paligot/jsonforms/kotlin/models/schema/ArrayProperty$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/paligot/jsonforms/kotlin/models/schema/ArrayProperty;
@@ -144,6 +144,7 @@ public synthetic class com/paligot/jsonforms/kotlin/models/schema/ArrayProperty$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/paligot/jsonforms/kotlin/models/schema/ArrayProperty;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/paligot/jsonforms/kotlin/models/schema/ArrayProperty$Companion {
@@ -176,7 +177,7 @@ public final class com/paligot/jsonforms/kotlin/models/schema/BooleanProperty : 
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class com/paligot/jsonforms/kotlin/models/schema/BooleanProperty$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+public final synthetic class com/paligot/jsonforms/kotlin/models/schema/BooleanProperty$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lcom/paligot/jsonforms/kotlin/models/schema/BooleanProperty$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/paligot/jsonforms/kotlin/models/schema/BooleanProperty;
@@ -184,6 +185,7 @@ public synthetic class com/paligot/jsonforms/kotlin/models/schema/BooleanPropert
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/paligot/jsonforms/kotlin/models/schema/BooleanProperty;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/paligot/jsonforms/kotlin/models/schema/BooleanProperty$Companion {
@@ -222,7 +224,7 @@ public final class com/paligot/jsonforms/kotlin/models/schema/NumberProperty : c
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class com/paligot/jsonforms/kotlin/models/schema/NumberProperty$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+public final synthetic class com/paligot/jsonforms/kotlin/models/schema/NumberProperty$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lcom/paligot/jsonforms/kotlin/models/schema/NumberProperty$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/paligot/jsonforms/kotlin/models/schema/NumberProperty;
@@ -230,6 +232,7 @@ public synthetic class com/paligot/jsonforms/kotlin/models/schema/NumberProperty
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/paligot/jsonforms/kotlin/models/schema/NumberProperty;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/paligot/jsonforms/kotlin/models/schema/NumberProperty$Companion {
@@ -267,7 +270,7 @@ public final class com/paligot/jsonforms/kotlin/models/schema/ObjectProperty : c
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class com/paligot/jsonforms/kotlin/models/schema/ObjectProperty$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+public final synthetic class com/paligot/jsonforms/kotlin/models/schema/ObjectProperty$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lcom/paligot/jsonforms/kotlin/models/schema/ObjectProperty$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/paligot/jsonforms/kotlin/models/schema/ObjectProperty;
@@ -275,6 +278,7 @@ public synthetic class com/paligot/jsonforms/kotlin/models/schema/ObjectProperty
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/paligot/jsonforms/kotlin/models/schema/ObjectProperty;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/paligot/jsonforms/kotlin/models/schema/ObjectProperty$Companion {
@@ -332,7 +336,7 @@ public final class com/paligot/jsonforms/kotlin/models/schema/StringProperty : c
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class com/paligot/jsonforms/kotlin/models/schema/StringProperty$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+public final synthetic class com/paligot/jsonforms/kotlin/models/schema/StringProperty$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lcom/paligot/jsonforms/kotlin/models/schema/StringProperty$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/paligot/jsonforms/kotlin/models/schema/StringProperty;
@@ -340,6 +344,7 @@ public synthetic class com/paligot/jsonforms/kotlin/models/schema/StringProperty
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/paligot/jsonforms/kotlin/models/schema/StringProperty;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/paligot/jsonforms/kotlin/models/schema/StringProperty$Companion {
@@ -400,7 +405,7 @@ public final class com/paligot/jsonforms/kotlin/models/uischema/Condition {
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class com/paligot/jsonforms/kotlin/models/uischema/Condition$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+public final synthetic class com/paligot/jsonforms/kotlin/models/uischema/Condition$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lcom/paligot/jsonforms/kotlin/models/uischema/Condition$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/paligot/jsonforms/kotlin/models/uischema/Condition;
@@ -408,6 +413,7 @@ public synthetic class com/paligot/jsonforms/kotlin/models/uischema/Condition$$s
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/paligot/jsonforms/kotlin/models/uischema/Condition;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/paligot/jsonforms/kotlin/models/uischema/Condition$Companion {
@@ -437,7 +443,7 @@ public final class com/paligot/jsonforms/kotlin/models/uischema/Control : com/pa
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class com/paligot/jsonforms/kotlin/models/uischema/Control$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+public final synthetic class com/paligot/jsonforms/kotlin/models/uischema/Control$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lcom/paligot/jsonforms/kotlin/models/uischema/Control$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/paligot/jsonforms/kotlin/models/uischema/Control;
@@ -445,6 +451,7 @@ public synthetic class com/paligot/jsonforms/kotlin/models/uischema/Control$$ser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/paligot/jsonforms/kotlin/models/uischema/Control;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/paligot/jsonforms/kotlin/models/uischema/Control$Companion {
@@ -479,7 +486,7 @@ public final class com/paligot/jsonforms/kotlin/models/uischema/ControlOptions :
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class com/paligot/jsonforms/kotlin/models/uischema/ControlOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+public final synthetic class com/paligot/jsonforms/kotlin/models/uischema/ControlOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lcom/paligot/jsonforms/kotlin/models/uischema/ControlOptions$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/paligot/jsonforms/kotlin/models/uischema/ControlOptions;
@@ -487,6 +494,7 @@ public synthetic class com/paligot/jsonforms/kotlin/models/uischema/ControlOptio
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/paligot/jsonforms/kotlin/models/uischema/ControlOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/paligot/jsonforms/kotlin/models/uischema/ControlOptions$Companion {
@@ -537,7 +545,7 @@ public final class com/paligot/jsonforms/kotlin/models/uischema/GroupLayout : co
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class com/paligot/jsonforms/kotlin/models/uischema/GroupLayout$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+public final synthetic class com/paligot/jsonforms/kotlin/models/uischema/GroupLayout$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lcom/paligot/jsonforms/kotlin/models/uischema/GroupLayout$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/paligot/jsonforms/kotlin/models/uischema/GroupLayout;
@@ -545,6 +553,7 @@ public synthetic class com/paligot/jsonforms/kotlin/models/uischema/GroupLayout$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/paligot/jsonforms/kotlin/models/uischema/GroupLayout;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/paligot/jsonforms/kotlin/models/uischema/GroupLayout$Companion {
@@ -570,7 +579,7 @@ public final class com/paligot/jsonforms/kotlin/models/uischema/HorizontalLayout
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class com/paligot/jsonforms/kotlin/models/uischema/HorizontalLayout$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+public final synthetic class com/paligot/jsonforms/kotlin/models/uischema/HorizontalLayout$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lcom/paligot/jsonforms/kotlin/models/uischema/HorizontalLayout$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/paligot/jsonforms/kotlin/models/uischema/HorizontalLayout;
@@ -578,6 +587,7 @@ public synthetic class com/paligot/jsonforms/kotlin/models/uischema/HorizontalLa
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/paligot/jsonforms/kotlin/models/uischema/HorizontalLayout;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/paligot/jsonforms/kotlin/models/uischema/HorizontalLayout$Companion {
@@ -602,7 +612,7 @@ public final class com/paligot/jsonforms/kotlin/models/uischema/LayoutOptions : 
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class com/paligot/jsonforms/kotlin/models/uischema/LayoutOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+public final synthetic class com/paligot/jsonforms/kotlin/models/uischema/LayoutOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lcom/paligot/jsonforms/kotlin/models/uischema/LayoutOptions$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/paligot/jsonforms/kotlin/models/uischema/LayoutOptions;
@@ -610,6 +620,7 @@ public synthetic class com/paligot/jsonforms/kotlin/models/uischema/LayoutOption
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/paligot/jsonforms/kotlin/models/uischema/LayoutOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/paligot/jsonforms/kotlin/models/uischema/LayoutOptions$Companion {
@@ -642,7 +653,7 @@ public final class com/paligot/jsonforms/kotlin/models/uischema/Rule {
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class com/paligot/jsonforms/kotlin/models/uischema/Rule$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+public final synthetic class com/paligot/jsonforms/kotlin/models/uischema/Rule$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lcom/paligot/jsonforms/kotlin/models/uischema/Rule$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/paligot/jsonforms/kotlin/models/uischema/Rule;
@@ -650,6 +661,7 @@ public synthetic class com/paligot/jsonforms/kotlin/models/uischema/Rule$$serial
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/paligot/jsonforms/kotlin/models/uischema/Rule;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/paligot/jsonforms/kotlin/models/uischema/Rule$Companion {
@@ -688,7 +700,7 @@ public final class com/paligot/jsonforms/kotlin/models/uischema/VerticalLayout :
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class com/paligot/jsonforms/kotlin/models/uischema/VerticalLayout$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+public final synthetic class com/paligot/jsonforms/kotlin/models/uischema/VerticalLayout$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lcom/paligot/jsonforms/kotlin/models/uischema/VerticalLayout$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/paligot/jsonforms/kotlin/models/uischema/VerticalLayout;
@@ -696,6 +708,7 @@ public synthetic class com/paligot/jsonforms/kotlin/models/uischema/VerticalLayo
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/paligot/jsonforms/kotlin/models/uischema/VerticalLayout;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/paligot/jsonforms/kotlin/models/uischema/VerticalLayout$Companion {

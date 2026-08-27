@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.jetbrains.dokka)
     alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.ktlint)
@@ -12,13 +12,12 @@ plugins {
 }
 
 kotlin {
-    androidTarget {
-        compilations.all {
-            compileTaskProvider.configure {
-                compilerOptions {
-                    jvmTarget.set(JvmTarget.JVM_21)
-                }
-            }
+    android {
+        namespace = "com.paligot.jsonforms.kotlin"
+        compileSdk = 36
+        minSdk = 26
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
         }
     }
 
@@ -38,8 +37,8 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             api(libs.jetbrains.kotlinx.collections)
+            api(libs.jetbrains.kotlinx.serialization.json)
             implementation(libs.jetbrains.kotlinx.coroutines)
-            implementation(libs.jetbrains.kotlinx.serialization.json)
         }
         commonTest.dependencies {
             implementation(libs.jetbrains.kotlin.test)
@@ -62,18 +61,6 @@ tasks {
                 languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.toString()))
             },
         )
-    }
-}
-
-android {
-    namespace = "com.paligot.jsonforms.kotlin"
-    compileSdk = 35
-    defaultConfig {
-        minSdk = 26
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
     }
 }
 
