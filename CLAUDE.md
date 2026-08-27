@@ -11,9 +11,9 @@
 
 ## Requirements & Environment
 - **Java / JDK**: Java 21 is required (`sourceCompatibility`, `targetCompatibility`, and JVM bytecode target are set to `VERSION_21`).
-- **Gradle**: 8.14.5 (configured in `gradle/wrapper/gradle-wrapper.properties`).
-- **Kotlin**: 2.1.21 with Compose Multiplatform 1.8.1.
-- **Android Gradle Plugin (AGP)**: 8.10.1 (Compile SDK: 35, Min SDK: 26).
+- **Gradle**: 9.3.1 (configured in `gradle/wrapper/gradle-wrapper.properties`).
+- **Kotlin**: 2.2.10 with Compose Multiplatform 1.8.1.
+- **Android Gradle Plugin (AGP)**: 9.1.1 (Compile SDK: 35, Min SDK: 26).
 
 ---
 
