@@ -23,10 +23,13 @@ compose.desktop {
 }
 
 kotlin {
-    android {
+    androidLibrary {
         namespace = "com.paligot.jsonforms.kotlin.demo"
         compileSdk = 37
         minSdk = 26
+        androidResources {
+            enable = true
+        }
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_21)
         }
