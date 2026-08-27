@@ -1,13 +1,10 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
-    alias(libs.plugins.jetbrains.dokka)
     alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.compose.compiler)
+    alias(libs.plugins.jetbrains.dokka)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.vanniktech.maven.publish)
     alias(libs.plugins.jetbrains.kotlinx.binary.compatibility.validator)
@@ -16,17 +13,16 @@ plugins {
 kotlin {
     android {
         namespace = "com.paligot.jsonforms.ui"
-        compileSdk = 36
+        compileSdk = 37
         minSdk = 26
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_21)
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
         }
     }
 
     jvm("desktop")
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64(),
     ).forEach {
@@ -40,13 +36,13 @@ kotlin {
         commonMain.dependencies {
             api(projects.shared)
             api(libs.jetbrains.kotlinx.serialization.json)
-            api(compose.ui)
-            api(compose.runtime)
-            api(compose.foundation)
+            api(libs.jetbrains.compose.ui)
+            api(libs.jetbrains.compose.runtime)
+            api(libs.jetbrains.compose.foundation)
         }
-        val desktopTest by getting {
+        named("desktopTest") {
             dependencies {
-                implementation(compose.desktop.uiTestJUnit4)
+                implementation(libs.jetbrains.compose.ui.test.junit4)
                 implementation(compose.desktop.currentOs)
                 implementation(libs.jetbrains.kotlin.test)
                 implementation(libs.io.mockk)
@@ -56,10 +52,10 @@ kotlin {
 }
 
 tasks {
-    withType<KotlinCompile>().configureEach {
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
         compilerOptions {
             freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
-            jvmTarget.set(JvmTarget.JVM_21)
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
         }
     }
 
@@ -76,6 +72,6 @@ tasks {
 mavenPublishing {
     pom {
         name.set("ui")
-        description.set("Common UI components and layout system for JsonForms")
+        description.set("Library that contains renderers for compose-multiplatform to generate forms from json-schema")
     }
 }

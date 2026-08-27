@@ -25,7 +25,7 @@ compose.desktop {
 kotlin {
     android {
         namespace = "com.paligot.jsonforms.kotlin.demo"
-        compileSdk = 36
+        compileSdk = 37
         minSdk = 26
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_21)
@@ -35,26 +35,28 @@ kotlin {
     jvm("desktop")
 
     sourceSets {
-        val desktopMain by getting
         commonMain.dependencies {
             implementation(projects.renderers.material3)
             implementation(projects.renderers.cupertino)
             implementation(projects.shared)
-            implementation(compose.material3)
-            implementation(compose.materialIconsExtended)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.preview)
+            implementation(libs.jetbrains.compose.material3)
+            implementation(libs.jetbrains.compose.material.icons.extended)
+            implementation(libs.jetbrains.compose.ui)
+            implementation(libs.jetbrains.compose.components.resources)
+            implementation(libs.jetbrains.compose.components.ui.tooling.preview)
             implementation(libs.cupertino)
             implementation(libs.jetbrains.androidx.viewmodel.compose)
             implementation(libs.jetbrains.androidx.navigation.compose)
             implementation(libs.jetbrains.kotlinx.serialization.json)
             implementation(libs.bundles.io.ktor.client)
         }
-        desktopMain.dependencies {
-            implementation(compose.desktop.currentOs)
-            implementation(libs.jetbrains.kotlinx.coroutines)
-            implementation(libs.jetbrains.kotlinx.coroutines.swing)
+
+        named("desktopMain") {
+            dependencies {
+                implementation(compose.desktop.currentOs)
+                implementation(libs.jetbrains.kotlinx.coroutines)
+                implementation(libs.jetbrains.kotlinx.coroutines.swing)
+            }
         }
     }
 }

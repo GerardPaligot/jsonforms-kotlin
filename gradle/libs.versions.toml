@@ -4,7 +4,9 @@ androidx-activity = "1.13.0"
 cupertino = "2.2.5"
 jetbrains-androidx-navigation = "2.9.0-beta02"
 jetbrains-androidx-viewmodel = "2.9.0"
-jetbrains-compose = "1.10.3"
+jetbrains-compose = "1.12.0"
+jetbrains-compose-material3 = "1.12.0-alpha03"
+jetbrains-compose-material-icons = "1.7.3"
 jetbrains-dokka = "2.0.0"
 jetbrains-kotlin = "2.4.10"
 jetbrains-kotlinx-binary-compatibility-validator = "0.17.0"
@@ -21,6 +23,17 @@ androidx-activity-compose = { module = "androidx.activity:activity-compose", ver
 cupertino = { group = "io.github.schott12521", name = "cupertino", version.ref = "cupertino" }
 jetbrains-androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "jetbrains-androidx-navigation" }
 jetbrains-androidx-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "jetbrains-androidx-viewmodel" }
+jetbrains-compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "jetbrains-compose" }
+jetbrains-compose-components-ui-tooling-preview = { module = "org.jetbrains.compose.components:components-ui-tooling-preview", version.ref = "jetbrains-compose" }
+jetbrains-compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "jetbrains-compose" }
+jetbrains-compose-material = { module = "org.jetbrains.compose.material:material", version.ref = "jetbrains-compose" }
+jetbrains-compose-material-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "jetbrains-compose-material-icons" }
+jetbrains-compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "jetbrains-compose-material3" }
+jetbrains-compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "jetbrains-compose" }
+jetbrains-compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "jetbrains-compose" }
+jetbrains-compose-ui-tooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "jetbrains-compose" }
+jetbrains-compose-ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "jetbrains-compose" }
+jetbrains-compose-ui-test-junit4 = { module = "org.jetbrains.compose.ui:ui-test-junit4", version.ref = "jetbrains-compose" }
 jetbrains-kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "jetbrains-kotlin" }
 jetbrains-kotlinx-collections = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "jetbrains-kotlinx-collections" }
 jetbrains-kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "jetbrains-kotlinx-coroutines" }

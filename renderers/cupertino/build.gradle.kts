@@ -1,10 +1,8 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.jetbrains.dokka)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.compose.compiler)
     alias(libs.plugins.ktlint)
@@ -15,17 +13,16 @@ plugins {
 kotlin {
     android {
         namespace = "com.paligot.jsonforms.cupertino"
-        compileSdk = 36
+        compileSdk = 37
         minSdk = 26
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_21)
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
         }
     }
 
     jvm("desktop")
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64(),
     ).forEach {
@@ -39,19 +36,19 @@ kotlin {
         commonMain.dependencies {
             api(projects.shared)
             api(projects.ui)
-            api(compose.ui)
-            api(compose.runtime)
-            api(compose.foundation)
             api(libs.cupertino)
+            api(libs.jetbrains.compose.ui)
+            api(libs.jetbrains.compose.runtime)
+            api(libs.jetbrains.compose.foundation)
         }
     }
 }
 
 tasks {
-    withType<KotlinCompile>().configureEach {
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
         compilerOptions {
             freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
-            jvmTarget.set(JvmTarget.JVM_21)
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
         }
     }
 

@@ -14,7 +14,7 @@ plugins {
 kotlin {
     android {
         namespace = "com.paligot.jsonforms.kotlin"
-        compileSdk = 36
+        compileSdk = 37
         minSdk = 26
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_21)
@@ -24,7 +24,6 @@ kotlin {
     jvm("desktop")
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64(),
     ).forEach {
