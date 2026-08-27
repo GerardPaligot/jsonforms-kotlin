@@ -54,14 +54,14 @@ kotlin {
 }
 
 tasks {
-    withType<KotlinCompile> {
-        kotlinOptions {
-            freeCompilerArgs = freeCompilerArgs + listOf("-opt-in=kotlin.RequiresOptIn")
-            jvmTarget = JavaVersion.toVersion(JavaVersion.VERSION_21).toString()
+    withType<KotlinCompile>().configureEach {
+        compilerOptions {
+            freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
+            jvmTarget.set(JvmTarget.JVM_21)
         }
     }
 
-    withType<JavaCompile> {
+    withType<JavaCompile>().configureEach {
         val javaToolchains = project.extensions.getByType<JavaToolchainService>()
         javaCompiler.set(
             javaToolchains.compilerFor {
