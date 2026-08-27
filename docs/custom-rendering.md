@@ -86,3 +86,7 @@ stringContent = { id ->
 * You can provide custom logic for any field type (string, number, boolean, etc.) by implementing the corresponding content slot.
 
 For more details, see the [usage guide](usage.md) or the [API reference](api/index.html).
+
+## Next steps
+
+* Check out how to [Create a Renderer](create-renderer.md) to define a complete rendering system for your application.

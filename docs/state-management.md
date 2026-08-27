@@ -88,3 +88,8 @@ formState.markAsErrors(listOf(FieldError(scope = "#/properties/email", message =
 ```
 
 For more details, see the [API reference](api/index.html) or the [usage guide](usage.md).
+
+## Next steps
+
+* Learn how to implement [Custom Rendering](custom-rendering.md) for individual fields.
+* Find out how to [Create a Renderer](create-renderer.md) for your own design system.
