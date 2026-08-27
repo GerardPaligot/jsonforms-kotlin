@@ -86,7 +86,7 @@ Use these commands only when the corresponding intent cannot be satisfied via ID
 - Format code: `./gradlew ktlintFormat`
 
 ## When Upgrading Libraries/Versions
-###Verification
+### Verification
 All checks, tests, and builds succeed cleanly:
 
 - `./gradlew check` (ktlint, unit tests on JVM/Desktop, iOS Simulator unit tests, Android lint)
