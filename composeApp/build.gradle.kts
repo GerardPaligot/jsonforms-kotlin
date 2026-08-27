@@ -23,7 +23,7 @@ compose.desktop {
 }
 
 kotlin {
-    androidLibrary {
+    android {
         namespace = "com.paligot.jsonforms.kotlin.demo"
         compileSdk = 37
         minSdk = 26
@@ -52,6 +52,8 @@ kotlin {
             implementation(libs.jetbrains.androidx.navigation.compose)
             implementation(libs.jetbrains.kotlinx.serialization.json)
             implementation(libs.bundles.io.ktor.client)
+            implementation(libs.io.coil3.compose)
+            implementation(libs.io.coil3.svg)
         }
 
         named("desktopMain") {
