@@ -17,7 +17,7 @@ import kotlin.reflect.KClass
 class ObjectPropertyListSerializer : JsonContentPolymorphicSerializer<List<ObjectProperty>>(
     List::class as KClass<List<ObjectProperty>>,
 ) {
-    override fun selectDeserializer(element: JsonElement): DeserializationStrategy<out List<ObjectProperty>> {
+    override fun selectDeserializer(element: JsonElement): DeserializationStrategy<List<ObjectProperty>> {
         return if (element is JsonArray) {
             ListSerializer(ObjectProperty.serializer())
         } else {

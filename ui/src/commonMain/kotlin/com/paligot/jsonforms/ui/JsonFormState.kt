@@ -172,7 +172,7 @@ internal class JsonFormStateImpl(private val map: Map<String, Any?>) : JsonFormS
         val validation = ValidationCheck(schema, uiSchema)
         return suspendCancellableCoroutine { continuation ->
             fieldsWithErrors = validation.check(mapValues)
-            continuation.resume(fieldsWithErrors.isEmpty() && customErrors.isEmpty()) {
+            continuation.resume(fieldsWithErrors.isEmpty() && customErrors.isEmpty()) { cause, _, _ ->
                 fieldsWithErrors = emptyList()
             }
         }

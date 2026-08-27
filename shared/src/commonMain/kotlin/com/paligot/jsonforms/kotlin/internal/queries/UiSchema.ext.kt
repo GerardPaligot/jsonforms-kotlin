@@ -22,7 +22,7 @@ internal fun UiSchema.findVisibleControls(data: Map<String, Any?>): List<Control
             elements?.flatMap { it.findVisibleControls(data) } ?: emptyList()
         }
         is Control -> {
-            if (rule == null || rule?.evaluateShow(data) == true) {
+            if (rule == null || rule.evaluateShow(data) == true) {
                 listOfNotNull(this)
             } else {
                 emptyList()
