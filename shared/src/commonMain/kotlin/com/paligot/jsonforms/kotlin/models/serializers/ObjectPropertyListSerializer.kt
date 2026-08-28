@@ -14,30 +14,26 @@ import kotlinx.serialization.json.JsonElement
 import kotlin.reflect.KClass
 
 @Suppress("UNCHECKED_CAST")
-class ObjectPropertyListSerializer : JsonContentPolymorphicSerializer<List<ObjectProperty>>(
-    List::class as KClass<List<ObjectProperty>>,
-) {
-    override fun selectDeserializer(element: JsonElement): DeserializationStrategy<out List<ObjectProperty>> {
-        return if (element is JsonArray) {
+class ObjectPropertyListSerializer :
+    JsonContentPolymorphicSerializer<List<ObjectProperty>>(
+        List::class as KClass<List<ObjectProperty>>,
+    ) {
+    override fun selectDeserializer(element: JsonElement): DeserializationStrategy<List<ObjectProperty>> =
+        if (element is JsonArray) {
             ListSerializer(ObjectProperty.serializer())
         } else {
             SingleObjectPropertyListSerializer()
         }
-    }
 
     class SingleObjectPropertyListSerializer : KSerializer<List<ObjectProperty>> {
         override val descriptor: SerialDescriptor
             get() = Property.serializer().descriptor
 
-        override fun deserialize(decoder: Decoder): List<ObjectProperty> {
-            return listOf(ObjectProperty.serializer().deserialize(decoder))
-        }
+        override fun deserialize(decoder: Decoder): List<ObjectProperty> = listOf(ObjectProperty.serializer().deserialize(decoder))
 
         override fun serialize(
             encoder: Encoder,
             value: List<ObjectProperty>,
-        ) {
-            throw Exception("Not in use")
-        }
+        ): Unit = throw Exception("Not in use")
     }
 }

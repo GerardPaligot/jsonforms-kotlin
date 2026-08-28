@@ -22,7 +22,5 @@ class ImmutableMapSerializer<K, V>(
         delegateSerializer.serialize(encoder, value.toMap())
     }
 
-    override fun deserialize(decoder: Decoder): ImmutableMap<K, V> {
-        return delegateSerializer.deserialize(decoder).toImmutableMap()
-    }
+    override fun deserialize(decoder: Decoder): ImmutableMap<K, V> = delegateSerializer.deserialize(decoder).toImmutableMap()
 }

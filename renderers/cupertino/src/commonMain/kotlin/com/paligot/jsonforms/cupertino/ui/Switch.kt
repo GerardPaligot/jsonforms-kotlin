@@ -31,14 +31,14 @@ internal fun Switch(
                 val hasLabel = !label.isNullOrEmpty()
                 val hasDescription = !description.isNullOrEmpty()
                 if (!hasLabel && hasDescription) {
-                    description?.let { CupertinoText(text = it) }
+                    CupertinoText(text = description)
                 } else {
                     CupertinoText(
                         text = label ?: "",
                         style = CupertinoTheme.typography.headline,
                     )
                     if (hasDescription) {
-                        description?.let { CupertinoText(text = it) }
+                        CupertinoText(text = description)
                     }
                 }
             },

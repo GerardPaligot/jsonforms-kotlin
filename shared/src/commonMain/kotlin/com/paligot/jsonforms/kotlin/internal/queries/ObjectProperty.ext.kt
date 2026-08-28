@@ -22,6 +22,7 @@ import com.paligot.jsonforms.kotlin.models.uischema.Control
  * @param control Field contained in the UiSchema.
  * @return property from the schema.
  */
+@Suppress("UNCHECKED_CAST")
 internal fun <T : Property> ObjectProperty.getPropertyByControl(control: Control): T {
     val propertyPath = control.propertyPath()
     var objectProperty: ObjectProperty = this

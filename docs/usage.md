@@ -65,6 +65,10 @@ Here are examples for both Material3 and Cupertino renderers:
 
 ```kotlin
 // Material3 rendering
+import com.paligot.jsonforms.ui.JsonForm
+import com.paligot.jsonforms.material3.Material3Layout
+import com.paligot.jsonforms.material3.Material3StringProperty
+
 JsonForm(
     schema = schema,
     uiSchema = uiSchema,
@@ -83,6 +87,10 @@ JsonForm(
 )
 
 // Cupertino rendering
+import com.paligot.jsonforms.ui.JsonForm
+import com.paligot.jsonforms.cupertino.CupertinoLayout
+import com.paligot.jsonforms.cupertino.CupertinoStringProperty
+
 JsonForm(
     schema = schema,
     uiSchema = uiSchema,
@@ -125,6 +133,7 @@ the `validate` suspend function on your form state. This function checks all req
 field:
 
 ```kotlin
+import androidx.compose.runtime.rememberCoroutineScope
 import kotlinx.coroutines.launch
 
 val scope = rememberCoroutineScope()
@@ -146,3 +155,8 @@ Button(onClick = {
 
 This approach ensures that your form always respects the schema and uischema rules before 
 submission or further processing.
+
+## Next steps
+
+* Deep dive into [State Management](state-management.md) to understand how to observe and manipulate form state.
+* Explore [Custom Rendering](custom-rendering.md) if you need a specific look or custom UI elements.

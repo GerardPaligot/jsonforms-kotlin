@@ -125,7 +125,8 @@ fun RendererLayoutScope.Material3Layout(
                 content = {
                     for (child in elements()) {
                         val childModifier =
-                            child.options?.weight
+                            child.options
+                                ?.weight
                                 ?.let { Modifier.weight(it) }
                                 ?: Modifier
                         Box(modifier = childModifier) {
@@ -142,7 +143,8 @@ fun RendererLayoutScope.Material3Layout(
                 content = {
                     for (child in elements()) {
                         val childModifier =
-                            child.options?.weight
+                            child.options
+                                ?.weight
                                 ?.let { Modifier.weight(it) }
                                 ?: Modifier
                         Box(modifier = childModifier) {

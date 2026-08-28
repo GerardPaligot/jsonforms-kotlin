@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 pluginManagement {
     repositories {
@@ -15,6 +17,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "jsonforms-kotlin"
+include(":androidApp")
 include(":composeApp")
 include(":ui")
 include(":renderers:cupertino")

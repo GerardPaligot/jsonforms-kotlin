@@ -7,7 +7,9 @@ import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-class ImmutableListSerializer<T>(elementSerializer: KSerializer<T>) : KSerializer<ImmutableList<T>> {
+class ImmutableListSerializer<T>(
+    elementSerializer: KSerializer<T>,
+) : KSerializer<ImmutableList<T>> {
     private val delegateSerializer = ListSerializer(elementSerializer)
 
     override val descriptor = delegateSerializer.descriptor
@@ -19,7 +21,5 @@ class ImmutableListSerializer<T>(elementSerializer: KSerializer<T>) : KSerialize
         delegateSerializer.serialize(encoder, value.toList())
     }
 
-    override fun deserialize(decoder: Decoder): ImmutableList<T> {
-        return delegateSerializer.deserialize(decoder).toImmutableList()
-    }
+    override fun deserialize(decoder: Decoder): ImmutableList<T> = delegateSerializer.deserialize(decoder).toImmutableList()
 }

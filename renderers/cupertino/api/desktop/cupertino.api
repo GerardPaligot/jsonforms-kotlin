@@ -8,6 +8,6 @@ public final class com/paligot/jsonforms/cupertino/CupertinoRendererKt {
 public final class com/paligot/jsonforms/cupertino/ui/ComposableSingletons$WheelPickerKt {
 	public static final field INSTANCE Lcom/paligot/jsonforms/cupertino/ui/ComposableSingletons$WheelPickerKt;
 	public fun <init> ()V
-	public final fun getLambda$298379313$cupertino ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$298379313$jsonforms_kotlin_renderers_cupertino ()Lkotlin/jvm/functions/Function3;
 }
 

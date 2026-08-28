@@ -72,8 +72,8 @@ fun Property.label(
 fun Property.getMaxCounter(
     value: String?,
     control: Control,
-): Pair<Int, Int>? {
-    return if (
+): Pair<Int, Int>? =
+    if (
         this is StringProperty &&
         control.options?.showMaxCounter == true &&
         maxLength != null
@@ -88,7 +88,6 @@ fun Property.getMaxCounter(
     } else {
         null
     }
-}
 
 private fun String?.getIntegerValue(): Int =
     try {
@@ -99,7 +98,7 @@ private fun String?.getIntegerValue(): Int =
             // Like the validate method we call toFloat(). The counter want a Integer, so we transform the float to Integer, so 47.17 will be 47.
             replace(",", ".").toFloat().toInt()
         }
-    } catch (ex: Exception) {
+    } catch (_: Exception) {
         // In the case of value = 12-5 or 12,5, we can't parse a Float with these entries, so we show 0 to prevent a crash at the validation
         0
     }

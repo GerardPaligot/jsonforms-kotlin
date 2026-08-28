@@ -1,33 +1,28 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.compose.compiler)
     alias(libs.plugins.jetbrains.dokka)
-    alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.vanniktech.maven.publish)
     alias(libs.plugins.jetbrains.kotlinx.binary.compatibility.validator)
 }
 
 kotlin {
-    androidTarget {
-        compilations.all {
-            compileTaskProvider.configure {
-                compilerOptions {
-                    jvmTarget.set(JvmTarget.JVM_21)
-                }
-            }
+    android {
+        namespace = "com.paligot.jsonforms.ui"
+        compileSdk = 37
+        minSdk = 26
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
         }
     }
 
     jvm("desktop")
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64(),
     ).forEach {
@@ -39,19 +34,15 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.shared)
-            implementation(compose.foundation)
-            implementation(compose.animation)
-            implementation(compose.ui)
-            api(libs.jetbrains.kotlinx.collections)
-            implementation(libs.jetbrains.kotlinx.coroutines)
-            implementation(libs.jetbrains.kotlinx.serialization.json)
+            api(projects.shared)
+            api(libs.jetbrains.kotlinx.serialization.json)
+            api(libs.jetbrains.compose.ui)
+            api(libs.jetbrains.compose.runtime)
+            api(libs.jetbrains.compose.foundation)
         }
-        // Can't use commonTest because mockk can't be use in native
-        // FIXME https://github.com/mockk/mockk/issues/950
-        val desktopTest by getting {
+        named("desktopTest") {
             dependencies {
-                implementation(compose.desktop.uiTestJUnit4)
+                implementation(libs.jetbrains.compose.ui.test.junit4)
                 implementation(compose.desktop.currentOs)
                 implementation(libs.jetbrains.kotlin.test)
                 implementation(libs.io.mockk)
@@ -61,14 +52,14 @@ kotlin {
 }
 
 tasks {
-    withType<KotlinCompile> {
-        kotlinOptions {
-            freeCompilerArgs = freeCompilerArgs + listOf("-opt-in=kotlin.RequiresOptIn")
-            jvmTarget = JavaVersion.toVersion(JavaVersion.VERSION_21).toString()
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        compilerOptions {
+            freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
         }
     }
 
-    withType<JavaCompile> {
+    withType<JavaCompile>().configureEach {
         val javaToolchains = project.extensions.getByType<JavaToolchainService>()
         javaCompiler.set(
             javaToolchains.compilerFor {
@@ -78,21 +69,9 @@ tasks {
     }
 }
 
-android {
-    namespace = "com.paligot.jsonforms.ui"
-    compileSdk = 35
-    defaultConfig {
-        minSdk = 26
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
-    }
-}
-
 mavenPublishing {
     pom {
         name.set("ui")
-        description.set("JsonForm composable and defines the Renderer interface.")
+        description.set("Library that contains renderers for compose-multiplatform to generate forms from json-schema")
     }
 }

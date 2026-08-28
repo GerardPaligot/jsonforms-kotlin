@@ -3,6 +3,7 @@ import org.jlleitschuh.gradle.ktlint.KtlintExtension
 plugins {
     alias(libs.plugins.android.application).apply(false)
     alias(libs.plugins.android.library).apply(false)
+    alias(libs.plugins.android.kotlin.multiplatform.library).apply(false)
     alias(libs.plugins.jetbrains.compose).apply(false)
     alias(libs.plugins.jetbrains.compose.compiler).apply(false)
     alias(libs.plugins.jetbrains.kotlin.multiplatform).apply(false)
@@ -11,6 +12,13 @@ plugins {
     alias(libs.plugins.ktlint).apply(false)
     alias(libs.plugins.vanniktech.maven.publish).apply(false)
     alias(libs.plugins.jetbrains.dokka).apply(true)
+}
+
+dependencies {
+    dokka(projects.shared)
+    dokka(projects.ui)
+    dokka(projects.renderers.cupertino)
+    dokka(projects.renderers.material3)
 }
 
 subprojects {

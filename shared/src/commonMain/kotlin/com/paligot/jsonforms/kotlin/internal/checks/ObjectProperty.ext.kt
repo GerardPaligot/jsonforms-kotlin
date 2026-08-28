@@ -55,8 +55,7 @@ internal fun ObjectProperty.validate(
                     is NumberProperty -> property.validate(entry.key, value as String)
                     else -> emptyList()
                 }
-            }
-            .flatten()
+            }.flatten()
 
     val combinators =
         if (anyOf != null) {

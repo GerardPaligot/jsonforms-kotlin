@@ -39,6 +39,7 @@ public abstract interface class com/paligot/jsonforms/ui/RendererNumberScope {
 	public abstract fun description ()Ljava/lang/String;
 	public abstract fun enabled ()Z
 	public abstract fun keyboardOptions-dWMfq5w (II)Landroidx/compose/foundation/text/KeyboardOptions;
+	public static synthetic fun keyboardOptions-dWMfq5w$default (Lcom/paligot/jsonforms/ui/RendererNumberScope;IIILjava/lang/Object;)Landroidx/compose/foundation/text/KeyboardOptions;
 	public abstract fun label ()Ljava/lang/String;
 }
 
@@ -53,6 +54,7 @@ public abstract interface class com/paligot/jsonforms/ui/RendererStringScope {
 	public abstract fun isDropdown ()Z
 	public abstract fun isRadio ()Z
 	public abstract fun keyboardOptions-R4EHBb8 (III)Landroidx/compose/foundation/text/KeyboardOptions;
+	public static synthetic fun keyboardOptions-R4EHBb8$default (Lcom/paligot/jsonforms/ui/RendererStringScope;IIIILjava/lang/Object;)Landroidx/compose/foundation/text/KeyboardOptions;
 	public abstract fun label ()Ljava/lang/String;
 	public abstract fun orientation ()Lcom/paligot/jsonforms/kotlin/models/uischema/Orientation;
 	public abstract fun values ()Lkotlinx/collections/immutable/ImmutableList;

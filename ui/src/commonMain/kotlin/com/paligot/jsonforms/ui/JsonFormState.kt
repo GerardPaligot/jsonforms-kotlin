@@ -69,9 +69,7 @@ interface JsonFormState {
      * Validate if requirements and patterns described in [Schema] are respected to submit your form.
      *
      * ```kotlin
-     * coroutineScope.launch {
-     *     jsonFormsState.validate(schema, uiSchema)
-     * }
+     * coroutineScope.launch {\n     *     jsonFormsState.validate(schema, uiSchema)\n     * }
      * ```
      *
      * @param schema Properties which can be shown on the screen.
@@ -143,7 +141,9 @@ interface JsonFormState {
  * @param map the initial value for fields in the form
  */
 @Stable
-internal class JsonFormStateImpl(private val map: Map<String, Any?>) : JsonFormState {
+internal class JsonFormStateImpl(
+    private val map: Map<String, Any?>,
+) : JsonFormState {
     /**
      * Internal errors driven by JsonForms internal checks (requirements and patterns).
      */
@@ -175,7 +175,7 @@ internal class JsonFormStateImpl(private val map: Map<String, Any?>) : JsonFormS
         return suspendCancellableCoroutine { continuation ->
             fieldsWithErrors = validation.check(mapValues)
             continuation.resume(fieldsWithErrors.isEmpty() && customErrors.isEmpty()) { _, _, _ ->
-                fieldsWithErrors.toMutableList().clear()
+                fieldsWithErrors = emptyList()
             }
         }
     }

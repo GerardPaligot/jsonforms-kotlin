@@ -30,14 +30,14 @@ internal fun Switch(
                 val hasLabel = !label.isNullOrEmpty()
                 val hasDescription = !description.isNullOrEmpty()
                 if (!hasLabel && hasDescription) {
-                    description?.let { Text(text = it) }
+                    Text(text = description)
                 } else {
                     Text(
                         text = label ?: "",
                         style = MaterialTheme.typography.titleMedium,
                     )
                     if (hasDescription) {
-                        description?.let { Text(text = it) }
+                        Text(text = description)
                     }
                 }
             },

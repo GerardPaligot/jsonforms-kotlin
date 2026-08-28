@@ -1,4 +1,4 @@
-`jsonforms-kotlin` is a Kotlin Multiplatform implementation of the JSONForms standard from the 
+`jsonforms-kotlin` is a Kotlin Multiplatform implementation of the [JSONForms](https://jsonforms.io/) standard from the 
 Eclipse Foundation. It leverages Compose Multiplatform to render dynamic forms based on 
 JSON Schemas and UI Schemas.
 
@@ -26,6 +26,14 @@ dependencies {
     implementation("com.paligot.jsonforms.kotlin:cupertino:$version")
 }
 ```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request or open an issue on our [GitHub repository](https://github.com/GerardPaligot/jsonforms-kotlin) if you find bugs or want to request new features.
+
+## Next steps
+
+* Check out the [Usage Guide](usage.md) to get started with building forms.
 
 ## License
 
