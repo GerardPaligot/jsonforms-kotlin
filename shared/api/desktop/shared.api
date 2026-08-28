@@ -19,17 +19,14 @@ public abstract class com/paligot/jsonforms/kotlin/internal/FieldError {
 
 public final class com/paligot/jsonforms/kotlin/internal/FieldError$InvalidEnumFieldError : com/paligot/jsonforms/kotlin/internal/FieldError {
 	public fun <init> (Ljava/util/List;Ljava/lang/String;)V
-	public final fun getEnum ()Ljava/util/List;
 }
 
 public final class com/paligot/jsonforms/kotlin/internal/FieldError$InvalidNotPropertyError : com/paligot/jsonforms/kotlin/internal/FieldError {
 	public fun <init> (Lcom/paligot/jsonforms/kotlin/models/schema/Property;Ljava/lang/String;)V
-	public final fun getNot ()Lcom/paligot/jsonforms/kotlin/models/schema/Property;
 }
 
 public final class com/paligot/jsonforms/kotlin/internal/FieldError$InvalidValueFieldError : com/paligot/jsonforms/kotlin/internal/FieldError {
 	public fun <init> (Lkotlinx/serialization/json/JsonPrimitive;Ljava/lang/String;)V
-	public final fun getValue ()Lkotlinx/serialization/json/JsonPrimitive;
 }
 
 public final class com/paligot/jsonforms/kotlin/internal/FieldError$MalformedFieldError : com/paligot/jsonforms/kotlin/internal/FieldError {
@@ -38,27 +35,22 @@ public final class com/paligot/jsonforms/kotlin/internal/FieldError$MalformedFie
 
 public final class com/paligot/jsonforms/kotlin/internal/FieldError$MaxLengthFieldError : com/paligot/jsonforms/kotlin/internal/FieldError {
 	public fun <init> (ILjava/lang/String;)V
-	public final fun getMaxLength ()I
 }
 
 public final class com/paligot/jsonforms/kotlin/internal/FieldError$MaxValueFieldError : com/paligot/jsonforms/kotlin/internal/FieldError {
 	public fun <init> (ILjava/lang/String;)V
-	public final fun getMaxValue ()I
 }
 
 public final class com/paligot/jsonforms/kotlin/internal/FieldError$MinLengthFieldError : com/paligot/jsonforms/kotlin/internal/FieldError {
 	public fun <init> (ILjava/lang/String;)V
-	public final fun getMinLength ()I
 }
 
 public final class com/paligot/jsonforms/kotlin/internal/FieldError$MinValueFieldError : com/paligot/jsonforms/kotlin/internal/FieldError {
 	public fun <init> (ILjava/lang/String;)V
-	public final fun getMinValue ()I
 }
 
 public final class com/paligot/jsonforms/kotlin/internal/FieldError$PatternFieldError : com/paligot/jsonforms/kotlin/internal/FieldError {
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
-	public final fun getPattern ()Ljava/lang/String;
 }
 
 public final class com/paligot/jsonforms/kotlin/internal/FieldError$RequiredFieldError : com/paligot/jsonforms/kotlin/internal/FieldError {
