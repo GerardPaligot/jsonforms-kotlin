@@ -72,8 +72,8 @@ fun Property.label(
 fun Property.getMaxCounter(
     value: String?,
     control: Control,
-): Pair<Int, Int>? {
-    return if (
+): Pair<Int, Int>? =
+    if (
         this is StringProperty &&
         control.options?.showMaxCounter == true &&
         maxLength != null
@@ -88,7 +88,6 @@ fun Property.getMaxCounter(
     } else {
         null
     }
-}
 
 private fun String?.getIntegerValue(): Int =
     try {

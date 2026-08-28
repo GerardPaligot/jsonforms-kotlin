@@ -28,8 +28,10 @@ interface SchemaProvider {
     fun isLastField(control: Control): Boolean
 }
 
-class SchemaProviderImpl(private val uiSchema: UiSchema, private val schema: Schema) :
-    SchemaProvider {
+class SchemaProviderImpl(
+    private val uiSchema: UiSchema,
+    private val schema: Schema,
+) : SchemaProvider {
     override fun <T : Property> getPropertyByControl(control: Control): T = schema.getPropertyByControl(control)
 
     override fun propertyIsRequired(

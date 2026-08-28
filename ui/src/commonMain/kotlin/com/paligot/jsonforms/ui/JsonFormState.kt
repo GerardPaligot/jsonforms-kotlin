@@ -141,7 +141,9 @@ interface JsonFormState {
  * @param map the initial value for fields in the form
  */
 @Stable
-internal class JsonFormStateImpl(private val map: Map<String, Any?>) : JsonFormState {
+internal class JsonFormStateImpl(
+    private val map: Map<String, Any?>,
+) : JsonFormState {
     /**
      * Internal errors driven by JsonForms internal checks (requirements and patterns).
      */
