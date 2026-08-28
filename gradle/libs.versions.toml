@@ -16,7 +16,7 @@ jetbrains-kotlinx-collections = "0.5.1"
 io-ktor = "3.5.2"
 io-mockk = "1.14.2"
 io-coil3 = "3.6.0"
-ktlint = "12.3.0"
+ktlint = "14.2.0"
 maven-publish = "0.32.0"
 
 [libraries]
